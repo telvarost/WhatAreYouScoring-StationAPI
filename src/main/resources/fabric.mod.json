@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "id": "whatareyouscoring",
+  "version": "${version}",
+
+  "name": "WhatAreYouScoring",
+  "description": "Adds a purpose to your score! Player score resets upon death in singleplayer and upon logout in multiplayer. Achievements are saved per instance and do not reset.",
+  "authors": [
+    "Telvarost"
+  ],
+  "contact": {
+    "issues": "https://github.com/telvarost/WhatAreYouScoring-StationAPI/issues",
+    "homepage": "https://github.com/telvarost/WhatAreYouScoring-StationAPI/",
+    "sources": "https://github.com/telvarost/WhatAreYouScoring-StationAPI/"
+  },
+
+  "license": "MIT",
+  "icon": "assets/whatareyouscoring/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "stationapi:event_bus": [
+      "com.github.telvarost.whatareyouscoring.events.init.AchievementListener"
+    ],
+    "stationapi:event_bus_client": [
+    ],
+    "stationapi:event_bus_server": [
+    ],
+    "gcapi": [
+      "com.github.telvarost.whatareyouscoring.Config"
+    ],
+    "gcapi:presave": [
+    ]
+  },
+  "mixins": [
+    "whatareyouscoring.mixins.json"
+  ],
+
+  "depends": {
+    "minecraft": "1.0.0-beta.7.3"
+  }
+}
