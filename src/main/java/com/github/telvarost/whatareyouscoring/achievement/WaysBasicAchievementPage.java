@@ -3,40 +3,27 @@ package com.github.telvarost.whatareyouscoring.achievement;
 import net.minecraft.block.BlockBase;
 import net.modificationstation.stationapi.api.client.gui.screen.achievement.AchievementPage;
 import net.modificationstation.stationapi.api.util.Identifier;
+import net.modificationstation.stationapi.api.util.math.MathHelper;
 
 import java.util.Random;
 
 public class WaysBasicAchievementPage extends AchievementPage {
 	private static WaysBasicAchievementPage instance;
-	
+
 	public WaysBasicAchievementPage(Identifier id) {
 		super(id);
 		instance = this;
 	}
-	
+
 	@Override
 	public int getBackgroundTexture(Random random, int column, int row, int randomizedRow, int currentTexture) {
-		int k = BlockBase.STONE.texture;
-		int l = random.nextInt(1 + row) + row / 2;
-		if (l <= 37 && row != 35) {
-			if (l == 22) {
-				k = BlockBase.WOOD.texture;
-			} else if (l == 10) {
-				k = BlockBase.WOOD.texture;
-			} else if (l == 8) {
-				k = BlockBase.WOOD.texture;
-			} else if (l > 4) {
-				k = BlockBase.WOOD.texture;
-			} else if (l > 0) {
-				k = BlockBase.DOUBLE_STONE_SLAB.texture;
-			}
-		} else {
-			k = BlockBase.DOUBLE_STONE_SLAB.texture;
-		}
-
-		return k;
+		int rand = Math.abs((int) MathHelper.hashCode(column, 5, row)) & 31;
+		return switch (rand) {
+			case 3, 2, 1, 0 -> BlockBase.DIRT.texture;
+			default -> BlockBase.SOUL_SAND.texture;
+		};
 	}
-	
+
 	public static WaysBasicAchievementPage getInstance() {
 		return instance;
 	}

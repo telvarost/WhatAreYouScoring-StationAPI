@@ -1,6 +1,7 @@
 package com.github.telvarost.whatareyouscoring.mixin;
 
 import com.github.telvarost.whatareyouscoring.Config;
+import com.github.telvarost.whatareyouscoring.ScoreDisplayEnum;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.screen.ScreenBase;
@@ -29,7 +30,9 @@ public class DeathScreenMixin extends ScreenBase {
             )
     )
     private void clientsideEssentials_renderDeathScreenText(Death instance, TextRenderer textRenderer, String s, int i, int j, int k) {
-        if (Config.config.SCORING_DISPLAY_TYPE) {
+        if (ScoreDisplayEnum.VANILLA == Config.config.SCORING_DISPLAY_TYPE) {
+            this.drawTextWithShadowCentred(textRenderer, s, i, j, k);
+        } else if (ScoreDisplayEnum.BASIC_SCORE == Config.config.SCORING_DISPLAY_TYPE) {
             int currentScore = 0;
             PlayerBase player = PlayerHelper.getPlayerFromGame();
 
@@ -38,9 +41,25 @@ public class DeathScreenMixin extends ScreenBase {
             }
 
             this.drawTextWithShadowCentred(textRenderer, "Score: \u00a7e" + currentScore, i, j, k);
-        }
-        else
-        {
+        } else if (ScoreDisplayEnum.DAYS_SCORE == Config.config.SCORING_DISPLAY_TYPE) {
+            int currentScore = 0;
+            PlayerBase player = PlayerHelper.getPlayerFromGame();
+
+            if (null != player) {
+                currentScore = player.score;
+            }
+
+            this.drawTextWithShadowCentred(textRenderer, "Score: \u00a7b" + currentScore, i, j, k);
+        } else if (ScoreDisplayEnum.CHALLENGE_404 == Config.config.SCORING_DISPLAY_TYPE) {
+            int currentScore = 0;
+            PlayerBase player = PlayerHelper.getPlayerFromGame();
+
+            if (null != player) {
+                currentScore = player.score;
+            }
+
+            this.drawTextWithShadowCentred(textRenderer, "Score: \u00a7c" + currentScore, i, j, k);
+        } else {
             this.drawTextWithShadowCentred(textRenderer, s, i, j, k);
         }
     }

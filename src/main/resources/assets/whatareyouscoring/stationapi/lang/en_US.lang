@@ -9,3 +9,9 @@ achievement.start_days=Days Scoring Enabled
 achievement.start_days.desc=Enjoy :D
 achievement.real_day=Real Day Completed!
 achievement.real_day.desc=Count: 1
+
+stationapi\:achievementPage.ways404=WAYS: 404
+achievement.start_404=404 Scoring Enabled
+achievement.start_404.desc=Enjoy :D
+achievement.zombies_killed=Zombie Killed!
+achievement.zombies_killed.desc=Count: 1
