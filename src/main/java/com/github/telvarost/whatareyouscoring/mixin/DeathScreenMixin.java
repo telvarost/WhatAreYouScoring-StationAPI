@@ -7,12 +7,15 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.screen.ScreenBase;
 import net.minecraft.client.render.TextRenderer;
 import net.minecraft.entity.player.PlayerBase;
+import net.minecraft.stat.Stats;
 import net.modificationstation.stationapi.api.entity.player.PlayerHelper;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
 import net.minecraft.client.gui.screen.ingame.Death;
 import org.spongepowered.asm.mixin.injection.Redirect;
+
+import java.time.Duration;
 
 @Environment(EnvType.CLIENT)
 @Mixin(Death.class)
@@ -48,6 +51,9 @@ public class DeathScreenMixin extends ScreenBase {
             if (null != player) {
                 currentScore = player.score;
             }
+            long realDaysPlayed = Duration.ofSeconds(minecraft.statFileWriter.write(Stats.playOneMinute) / 20).toDays();
+            long gameDaysPlayed = Duration.ofSeconds(minecraft.statFileWriter.write(Stats.playOneMinute) / 20).toMinutes() / 20;
+            currentScore = (int)gameDaysPlayed;
 
             this.drawTextWithShadowCentred(textRenderer, "Score: \u00a7b" + currentScore, i, j, k);
         } else if (ScoreDisplayEnum.CHALLENGE_404 == Config.config.SCORING_DISPLAY_TYPE) {
