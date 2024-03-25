@@ -9,20 +9,23 @@ import net.minecraft.item.ItemBase;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WhatAreYouScoringAchievements {
+public class WaysBasicAchievements {
 	public static final List<Achievement> ACHIEVEMENTS = new ArrayList<>();
-	private static int achievementID = 11000;
 
-	public static final Achievement FIRST_UNIQUE_FISH = make("first_unique_fish", ItemBase.fishingRod, 0, 0, null, false);
+	public static final Achievement START_BASIC = make("start_basic", ItemBase.book, 0, 0, null, false);
+	public static final Achievement BLOCKS_PLACED = make("blocks_placed", BlockBase.COBBLESTONE, 0, 1, START_BASIC, false);
 
-	private static Achievement make(String name, BlockBase icon, int x, int y, Achievement parent) {
-		Achievement achievement = new Achievement(achievementID++, "whatareyouscoring:" + name, x, y, icon, parent);
+	private static Achievement make(String name, BlockBase icon, int x, int y, Achievement parent, boolean isChallenge) {
+		Achievement achievement = new Achievement(ModHelper.ModHelperFields.ACHIEVEMENT_ID++, "whatareyouscoring:" + name, x, y, icon, parent);
+		if (isChallenge) {
+			achievement.setUnusual();
+		}
 		ACHIEVEMENTS.add(achievement);
 		return achievement;
 	}
 
 	private static Achievement make(String name, ItemBase icon, int x, int y, Achievement parent, boolean isChallenge) {
-		Achievement achievement = new Achievement(achievementID++, "whatareyouscoring:" + name, x, y, icon, parent);
+		Achievement achievement = new Achievement(ModHelper.ModHelperFields.ACHIEVEMENT_ID++, "whatareyouscoring:" + name, x, y, icon, parent);
 		if (isChallenge) {
 			achievement.setUnusual();
 		}

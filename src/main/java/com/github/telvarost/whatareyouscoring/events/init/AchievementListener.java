@@ -1,7 +1,6 @@
 package com.github.telvarost.whatareyouscoring.events.init;
 
-import com.github.telvarost.whatareyouscoring.achievement.WhatAreYouScoringAchievementPage;
-import com.github.telvarost.whatareyouscoring.achievement.WhatAreYouScoringAchievements;
+import com.github.telvarost.whatareyouscoring.achievement.*;
 import net.mine_diver.unsafeevents.listener.EventListener;
 import net.minecraft.achievement.Achievement;
 import net.minecraft.stat.Stat;
@@ -19,9 +18,19 @@ public class AchievementListener {
 
     @EventListener
     public void registerAchievements(AchievementRegisterEvent event) {
-        AchievementPage achievementPage = new WhatAreYouScoringAchievementPage(namespace.id("achievements"));
-        event.achievements.addAll(WhatAreYouScoringAchievements.ACHIEVEMENTS);
-        achievementPage.addAchievements(WhatAreYouScoringAchievements.ACHIEVEMENTS.toArray(Achievement[]::new));
-        WhatAreYouScoringAchievements.ACHIEVEMENTS.forEach(Stat::register);
+        AchievementPage achievementPageWaysBasic = new WaysBasicAchievementPage(namespace.id("waysbasic"));
+        event.achievements.addAll(WaysBasicAchievements.ACHIEVEMENTS);
+        achievementPageWaysBasic.addAchievements(WaysBasicAchievements.ACHIEVEMENTS.toArray(Achievement[]::new));
+        WaysBasicAchievements.ACHIEVEMENTS.forEach(Stat::register);
+
+        AchievementPage achievementPageWaysDays = new WaysDaysAchievementPage(namespace.id("waysdays"));
+        event.achievements.addAll(WaysDaysAchievements.ACHIEVEMENTS);
+        achievementPageWaysDays.addAchievements(WaysDaysAchievements.ACHIEVEMENTS.toArray(Achievement[]::new));
+        WaysDaysAchievements.ACHIEVEMENTS.forEach(Stat::register);
+
+//        AchievementPage achievementPageWays404 = new Ways404AchievementPage(namespace.id("ways404"));
+//        event.achievements.addAll(Ways404Achievements.ACHIEVEMENTS);
+//        achievementPageWays404.addAchievements(Ways404Achievements.ACHIEVEMENTS.toArray(Achievement[]::new));
+//        Ways404Achievements.ACHIEVEMENTS.forEach(Stat::register);
     }
 }

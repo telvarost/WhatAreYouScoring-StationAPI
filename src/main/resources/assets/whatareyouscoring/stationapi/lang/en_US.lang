@@ -1,3 +1,11 @@
-stationapi\:achievementPage.achievements=WhatAreYouScoring
-achievement.first_unique_fish=Number of Edits
-achievement.first_unique_fish.desc=To Edit
+stationapi\:achievementPage.waysbasic=WAYS: Basic
+achievement.start_basic=Basic Scoring Enabled
+achievement.start_basic.desc=Enjoy :D
+achievement.block_placed=Block Placed!
+achievement.block_placed.desc=Count: 0
+
+stationapi\:achievementPage.waysdays=WAYS: Days
+achievement.start_days=Days Scoring Enabled
+achievement.start_days.desc=Enjoy :D
+achievement.real_day=Real Day Completed!
+achievement.real_day.desc=Count: 1
