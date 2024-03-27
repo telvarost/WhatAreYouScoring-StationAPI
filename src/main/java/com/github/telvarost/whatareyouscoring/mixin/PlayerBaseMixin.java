@@ -1,10 +1,8 @@
 package com.github.telvarost.whatareyouscoring.mixin;
 
 import com.github.telvarost.whatareyouscoring.Config;
-import com.github.telvarost.whatareyouscoring.achievement.Ways404Achievements;
 import com.github.telvarost.whatareyouscoring.achievement.WaysBasicAchievements;
 import com.github.telvarost.whatareyouscoring.achievement.WaysDaysAchievements;
-import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Living;
 import net.minecraft.entity.player.PlayerBase;
@@ -29,19 +27,19 @@ public abstract class PlayerBaseMixin extends Living {
         super(arg);
     }
 
-    @Inject(method = "writeCustomDataToTag", at = @At("HEAD"))
-    private void betaTweaks_writeCustomDataToTag(CompoundTag tag, CallbackInfo info) {
-        if (0 >= Config.config.SCORING_DISPLAY_TYPE.ordinal()) {
-            return;
-        }
-    }
+//    @Inject(method = "writeCustomDataToTag", at = @At("HEAD"))
+//    private void betaTweaks_writeCustomDataToTag(CompoundTag tag, CallbackInfo info) {
+//        if (0 >= Config.config.SCORING_DISPLAY_TYPE.ordinal()) {
+//            return;
+//        }
+//    }
 
     @Inject(method = "readCustomDataFromTag", at = @At("HEAD"))
     private void betaTweaks_readCustomDataFromTag(CompoundTag tag, CallbackInfo info) {
         if (0 < Config.config.SCORING_DISPLAY_TYPE.ordinal()) {
             this.incrementStat(WaysBasicAchievements.START_BASIC);
             this.incrementStat(WaysDaysAchievements.START_DAYS);
-            this.incrementStat(Ways404Achievements.START_404);
+            //this.incrementStat(Ways404Achievements.START_404);
 
             Minecraft minecraft = MinecraftAccessor.getInstance();
             long gameDaysPlayed = Duration.ofSeconds(minecraft.statFileWriter.write(Stats.playOneMinute) / 20).toMinutes() / 20;
