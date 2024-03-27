@@ -13,7 +13,10 @@ public class WaysBasicAchievements {
 	public static final List<Achievement> ACHIEVEMENTS = new ArrayList<>();
 
 	public static final Achievement START_BASIC = make("start_basic", ItemBase.book, 0, 0, null, false);
-	public static final Achievement BLOCKS_PLACED = make("blocks_placed", BlockBase.COBBLESTONE, 0, 1, START_BASIC, false);
+	public static final Achievement BLOCKS_PLACED = make("block_placed", BlockBase.COBBLESTONE, 2, 0, START_BASIC, false);
+	public static final Achievement BLOCKS_REMOVED = make("block_removed", BlockBase.DIRT, 0, 2, START_BASIC, false);
+	public static final Achievement MONSTER_MOBS_KILLED = make("monster_mob_killed", ItemBase.bone, 0, -2, START_BASIC, false);
+	public static final Achievement PASSIVE_MOBS_KILLED = make("passive_mob_killed", ItemBase.leather, -2, 0, START_BASIC, false);
 
 	private static Achievement make(String name, BlockBase icon, int x, int y, Achievement parent, boolean isChallenge) {
 		Achievement achievement = new Achievement(ModHelper.ModHelperFields.ACHIEVEMENT_ID++, "whatareyouscoring:" + name, x, y, icon, parent);

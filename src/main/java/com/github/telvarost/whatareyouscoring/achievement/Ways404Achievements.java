@@ -12,8 +12,8 @@ import java.util.List;
 public class Ways404Achievements {
     public static final List<Achievement> ACHIEVEMENTS = new ArrayList<>();
 
-    public static final Achievement START_404 = make("start_404", BlockBase.GRASS, 0, 0, null, false);
-    public static final Achievement ZOMBIES_KILLED = make("zombies_killed", ItemBase.feather, 0, 1, START_404, false);
+    public static final Achievement START_404 = make("start_404", ItemBase.book, 0, 0, null, false);
+    public static final Achievement ZOMBIES_KILLED = make("zombies_killed", ItemBase.feather, 0, 2, START_404, false);
 
     private static Achievement make(String name, BlockBase icon, int x, int y, Achievement parent, boolean isChallenge) {
         Achievement achievement = new Achievement(ModHelper.ModHelperFields.ACHIEVEMENT_ID++, "whatareyouscoring:" + name, x, y, icon, parent);

@@ -1,7 +1,9 @@
 package com.github.telvarost.whatareyouscoring.mixin;
 
 import com.github.telvarost.whatareyouscoring.Config;
+import com.github.telvarost.whatareyouscoring.achievement.Ways404Achievements;
 import com.github.telvarost.whatareyouscoring.achievement.WaysBasicAchievements;
+import com.github.telvarost.whatareyouscoring.achievement.WaysDaysAchievements;
 import net.minecraft.entity.Living;
 import net.minecraft.entity.player.PlayerBase;
 import net.minecraft.level.Level;
@@ -31,8 +33,8 @@ public class BlockBaseMixin {
                 if (arg2 instanceof PlayerBase) {
                     ((PlayerBase) arg2).score++;
                     ((PlayerBase) arg2).incrementStat(WaysBasicAchievements.START_BASIC);
-                    //((PlayerBase) arg2).incrementStat(WaysDaysAchievements.START_DAYS);
-                    //((PlayerBase) arg2).incrementStat(Ways404Achievements.START_404);
+                    ((PlayerBase) arg2).incrementStat(WaysDaysAchievements.START_DAYS);
+                    ((PlayerBase) arg2).incrementStat(Ways404Achievements.START_404);
                 }
             }
         }
