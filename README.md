@@ -15,7 +15,7 @@ You will need ModMenu and GlassConfigAPI if you want to tweak different parts of
 - Killing a monster mob:        +1
 - Killing a passive mob:        +1
 
-## Day Scoring (Blue)
+## Days Scoring (Blue)
 - Surviving a minecraft day:    +1
 - (Real world days are also tracked, but not scored)
 
