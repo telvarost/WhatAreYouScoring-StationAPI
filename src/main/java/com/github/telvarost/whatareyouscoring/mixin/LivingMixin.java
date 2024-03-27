@@ -1,6 +1,7 @@
 package com.github.telvarost.whatareyouscoring.mixin;
 
 import com.github.telvarost.whatareyouscoring.Config;
+import com.github.telvarost.whatareyouscoring.ModHelper;
 import com.github.telvarost.whatareyouscoring.achievement.WaysBasicAchievements;
 import net.minecraft.entity.EntityBase;
 import net.minecraft.entity.Living;
@@ -38,15 +39,23 @@ public abstract class LivingMixin extends EntityBase {
                         || (instance instanceof Slime)
                 )
                 ) {
+                    if (0 == ModHelper.ModHelperFields.MONSTER_MOBS_KILLED) {
+                        ((PlayerBase)entity).incrementStat(WaysBasicAchievements.MONSTER_MOBS_KILLED);
+                    }
+
+                    ModHelper.ModHelperFields.MONSTER_MOBS_KILLED++;
                     ((PlayerBase)entity).score++;
-                    ((PlayerBase)entity).incrementStat(WaysBasicAchievements.MONSTER_MOBS_KILLED);
                 }
 
                 if (  (Config.config.SCORE_CONFIG.ADD_SCORE_ON_PASSIVE_KILLED)
                         && (instance instanceof AnimalBase)
                 ) {
+                    if (0 == ModHelper.ModHelperFields.PASSIVE_MOBS_KILLED) {
+                        ((PlayerBase)entity).incrementStat(WaysBasicAchievements.PASSIVE_MOBS_KILLED);
+                    }
+
+                    ModHelper.ModHelperFields.PASSIVE_MOBS_KILLED++;
                     ((PlayerBase)entity).score++;
-                    ((PlayerBase)entity).incrementStat(WaysBasicAchievements.PASSIVE_MOBS_KILLED);
                 }
             }
         }

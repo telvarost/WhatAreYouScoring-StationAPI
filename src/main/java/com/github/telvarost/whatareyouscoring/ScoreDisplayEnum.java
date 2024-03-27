@@ -4,8 +4,8 @@ public enum ScoreDisplayEnum {
 
     VANILLA("Vanilla"),
     BASIC_SCORE("Basic"),
-    DAYS_SCORE("Days"),
-    CHALLENGE_404("404 Challenge");
+    DAYS_SCORE("Days");
+    //CHALLENGE_404("404 Challenge");
 
     final String stringValue;
 
