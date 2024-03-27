@@ -9,17 +9,17 @@ Player score resets upon death in singleplayer and upon logout in multiplayer.
 You will need ModMenu and GlassConfigAPI if you want to tweak different parts of the mod. See installation instructions below.
 * (Incomplete) Mod now works on Multiplayer with GlassConfigAPI version 2.0+ used to sync configs!
 
-## Basic Scoring (Yellow)
+## Basic Scoring (Yellow):
 - Placing a block:              +1
 - Removing a block:             +1
 - Killing a monster mob:        +1
 - Killing a passive mob:        +1
 
-## Day Scoring: (Blue)
+## Day Scoring (Blue):
 - Surviving a minecraft day:    +1
 - (Real world days are also tracked, but not scored)
 
-## (Incomplete) 404 Challenge Scoring (Red)
+## (Incomplete) 404 Challenge Scoring (Red):
 - Score multiplier of 1.5 on hard difficulty:
   - WARNING! Changing onto or off of hard difficulty will set your score to: 0
 - Killing a certain mob:
