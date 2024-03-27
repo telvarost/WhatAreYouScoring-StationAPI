@@ -32,6 +32,23 @@ public class Ways404Achievements {
     public static final Achievement CREEPER_KILLED = make("creeper_killed", ItemBase.gunpowder, 1, 2, START_404, false);
     public static final Achievement GHAST_KILLED = make("ghast_killed", ItemBase.snowball, 2, 2, START_404, false);
     public static final Achievement ZOMBIE_PIGMAN_KILLED = make("zombie_pigman_killed", ItemBase.cookedPorkchop, 3, 2, START_404, false);
+    public static final Achievement CRAFT_JACK_O_LANTERN = make("craft_jack_o_lantern", BlockBase.JACK_O_LANTERN, -3, -3, START_404, false);
+    public static final Achievement CRAFT_BREAD = make("craft_bread", ItemBase.bread, -2, -3, START_404, false);
+    public static final Achievement CRAFT_32_GLASS = make("craft_32_glass", BlockBase.GLASS, -1, -3, START_404, false);
+    public static final Achievement CRAFT_20_BRICKS = make("craft_20_bricks", BlockBase.BRICKS, 0, -3, START_404, false);
+    public static final Achievement CRAFT_BOW_AND_ARROWS = make("craft_bow_and_arrows", ItemBase.bow, 1, -3, START_404, false);
+    public static final Achievement NEVER_SLEEP = make("never_sleep", ItemBase.bed, 2, 0, START_404, true);
+    public static final Achievement NEVER_WEAR_ARMOR = make("never_wear_armor", ItemBase.chainChestplate, 2, -1, START_404, true);
+    public static final Achievement ACQUIRE_3_PUMPKINS = make("acquire_3_pumpkins", BlockBase.PUMPKIN, 5, 1, START_404, false);
+    public static final Achievement ACQUIRE_32_CACTI = make("acquire_32_cacti", BlockBase.CACTUS, 4, 1, START_404, false);
+    public static final Achievement ACQUIRE_20_SUGAR_CANES = make("acquire_20_sugar_canes", ItemBase.sugarCanes, 4, 0, START_404, false);
+    public static final Achievement ACQUIRE_8_TYPES_OF_WOOL = make("acquire_8_types_of_wool", BlockBase.WOOL, 4, -1, START_404, false);
+    public static final Achievement ACQUIRE_ALL_TYPES_OF_WOOL = make("acquire_all_types_of_wool", BlockBase.ROSE, 4, -2, START_404, false);
+    public static final Achievement ACQUIRE_A_CRASH_SLAB = make("acquire_a_crash_slab", BlockBase.STONE_SLAB, 4, -3, START_404, true);
+    public static final Achievement BREAK_15_WHEAT = make("break_15_wheat", ItemBase.wheat, 5, 0, START_404, false);
+    public static final Achievement BREAK_AN_OBSIDIAN_BLOCK = make("break_an_obsidian_block", BlockBase.OBSIDIAN, 5, -1, START_404, false);
+    public static final Achievement EXIT_THE_NETHER = make("exit_the_nether", BlockBase.PORTAL, 5, -2, BREAK_AN_OBSIDIAN_BLOCK, false);
+    public static final Achievement PLACE_GLOWSTONE_IN_THE_OVERWORLD = make("place_glowstone_in_the_overworld", BlockBase.GLOWSTONE, 5, -3, EXIT_THE_NETHER, true);
 
     private static Achievement make(String name, BlockBase icon, int x, int y, Achievement parent, boolean isChallenge) {
         Achievement achievement = new Achievement(ModHelper.ModHelperFields.ACHIEVEMENT_ID++, "whatareyouscoring:" + name, x, y, icon, parent);

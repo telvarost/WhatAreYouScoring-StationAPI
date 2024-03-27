@@ -72,3 +72,41 @@ achievement.ghast_killed=Ghast Killed!
 achievement.ghast_killed.desc=Count: 0
 achievement.zombie_pigman_killed=Zombie Pigman Killed!
 achievement.zombie_pigman_killed.desc=Count: 0
+
+achievement.craft_jack_o_lantern=Time for Halloween!
+achievement.craft_jack_o_lantern.desc=Craft a jack o' lantern.
+achievement.craft_bread=Good for journeys!
+achievement.craft_bread.desc=Craft bread.
+achievement.craft_32_glass=Careful with those rocks!
+achievement.craft_32_glass.desc=Craft 32 glass.
+achievement.craft_20_bricks=Couldn't blow it down!
+achievement.craft_20_bricks.desc=Craft 20 bricks.
+achievement.craft_bow_and_arrows=The beta machine gun!
+achievement.craft_bow_and_arrows.desc=Craft a bow and 64 arrows.
+
+achievement.never_sleep=I need sleep!
+achievement.never_sleep.desc=Never sleep.
+achievement.never_wear_armor=I need protection!
+achievement.never_wear_armor.desc=Never wear armor.
+
+achievement.acquire_3_pumpkins=Pumpkin Spice Latte!
+achievement.acquire_3_pumpkins.desc=Acquire 3 pumpkins.
+achievement.acquire_32_cacti=Ow! Ow! Ow!
+achievement.acquire_32_cacti.desc=Acquire 32 cactus blocks.
+achievement.acquire_20_sugar_canes=Something smells sweet!
+achievement.acquire_20_sugar_canes.desc=Acquire 20 sugar canes.
+achievement.acquire_8_types_of_wool=Makes a nice rug!
+achievement.acquire_8_types_of_wool.desc=Acquire 8 different wool types.
+achievement.acquire_all_types_of_wool=Taste the rainbow!
+achievement.acquire_all_types_of_wool.desc=Acquire all different wool types.
+achievement.acquire_a_crash_slab=A perfect cube!
+achievement.acquire_a_crash_slab.desc=Acquire a crash slab.
+
+achievement.break_15_wheat=Farming Prodigy!
+achievement.break_15_wheat.desc=Break 15 wheat.
+achievement.break_an_obsidian_block=It takes forever!
+achievement.break_an_obsidian_block.desc=Break an obsidian block.
+achievement.exit_the_nether=To hell and back!
+achievement.exit_the_nether.desc=Exit the nether.
+achievement.place_glowstone_in_the_overworld=You are my sunshine!
+achievement.place_glowstone_in_the_overworld.desc=Place a glowstone block in the overworld.
