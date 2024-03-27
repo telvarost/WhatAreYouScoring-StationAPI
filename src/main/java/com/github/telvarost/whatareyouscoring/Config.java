@@ -12,6 +12,15 @@ public class Config {
         @ConfigName("What Score To Display")
         public ScoreDisplayEnum SCORING_DISPLAY_TYPE = ScoreDisplayEnum.BASIC_SCORE;
 
+        @ConfigName("Basic Scoring Enabled")
+        public Boolean BASIC_SCORING_ENABLED = true;
+
+        @ConfigName("Days Scoring Enabled")
+        public Boolean DAYS_SCORING_ENABLED = true;
+
+        @ConfigName("404 Challenge Scoring Enabled")
+        public Boolean CHALLENGE_404_SCORING_ENABLED = false;
+
         @ConfigCategory("Basic Score Config")
         public ScoreConfig SCORE_CONFIG = new ScoreConfig();
     }

@@ -1,6 +1,7 @@
 package com.github.telvarost.whatareyouscoring.mixin;
 
 import com.github.telvarost.whatareyouscoring.Config;
+import com.github.telvarost.whatareyouscoring.ModHelper;
 import com.github.telvarost.whatareyouscoring.achievement.WaysBasicAchievements;
 import net.minecraft.entity.Living;
 import net.minecraft.entity.player.PlayerBase;
@@ -19,8 +20,12 @@ public class BlockBaseMixin {
     public void clientsideEssentials_afterBreakBlock(Level arg, PlayerBase arg2, int i, int j, int k, int l, CallbackInfo ci) {
         if (Config.config.SCORE_CONFIG.ADD_SCORE_ON_BLOCK_REMOVED) {
             if (null != arg2) {
+                if (0 == ModHelper.ModHelperFields.BLOCKS_REMOVED) {
+                    arg2.incrementStat(WaysBasicAchievements.BLOCKS_REMOVED);
+                }
+
+                ModHelper.ModHelperFields.BLOCKS_REMOVED++;
                 arg2.score++;
-                arg2.incrementStat(WaysBasicAchievements.BLOCKS_REMOVED);
             }
         }
     }
@@ -30,8 +35,12 @@ public class BlockBaseMixin {
         if (Config.config.SCORE_CONFIG.ADD_SCORE_ON_BLOCK_PLACED) {
             if (null != arg2) {
                 if (arg2 instanceof PlayerBase) {
+                    if (0 == ModHelper.ModHelperFields.BLOCKS_PLACED) {
+                        ((PlayerBase) arg2).incrementStat(WaysBasicAchievements.BLOCKS_PLACED);
+                    }
+
+                    ModHelper.ModHelperFields.BLOCKS_PLACED++;
                     ((PlayerBase) arg2).score++;
-                    ((PlayerBase) arg2).incrementStat(WaysBasicAchievements.BLOCKS_PLACED);
                 }
             }
         }

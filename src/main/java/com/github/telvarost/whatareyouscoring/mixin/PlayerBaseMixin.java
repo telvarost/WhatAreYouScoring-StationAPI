@@ -1,6 +1,7 @@
 package com.github.telvarost.whatareyouscoring.mixin;
 
 import com.github.telvarost.whatareyouscoring.Config;
+import com.github.telvarost.whatareyouscoring.ModHelper;
 import com.github.telvarost.whatareyouscoring.achievement.WaysBasicAchievements;
 import com.github.telvarost.whatareyouscoring.achievement.WaysDaysAchievements;
 import net.minecraft.client.Minecraft;
@@ -27,44 +28,62 @@ public abstract class PlayerBaseMixin extends Living {
         super(arg);
     }
 
-//    @Inject(method = "writeCustomDataToTag", at = @At("HEAD"))
-//    private void betaTweaks_writeCustomDataToTag(CompoundTag tag, CallbackInfo info) {
-//        if (0 >= Config.config.SCORING_DISPLAY_TYPE.ordinal()) {
-//            return;
-//        }
-//    }
+    @Inject(method = "writeCustomDataToTag", at = @At("HEAD"))
+    private void betaTweaks_writeCustomDataToTag(CompoundTag tag, CallbackInfo info) {
+        if (Config.config.BASIC_SCORING_ENABLED) {
+            tag.put("BP", ModHelper.ModHelperFields.BLOCKS_PLACED);
+            tag.put("BR", ModHelper.ModHelperFields.BLOCKS_REMOVED);
+            tag.put("MK", ModHelper.ModHelperFields.MONSTER_MOBS_KILLED);
+            tag.put("PK", ModHelper.ModHelperFields.PASSIVE_MOBS_KILLED);
+        }
 
-    @Inject(method = "readCustomDataFromTag", at = @At("HEAD"))
-    private void betaTweaks_readCustomDataFromTag(CompoundTag tag, CallbackInfo info) {
-        if (0 < Config.config.SCORING_DISPLAY_TYPE.ordinal()) {
-            this.incrementStat(WaysBasicAchievements.START_BASIC);
-            this.incrementStat(WaysDaysAchievements.START_DAYS);
-            //this.incrementStat(Ways404Achievements.START_404);
+        if (Config.config.DAYS_SCORING_ENABLED) {
+            ModHelper.ModHelperFields.DAYS_SURVIVED = (int)Math.floor(this.level.getProperties().getTime() / 24000);
+            tag.put("DS", ModHelper.ModHelperFields.DAYS_SURVIVED);
+            System.out.println("Days: " + ModHelper.ModHelperFields.DAYS_SURVIVED);
 
-            Minecraft minecraft = MinecraftAccessor.getInstance();
-            long gameDaysPlayed = Duration.ofSeconds(minecraft.statFileWriter.write(Stats.playOneMinute) / 20).toMinutes() / 20;
-            long realDaysPlayed = Duration.ofSeconds(minecraft.statFileWriter.write(Stats.playOneMinute) / 20).toDays();
-            if (null != this) {
-                if (0 < gameDaysPlayed) {
-                    this.incrementStat(WaysDaysAchievements.MINECRAFT_DAY);
-                    if (100 <= gameDaysPlayed) {
-                        this.incrementStat(WaysDaysAchievements.MINECRAFT_100);
-                        if (365 <= gameDaysPlayed) {
-                            this.incrementStat(WaysDaysAchievements.MINECRAFT_YEAR);
-                        }
-                    }
-                }
-
-                if (0 < realDaysPlayed) {
-                    this.incrementStat(WaysDaysAchievements.REAL_DAY);
-                    if (100 <= realDaysPlayed) {
-                        this.incrementStat(WaysDaysAchievements.REAL_100);
-                        if (365 <= realDaysPlayed) {
-                            this.incrementStat(WaysDaysAchievements.REAL_YEAR);
-                        }
+            if (ModHelper.ModHelperFields.PREV_DAYS_SURVIVED != ModHelper.ModHelperFields.DAYS_SURVIVED) {
+                ModHelper.ModHelperFields.PREV_DAYS_SURVIVED = ModHelper.ModHelperFields.DAYS_SURVIVED;
+                this.incrementStat(WaysDaysAchievements.MINECRAFT_DAY);
+                if (100 <= ModHelper.ModHelperFields.DAYS_SURVIVED) {
+                    this.incrementStat(WaysDaysAchievements.MINECRAFT_100);
+                    if (365 <= ModHelper.ModHelperFields.DAYS_SURVIVED) {
+                        this.incrementStat(WaysDaysAchievements.MINECRAFT_YEAR);
                     }
                 }
             }
+        }
+    }
+
+    @Inject(method = "readCustomDataFromTag", at = @At("HEAD"))
+    private void betaTweaks_readCustomDataFromTag(CompoundTag tag, CallbackInfo info) {
+        if (Config.config.BASIC_SCORING_ENABLED) {
+            this.incrementStat(WaysBasicAchievements.START_BASIC);
+            ModHelper.ModHelperFields.BLOCKS_PLACED = tag.getInt("BP");
+            ModHelper.ModHelperFields.BLOCKS_REMOVED = tag.getInt("BR");
+            ModHelper.ModHelperFields.MONSTER_MOBS_KILLED = tag.getInt("MK");
+            ModHelper.ModHelperFields.PASSIVE_MOBS_KILLED = tag.getInt("PK");
+        }
+
+        if (Config.config.DAYS_SCORING_ENABLED) {
+            this.incrementStat(WaysDaysAchievements.START_DAYS);
+            ModHelper.ModHelperFields.DAYS_SURVIVED = tag.getInt("DS");
+
+            Minecraft minecraft = MinecraftAccessor.getInstance();
+            long realDaysPlayed = Duration.ofSeconds(minecraft.statFileWriter.write(Stats.playOneMinute) / 20).toDays();
+            if (0 < realDaysPlayed) {
+                this.incrementStat(WaysDaysAchievements.REAL_DAY);
+                if (100 <= realDaysPlayed) {
+                    this.incrementStat(WaysDaysAchievements.REAL_100);
+                    if (365 <= realDaysPlayed) {
+                        this.incrementStat(WaysDaysAchievements.REAL_YEAR);
+                    }
+                }
+            }
+        }
+
+        if (Config.config.CHALLENGE_404_SCORING_ENABLED) {
+            //this.incrementStat(Ways404Achievements.START_404);
         }
     }
 }

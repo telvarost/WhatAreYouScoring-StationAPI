@@ -36,7 +36,10 @@ public class WaysBasicAchievements {
 		return achievement;
 	}
 
-	public static void modifyThisGuy() {
-		((AchievementAccessor) ACHIEVEMENTS.get(0)).setAchievementDescription("Cooked: " + ModHelper.ModHelperFields.TEST_ONE_TWO_THREE);
+	public static void updateAchievementCounts() {
+		((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(BLOCKS_PLACED))).setAchievementDescription("Count: " + ModHelper.ModHelperFields.BLOCKS_PLACED);
+		((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(BLOCKS_REMOVED))).setAchievementDescription("Count: " + ModHelper.ModHelperFields.BLOCKS_REMOVED);
+		((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(MONSTER_MOBS_KILLED))).setAchievementDescription("Count: " + ModHelper.ModHelperFields.MONSTER_MOBS_KILLED);
+		((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(PASSIVE_MOBS_KILLED))).setAchievementDescription("Count: " + ModHelper.ModHelperFields.PASSIVE_MOBS_KILLED);
 	}
 }

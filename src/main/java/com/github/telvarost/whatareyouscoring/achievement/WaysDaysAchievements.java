@@ -2,10 +2,14 @@ package com.github.telvarost.whatareyouscoring.achievement;
 
 import com.github.telvarost.whatareyouscoring.ModHelper;
 import com.github.telvarost.whatareyouscoring.mixin.AchievementAccessor;
+import com.github.telvarost.whatareyouscoring.mixin.MinecraftAccessor;
 import net.minecraft.achievement.Achievement;
 import net.minecraft.block.BlockBase;
+import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemBase;
+import net.minecraft.stat.Stats;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,7 +42,12 @@ public class WaysDaysAchievements {
         return achievement;
     }
 
-    public static void modifyThisGuy() {
-        ((AchievementAccessor) ACHIEVEMENTS.get(0)).setAchievementDescription("Cooked: " + ModHelper.ModHelperFields.TEST_ONE_TWO_THREE);
+    public static void updateAchievementCounts() {
+        ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(MINECRAFT_DAY))).setAchievementDescription("Count: " + ModHelper.ModHelperFields.DAYS_SURVIVED);
+        ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(MINECRAFT_100))).setAchievementDescription("Count: " + (int)Math.floor(ModHelper.ModHelperFields.DAYS_SURVIVED / 100));
+        ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(MINECRAFT_YEAR))).setAchievementDescription("Count: " + (int)Math.floor(ModHelper.ModHelperFields.DAYS_SURVIVED / 365));
+        Minecraft minecraft = MinecraftAccessor.getInstance();
+        long realDaysPlayed = Duration.ofSeconds(minecraft.statFileWriter.write(Stats.playOneMinute) / 20).toDays();
+        ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(REAL_DAY))).setAchievementDescription("Count: " + realDaysPlayed);
     }
 }

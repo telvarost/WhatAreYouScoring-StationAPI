@@ -1,6 +1,7 @@
 package com.github.telvarost.whatareyouscoring.mixin;
 
 import com.github.telvarost.whatareyouscoring.Config;
+import com.github.telvarost.whatareyouscoring.ModHelper;
 import com.github.telvarost.whatareyouscoring.ScoreDisplayEnum;
 import com.github.telvarost.whatareyouscoring.achievement.WaysBasicAchievements;
 import com.github.telvarost.whatareyouscoring.achievement.WaysDaysAchievements;
@@ -38,35 +39,20 @@ public class DeathScreenMixin extends ScreenBase {
         if (ScoreDisplayEnum.VANILLA == Config.config.SCORING_DISPLAY_TYPE) {
             this.drawTextWithShadowCentred(textRenderer, s, i, j, k);
         } else if (ScoreDisplayEnum.BASIC_SCORE == Config.config.SCORING_DISPLAY_TYPE) {
+            /** - Get current basic score */
             int currentScore = 0;
-            PlayerBase player = PlayerHelper.getPlayerFromGame();
-
-            if (null != player) {
-                currentScore = player.score;
-            }
-
+            currentScore += ModHelper.ModHelperFields.BLOCKS_PLACED;
+            currentScore += ModHelper.ModHelperFields.BLOCKS_REMOVED;
+            currentScore += ModHelper.ModHelperFields.MONSTER_MOBS_KILLED;
+            currentScore += ModHelper.ModHelperFields.PASSIVE_MOBS_KILLED;
             this.drawTextWithShadowCentred(textRenderer, "Score: \u00a7e" + currentScore, i, j, k);
         } else if (ScoreDisplayEnum.DAYS_SCORE == Config.config.SCORING_DISPLAY_TYPE) {
-            int currentScore = 0;
-            PlayerBase player = PlayerHelper.getPlayerFromGame();
-
-            long gameDaysPlayed = Duration.ofSeconds(minecraft.statFileWriter.write(Stats.playOneMinute) / 20).toMinutes() / 20;
-            long realDaysPlayed = Duration.ofSeconds(minecraft.statFileWriter.write(Stats.playOneMinute) / 20).toDays();
-            if (null != player) {
-                currentScore = player.score;
-            }
-            currentScore = (int)gameDaysPlayed;
-
+            /** - Get days survived */
+            int currentScore = ModHelper.ModHelperFields.DAYS_SURVIVED;
             this.drawTextWithShadowCentred(textRenderer, "Score: \u00a7b" + currentScore, i, j, k);
         } else if (ScoreDisplayEnum.CHALLENGE_404 == Config.config.SCORING_DISPLAY_TYPE) {
+            /** - Get current 404 challenge score */
             int currentScore = 0;
-            PlayerBase player = PlayerHelper.getPlayerFromGame();
-
-            if (null != player) {
-                currentScore = player.score;
-            }
-            currentScore = 0;
-
             this.drawTextWithShadowCentred(textRenderer, "Score: \u00a7c" + currentScore, i, j, k);
         } else {
             this.drawTextWithShadowCentred(textRenderer, s, i, j, k);

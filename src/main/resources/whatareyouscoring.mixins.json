@@ -13,7 +13,8 @@
   ],
   "client": [
     "DeathScreenMixin",
-    "MinecraftAccessor"
+    "MinecraftAccessor",
+    "PauseMixin"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -15,7 +15,7 @@ You will need ModMenu and GlassConfigAPI if you want to tweak different parts of
 - Killing a monster mob:        +1
 - Killing a passive mob:        +1
 
-## (Incomplete) Day Scoring: (Blue)
+## (In Progress) Day Scoring: (Blue)
 - Surviving a minecraft day:    +1
 
 ## (Incomplete) 404 Challenge Scoring (Red)
