@@ -2,6 +2,8 @@ package com.github.telvarost.whatareyouscoring.mixin;
 
 import com.github.telvarost.whatareyouscoring.Config;
 import com.github.telvarost.whatareyouscoring.ScoreDisplayEnum;
+import com.github.telvarost.whatareyouscoring.achievement.WaysBasicAchievements;
+import com.github.telvarost.whatareyouscoring.achievement.WaysDaysAchievements;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.screen.ScreenBase;
@@ -48,11 +50,11 @@ public class DeathScreenMixin extends ScreenBase {
             int currentScore = 0;
             PlayerBase player = PlayerHelper.getPlayerFromGame();
 
+            long gameDaysPlayed = Duration.ofSeconds(minecraft.statFileWriter.write(Stats.playOneMinute) / 20).toMinutes() / 20;
+            long realDaysPlayed = Duration.ofSeconds(minecraft.statFileWriter.write(Stats.playOneMinute) / 20).toDays();
             if (null != player) {
                 currentScore = player.score;
             }
-            long realDaysPlayed = Duration.ofSeconds(minecraft.statFileWriter.write(Stats.playOneMinute) / 20).toDays();
-            long gameDaysPlayed = Duration.ofSeconds(minecraft.statFileWriter.write(Stats.playOneMinute) / 20).toMinutes() / 20;
             currentScore = (int)gameDaysPlayed;
 
             this.drawTextWithShadowCentred(textRenderer, "Score: \u00a7b" + currentScore, i, j, k);
@@ -63,6 +65,7 @@ public class DeathScreenMixin extends ScreenBase {
             if (null != player) {
                 currentScore = player.score;
             }
+            currentScore = 0;
 
             this.drawTextWithShadowCentred(textRenderer, "Score: \u00a7c" + currentScore, i, j, k);
         } else {

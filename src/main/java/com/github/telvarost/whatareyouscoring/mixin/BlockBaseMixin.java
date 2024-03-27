@@ -22,6 +22,7 @@ public class BlockBaseMixin {
         if (Config.config.SCORE_CONFIG.ADD_SCORE_ON_BLOCK_REMOVED) {
             if (null != arg2) {
                 arg2.score++;
+                arg2.incrementStat(WaysBasicAchievements.BLOCKS_REMOVED);
             }
         }
     }
@@ -32,9 +33,7 @@ public class BlockBaseMixin {
             if (null != arg2) {
                 if (arg2 instanceof PlayerBase) {
                     ((PlayerBase) arg2).score++;
-                    ((PlayerBase) arg2).incrementStat(WaysBasicAchievements.START_BASIC);
-                    ((PlayerBase) arg2).incrementStat(WaysDaysAchievements.START_DAYS);
-                    ((PlayerBase) arg2).incrementStat(Ways404Achievements.START_404);
+                    ((PlayerBase) arg2).incrementStat(WaysBasicAchievements.BLOCKS_PLACED);
                 }
             }
         }
