@@ -29,6 +29,9 @@
     "gcapi": [
       "com.github.telvarost.whatareyouscoring.Config"
     ],
+    "gcapi:factory_provider": [
+      "com.github.telvarost.whatareyouscoring.ScoreDisplayEnumFactory"
+    ],
     "gcapi:presave": [
     ]
   },

@@ -6,13 +6,14 @@
   "mixins": [
     "AchievementAccessor",
     "BlockBaseMixin",
-    "FurnaceEntityMixin",
-    "LivingMixin"
+    "LivingMixin",
+    "PlayerBaseMixin"
   ],
   "server": [
   ],
   "client": [
-    "DeathScreenMixin"
+    "DeathScreenMixin",
+    "MinecraftAccessor"
   ],
   "injectors": {
     "defaultRequire": 1

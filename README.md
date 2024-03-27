@@ -28,8 +28,28 @@ You will need ModMenu and GlassConfigAPI if you want to tweak different parts of
   - Creepers:                   +2
   - Zombie Pigmen:              +3
   - Ghast:                      +6
+- Getting certain achievements (or not getting them):
+  - Never use a bed:            +15
+  - Never wear armor:           +15
+  - Aquire 3 pumpkins:          +2
+  - Aquire 32 cacti:            +4
+  - Aquire 20 sugar Canes:      +4
+  - Aquire 8 types of wool:     +10
+  - Aquire all types of wool:   +15
+  - Aquire 1 crash slab:        +15
+  - Break 15 wheat:             +10
+  - Break an obsidian block:    +5
+  - Enter the nether:           +15
+  - Put glowstone in overworld: +10
+  - Creeper breaks iron block:  +10
+  - Creeper breaks gold block:  +10
+  - Creeper breaks lapis block: +10
+  - Creeper breaks diamond block: +20
 - Crafting certain items for the first time:
+  - Jack-O-Lantern:             +2
   - Bread:                      +4
+  - 32 glass:                   +5
+  - 20 bricks:                  +10
   - Bow + 64 arrows:            +10
   - Complete leather armor:     +10
   - Complete iron armor:        +10
@@ -39,26 +59,6 @@ You will need ModMenu and GlassConfigAPI if you want to tweak different parts of
   - Block of gold:              +5
   - Block of lapis lazuli:      +5
   - Block of diamond:           +20
-  - Jack-O-Lantern:             +2
-  - 32 glass:                   +5
-  - 20 bricks:                  +10
-- Getting certain achievements (or not getting them):
-  - Never use a bed:            +15
-  - Never wear armor:           +15
-  - Enter the nether:           +15
-  - Put glowstone in overworld: +10
-  - Use farmland for 15 wheat:  +10
-  - Aquire 3 pumpkins:          +2
-  - Aquire 32 cacti:            +4
-  - Aquire 20 sugar Canes:      +4
-  - Aquire 1 obsidian:          +5
-  - Aquire 8 types of wool:     +10
-  - Aquire 12 types of wool:    +15
-  - Aquire 1 crash slab:        +15
-  - Creeper breaks iron block:  +10
-  - Creeper breaks gold block:  +10
-  - Creeper breaks lapis block: +10
-  - Creeper breaks diamond block: +20
 
 ## Installation using Prism Launcher
 

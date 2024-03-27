@@ -10,7 +10,7 @@ public class Config {
 
     public static class ConfigFields {
         @ConfigName("What Score To Display")
-        public Boolean SCORING_DISPLAY_TYPE = true;
+        public ScoreDisplayEnum SCORING_DISPLAY_TYPE = ScoreDisplayEnum.BASIC_SCORE;
 
         @ConfigCategory("Basic Score Config")
         public ScoreConfig SCORE_CONFIG = new ScoreConfig();

@@ -1,6 +1,7 @@
 package com.github.telvarost.whatareyouscoring.mixin;
 
 import com.github.telvarost.whatareyouscoring.Config;
+import com.github.telvarost.whatareyouscoring.achievement.WaysBasicAchievements;
 import net.minecraft.entity.Living;
 import net.minecraft.entity.player.PlayerBase;
 import net.minecraft.level.Level;
@@ -19,6 +20,7 @@ public class BlockBaseMixin {
         if (Config.config.SCORE_CONFIG.ADD_SCORE_ON_BLOCK_REMOVED) {
             if (null != arg2) {
                 arg2.score++;
+                arg2.incrementStat(WaysBasicAchievements.BLOCKS_REMOVED);
             }
         }
     }
@@ -29,6 +31,7 @@ public class BlockBaseMixin {
             if (null != arg2) {
                 if (arg2 instanceof PlayerBase) {
                     ((PlayerBase) arg2).score++;
+                    ((PlayerBase) arg2).incrementStat(WaysBasicAchievements.BLOCKS_PLACED);
                 }
             }
         }

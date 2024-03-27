@@ -1,3 +1,112 @@
-stationapi\:achievementPage.achievements=WhatAreYouScoring
-achievement.first_unique_fish=Number of Edits
-achievement.first_unique_fish.desc=To Edit
+stationapi\:achievementPage.waysbasic=WAYS: Basic
+achievement.start_basic=Begin Basic Scoring
+achievement.start_basic.desc=Scores each block placed/removed and each mob killed.
+achievement.block_placed=Block Placed!
+achievement.block_placed.desc=Count: 0
+achievement.block_removed=Block Removed!
+achievement.block_removed.desc=Count: 0
+achievement.monster_mob_killed=Monster Kill
+achievement.monster_mob_killed.desc=Count: 0
+achievement.passive_mob_killed=Passive Kill
+achievement.passive_mob_killed.desc=Count: 0
+
+
+
+stationapi\:achievementPage.waysdays=WAYS: Days
+achievement.start_days=Begin Days Scoring
+achievement.start_days.desc=Scores each passing Minecraft day (and tracks real days).
+achievement.minecraft_day=Game Day Completed!
+achievement.minecraft_day.desc=Count: 0
+achievement.minecraft_100_days=100 Days Completed!
+achievement.minecraft_100_days.desc=Count: 0
+achievement.minecraft_year=Game Year Completed!
+achievement.minecraft_year.desc=Count: 0
+achievement.real_day=Real Day Completed!
+achievement.real_day.desc=Count: 0
+achievement.real_100_days=Ready for YouTube!
+achievement.real_100_days.desc=Play for 100 real days.
+achievement.real_year=It's a work of art!
+achievement.real_year.desc=Play for 365 real days.
+
+
+
+stationapi\:achievementPage.ways404=WAYS: 404
+achievement.start_404=Begin 404 Challenge
+achievement.start_404.desc=Scores certain aspects of the game for the 404 challenge.
+
+achievement.leather_armor=100% Real Leather!
+achievement.leather_armor.desc=Craft a full set of leather armor.
+achievement.iron_armor=A Knight At Last!
+achievement.iron_armor.desc=Craft a full set of iron armor.
+achievement.gold_armor=Armor of Royalty!
+achievement.gold_armor.desc=Craft a full set of gold armor.
+achievement.diamond_armor=Impervious To Blows!
+achievement.diamond_armor.desc=Craft a full set of diamond armor.
+
+achievement.craft_iron_block=Age of Iron!
+achievement.craft_iron_block.desc=Craft an iron block.
+achievement.craft_gold_block=We're rich, we're Rich!
+achievement.craft_gold_block.desc=Craft a gold block.
+achievement.craft_lapis_lazuli_block=Ultramarine blue!
+achievement.craft_lapis_lazuli_block.desc=Craft a lapiz lazuli block.
+achievement.craft_diamond_block=Kingly Status!
+achievement.craft_diamond_block.desc=Craft a diamond block.
+achievement.creeper_iron_block=No cage strong enough!
+achievement.creeper_iron_block.desc=Have a creeper destroy an iron block.
+achievement.creeper_gold_block=Noo! Not the gold!
+achievement.creeper_gold_block.desc=Have a creeper destroy a gold block.
+achievement.creeper_lapis_lazuli_block=What's with the smoke?
+achievement.creeper_lapis_lazuli_block.desc=Have a creeper destroy a lapis lazuli block.
+achievement.creeper_diamond_block=How Could You!
+achievement.creeper_diamond_block.desc=Have a creeper destroy a diamond block.
+
+achievement.zombie_killed=Zombie Killed!
+achievement.zombie_killed.desc=Count: 0
+achievement.skeleton_killed=Skeleton Killed!
+achievement.skeleton_killed.desc=Count: 0
+achievement.spider_killed=Spider Killed!
+achievement.spider_killed.desc=Count: 0
+achievement.creeper_killed=Creeper Killed!
+achievement.creeper_killed.desc=Count: 0
+achievement.ghast_killed=Ghast Killed!
+achievement.ghast_killed.desc=Count: 0
+achievement.zombie_pigman_killed=Zombie Pigman Killed!
+achievement.zombie_pigman_killed.desc=Count: 0
+
+achievement.craft_jack_o_lantern=Time for Halloween!
+achievement.craft_jack_o_lantern.desc=Craft a jack o' lantern.
+achievement.craft_bread=Good for journeys!
+achievement.craft_bread.desc=Craft bread.
+achievement.craft_32_glass=Careful with those rocks!
+achievement.craft_32_glass.desc=Craft 32 glass.
+achievement.craft_20_bricks=Couldn't blow it down!
+achievement.craft_20_bricks.desc=Craft 20 bricks.
+achievement.craft_bow_and_arrows=The beta machine gun!
+achievement.craft_bow_and_arrows.desc=Craft a bow and 64 arrows.
+
+achievement.never_sleep=I need sleep!
+achievement.never_sleep.desc=Never sleep.
+achievement.never_wear_armor=I need protection!
+achievement.never_wear_armor.desc=Never wear armor.
+
+achievement.acquire_3_pumpkins=Pumpkin Spice Latte!
+achievement.acquire_3_pumpkins.desc=Acquire 3 pumpkins.
+achievement.acquire_32_cacti=Ow! Ow! Ow!
+achievement.acquire_32_cacti.desc=Acquire 32 cactus blocks.
+achievement.acquire_20_sugar_canes=Something smells sweet!
+achievement.acquire_20_sugar_canes.desc=Acquire 20 sugar canes.
+achievement.acquire_8_types_of_wool=Makes a nice rug!
+achievement.acquire_8_types_of_wool.desc=Acquire 8 different wool types.
+achievement.acquire_all_types_of_wool=Taste the rainbow!
+achievement.acquire_all_types_of_wool.desc=Acquire all different wool types.
+achievement.acquire_a_crash_slab=A perfect cube!
+achievement.acquire_a_crash_slab.desc=Acquire a crash slab.
+
+achievement.break_15_wheat=Farming Prodigy!
+achievement.break_15_wheat.desc=Break 15 wheat.
+achievement.break_an_obsidian_block=It takes forever!
+achievement.break_an_obsidian_block.desc=Break an obsidian block.
+achievement.exit_the_nether=To hell and back!
+achievement.exit_the_nether.desc=Exit the nether.
+achievement.place_glowstone_in_the_overworld=You are my sunshine!
+achievement.place_glowstone_in_the_overworld.desc=Place a glowstone block in the overworld.
