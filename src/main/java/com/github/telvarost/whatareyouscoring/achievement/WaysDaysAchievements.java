@@ -43,9 +43,9 @@ public class WaysDaysAchievements {
     }
 
     public static void updateAchievementCounts() {
-        ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(MINECRAFT_DAY))).setAchievementDescription("Count: " + ModHelper.ModHelperFields.DAYS_SURVIVED);
-        ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(MINECRAFT_100))).setAchievementDescription("Count: " + (int)Math.floor(ModHelper.ModHelperFields.DAYS_SURVIVED / 100));
-        ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(MINECRAFT_YEAR))).setAchievementDescription("Count: " + (int)Math.floor(ModHelper.ModHelperFields.DAYS_SURVIVED / 365));
+        ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(MINECRAFT_DAY))).setAchievementDescription("Current: " + ModHelper.ModHelperFields.DAYS_SURVIVED);
+        ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(MINECRAFT_100))).setAchievementDescription("Current: " + (int)Math.floor(ModHelper.ModHelperFields.DAYS_SURVIVED / 100));
+        ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(MINECRAFT_YEAR))).setAchievementDescription("Current: " + (int)Math.floor(ModHelper.ModHelperFields.DAYS_SURVIVED / 365));
         Minecraft minecraft = MinecraftAccessor.getInstance();
         long realDaysPlayed = Duration.ofSeconds(minecraft.statFileWriter.write(Stats.playOneMinute) / 20).toDays();
         ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(REAL_DAY))).setAchievementDescription("Count: " + realDaysPlayed);

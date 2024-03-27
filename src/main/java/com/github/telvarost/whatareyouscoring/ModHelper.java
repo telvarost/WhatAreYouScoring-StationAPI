@@ -7,6 +7,8 @@ public class ModHelper {
         public static Integer BLOCKS_REMOVED = 0;
         public static Integer MONSTER_MOBS_KILLED = 0;
         public static Integer PASSIVE_MOBS_KILLED = 0;
+        public static Integer DEATH_SCORE_DAYS_SURVIVED = 0;
+        public static Integer LAST_DEATH_DAY = 0;
         public static Integer DAYS_SURVIVED = 0;
         public static Integer PREV_DAYS_SURVIVED = 0;
 

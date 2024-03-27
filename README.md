@@ -4,10 +4,10 @@ A StationAPI mod for Minecraft Beta 1.7.3 that adds a purpose to your score!
 Player score resets upon death in singleplayer and upon logout in multiplayer.
 * Achievements are saved per instance and do not reset.
 
-# (In Progress) What Are You Scoring? (W.A.Y.S. Score/Achievement Mod)
+# What Are You Scoring? (W.A.Y.S. Score/Achievement Mod)
 
 You will need ModMenu and GlassConfigAPI if you want to tweak different parts of the mod. See installation instructions below.
-* Mod now works on Multiplayer with GlassConfigAPI version 2.0+ used to sync configs!
+* (Incomplete) Mod now works on Multiplayer with GlassConfigAPI version 2.0+ used to sync configs!
 
 ## Basic Scoring (Yellow)
 - Placing a block:              +1
@@ -15,8 +15,9 @@ You will need ModMenu and GlassConfigAPI if you want to tweak different parts of
 - Killing a monster mob:        +1
 - Killing a passive mob:        +1
 
-## (In Progress) Day Scoring: (Blue)
+## Day Scoring: (Blue)
 - Surviving a minecraft day:    +1
+- (Real world days are also tracked, but not scored)
 
 ## (Incomplete) 404 Challenge Scoring (Red)
 - Score multiplier of 1.5 on hard difficulty:

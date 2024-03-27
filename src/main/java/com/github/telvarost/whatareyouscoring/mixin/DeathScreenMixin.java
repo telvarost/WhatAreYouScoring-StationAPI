@@ -48,12 +48,12 @@ public class DeathScreenMixin extends ScreenBase {
             this.drawTextWithShadowCentred(textRenderer, "Score: \u00a7e" + currentScore, i, j, k);
         } else if (ScoreDisplayEnum.DAYS_SCORE == Config.config.SCORING_DISPLAY_TYPE) {
             /** - Get days survived */
-            int currentScore = ModHelper.ModHelperFields.DAYS_SURVIVED;
+            int currentScore = ModHelper.ModHelperFields.DEATH_SCORE_DAYS_SURVIVED;
             this.drawTextWithShadowCentred(textRenderer, "Score: \u00a7b" + currentScore, i, j, k);
-        } else if (ScoreDisplayEnum.CHALLENGE_404 == Config.config.SCORING_DISPLAY_TYPE) {
-            /** - Get current 404 challenge score */
-            int currentScore = 0;
-            this.drawTextWithShadowCentred(textRenderer, "Score: \u00a7c" + currentScore, i, j, k);
+//        } else if (ScoreDisplayEnum.CHALLENGE_404 == Config.config.SCORING_DISPLAY_TYPE) {
+//            /** - Get current 404 challenge score */
+//            int currentScore = 0;
+//            this.drawTextWithShadowCentred(textRenderer, "Score: \u00a7c" + currentScore, i, j, k);
         } else {
             this.drawTextWithShadowCentred(textRenderer, s, i, j, k);
         }

@@ -5,6 +5,7 @@ import com.github.telvarost.whatareyouscoring.ModHelper;
 import com.github.telvarost.whatareyouscoring.achievement.WaysBasicAchievements;
 import com.github.telvarost.whatareyouscoring.achievement.WaysDaysAchievements;
 import net.minecraft.client.Minecraft;
+import net.minecraft.entity.EntityBase;
 import net.minecraft.entity.Living;
 import net.minecraft.entity.player.PlayerBase;
 import net.minecraft.level.Level;
@@ -28,6 +29,13 @@ public abstract class PlayerBaseMixin extends Living {
         super(arg);
     }
 
+
+    @Inject(method = "onKilledBy", at = @At("HEAD"))
+    public void onKilledBy(EntityBase par1, CallbackInfo ci) {
+        ModHelper.ModHelperFields.DEATH_SCORE_DAYS_SURVIVED = ModHelper.ModHelperFields.DAYS_SURVIVED;
+        ModHelper.ModHelperFields.LAST_DEATH_DAY = (int)Math.floor(this.level.getProperties().getTime() / 24000);
+    }
+
     @Inject(method = "writeCustomDataToTag", at = @At("HEAD"))
     private void betaTweaks_writeCustomDataToTag(CompoundTag tag, CallbackInfo info) {
         if (Config.config.BASIC_SCORING_ENABLED) {
@@ -38,9 +46,9 @@ public abstract class PlayerBaseMixin extends Living {
         }
 
         if (Config.config.DAYS_SCORING_ENABLED) {
-            ModHelper.ModHelperFields.DAYS_SURVIVED = (int)Math.floor(this.level.getProperties().getTime() / 24000);
+            ModHelper.ModHelperFields.DAYS_SURVIVED = (int)Math.floor(this.level.getProperties().getTime() / 24000) - ModHelper.ModHelperFields.LAST_DEATH_DAY;
             tag.put("DS", ModHelper.ModHelperFields.DAYS_SURVIVED);
-            System.out.println("Days: " + ModHelper.ModHelperFields.DAYS_SURVIVED);
+            tag.put("LD", ModHelper.ModHelperFields.LAST_DEATH_DAY);
 
             if (ModHelper.ModHelperFields.PREV_DAYS_SURVIVED != ModHelper.ModHelperFields.DAYS_SURVIVED) {
                 ModHelper.ModHelperFields.PREV_DAYS_SURVIVED = ModHelper.ModHelperFields.DAYS_SURVIVED;
@@ -68,6 +76,7 @@ public abstract class PlayerBaseMixin extends Living {
         if (Config.config.DAYS_SCORING_ENABLED) {
             this.incrementStat(WaysDaysAchievements.START_DAYS);
             ModHelper.ModHelperFields.DAYS_SURVIVED = tag.getInt("DS");
+            ModHelper.ModHelperFields.LAST_DEATH_DAY = tag.getInt("LD");
 
             Minecraft minecraft = MinecraftAccessor.getInstance();
             long realDaysPlayed = Duration.ofSeconds(minecraft.statFileWriter.write(Stats.playOneMinute) / 20).toDays();
@@ -82,8 +91,8 @@ public abstract class PlayerBaseMixin extends Living {
             }
         }
 
-        if (Config.config.CHALLENGE_404_SCORING_ENABLED) {
-            //this.incrementStat(Ways404Achievements.START_404);
-        }
+//        if (Config.config.CHALLENGE_404_SCORING_ENABLED) {
+//            this.incrementStat(Ways404Achievements.START_404);
+//        }
     }
 }
