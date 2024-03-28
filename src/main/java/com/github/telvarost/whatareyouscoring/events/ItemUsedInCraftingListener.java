@@ -49,30 +49,6 @@ public class ItemUsedInCraftingListener {
                     }
                 }
 
-                if (32 > ModHelper.ModHelperFields.GLASS_CRAFTED) {
-                    if (event.itemCrafted.itemId == BlockBase.GLASS.asItem().id) {
-                        ModHelper.ModHelperFields.GLASS_CRAFTED++;
-
-                        if (32 == ModHelper.ModHelperFields.GLASS_CRAFTED) {
-                            PlayerBase player = PlayerHelper.getPlayerFromGame();
-                            player.incrementStat(Ways404Achievements.CRAFT_32_GLASS);
-                        }
-                        return;
-                    }
-                }
-
-                if (20 > ModHelper.ModHelperFields.BRICKS_CRAFTED) {
-                    if (event.itemCrafted.itemId == BlockBase.BRICKS.asItem().id) {
-                        ModHelper.ModHelperFields.BRICKS_CRAFTED++;
-
-                        if (20 == ModHelper.ModHelperFields.BRICKS_CRAFTED) {
-                            PlayerBase player = PlayerHelper.getPlayerFromGame();
-                            player.incrementStat(Ways404Achievements.CRAFT_20_BRICKS);
-                        }
-                        return;
-                    }
-                }
-
                 if (0x003F != ModHelper.ModHelperFields.MISC_CRAFTING_BITFIELD) {
                     if (event.itemCrafted.itemId == BlockBase.LAPIS_LAZULI_BLOCK.asItem().id) {
                         ModHelper.ModHelperFields.MISC_CRAFTING_BITFIELD |= 0x0001;

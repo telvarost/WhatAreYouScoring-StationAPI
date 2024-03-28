@@ -4,6 +4,7 @@ public class ModHelper {
 
     public static class ModHelperFields {
         public static int ACHIEVEMENT_ID = 11500;
+        public static Integer DETECT_CREEPER_EXPLOSION = 0;
 
         /** - Basic helper fields */
         public static Integer BLOCKS_PLACED = 0;
@@ -24,10 +25,22 @@ public class ModHelper {
         public static Integer CREEPER_KILLED = 0;
         public static Integer GHAST_KILLED = 0;
         public static Integer ZOMBIE_PIGMAN_KILLED = 0;
+        public static Integer WHEAT_BROKEN = 0;
+        public static Integer CACTI_BROKEN = 0;
+        public static Integer SUGAR_CANES_BROKEN = 0;
+        public static Integer PUMPKINS_BROKEN = 0;
+        public static Integer BLOCKS_BROKEN_BITFIELD = 0x0000;
+        public static Integer GLASS_PLACED = 0;
+        public static Integer BRICKS_PLACED = 0;
+        public static Integer WOOL_TYPES_PLACED = 0;
+        public static Integer WOOL_PLACED_BITFIELD = 0x0000;
+        public static Boolean HAS_CRASH_SLAB_BEEN_PLACED = false;
         public static Integer BOW_AND_ARROW_CRAFTING_BITFIELD = 0x0000;
-        public static Integer GLASS_CRAFTED = 0;
-        public static Integer BRICKS_CRAFTED = 0;
         public static Integer MISC_CRAFTING_BITFIELD = 0x0000;
         public static Integer ARMOR_CRAFTING_BITFIELD = 0x0000;
+        public static Integer EXPLOSION_STATUS_BITFIELD = 0x0000;
+        public static Boolean HAS_PLAYER_WORN_ARMOR = false;
+        public static Boolean HAS_PLAYER_EXITED_THE_NETHER = false;
+        public static Boolean IS_PLAYER_IN_NETHER = false;
     }
 }

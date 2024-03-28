@@ -5,9 +5,15 @@
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "AchievementAccessor",
+    "BedMixin",
     "BlockBaseMixin",
+    "CreeperMixin",
+    "ExplosionMixin",
     "LivingMixin",
-    "PlayerBaseMixin"
+    "PlayerBaseMixin",
+    "PlayerInventoryMixin",
+    "StoneSlabItemMixin",
+    "WoolMixin"
   ],
   "server": [
   ],

@@ -26,6 +26,8 @@ public abstract class PlayerBaseMixin extends Living {
 
     @Shadow public abstract void incrementStat(Stat arg);
 
+    @Shadow public int dimensionId;
+
     public PlayerBaseMixin(Level arg) {
         super(arg);
     }
@@ -64,11 +66,26 @@ public abstract class PlayerBaseMixin extends Living {
         }
 
         if (Config.config.CHALLENGE_404_SCORING_ENABLED) {
+            if (ModHelper.ModHelperFields.HAS_PLAYER_EXITED_THE_NETHER) {
+                if (-1 == this.dimensionId) {
+                    ModHelper.ModHelperFields.IS_PLAYER_IN_NETHER = true;
+                } else if (ModHelper.ModHelperFields.IS_PLAYER_IN_NETHER) {
+                    if (-1 != this.dimensionId) {
+                        ModHelper.ModHelperFields.HAS_PLAYER_EXITED_THE_NETHER = true;
+                        this.incrementStat(Ways404Achievements.EXIT_THE_NETHER);
+                    }
+                }
+            }
+
             tag.put("OC", ModHelper.ModHelperFields.BOW_AND_ARROW_CRAFTING_BITFIELD);
-            tag.put("GC", ModHelper.ModHelperFields.GLASS_CRAFTED);
-            tag.put("BC", ModHelper.ModHelperFields.BRICKS_CRAFTED);
             tag.put("IC", ModHelper.ModHelperFields.MISC_CRAFTING_BITFIELD);
             tag.put("AC", ModHelper.ModHelperFields.ARMOR_CRAFTING_BITFIELD);
+            tag.put("ES", ModHelper.ModHelperFields.EXPLOSION_STATUS_BITFIELD);
+            tag.put("GP", ModHelper.ModHelperFields.GLASS_PLACED);
+            tag.put("IP", ModHelper.ModHelperFields.BRICKS_PLACED);
+            tag.put("WT", ModHelper.ModHelperFields.WOOL_TYPES_PLACED);
+            tag.put("WP", ModHelper.ModHelperFields.WOOL_PLACED_BITFIELD);
+            tag.put("CP", ModHelper.ModHelperFields.HAS_CRASH_SLAB_BEEN_PLACED);
         }
     }
 
@@ -103,10 +120,19 @@ public abstract class PlayerBaseMixin extends Living {
         if (Config.config.CHALLENGE_404_SCORING_ENABLED) {
             this.incrementStat(Ways404Achievements.START_404);
             ModHelper.ModHelperFields.BOW_AND_ARROW_CRAFTING_BITFIELD = tag.getInt("OC");
-            ModHelper.ModHelperFields.GLASS_CRAFTED = tag.getInt("GC");
-            ModHelper.ModHelperFields.BRICKS_CRAFTED = tag.getInt("BC");
             ModHelper.ModHelperFields.MISC_CRAFTING_BITFIELD = tag.getInt("IC");
             ModHelper.ModHelperFields.ARMOR_CRAFTING_BITFIELD = tag.getInt("AC");
+            ModHelper.ModHelperFields.EXPLOSION_STATUS_BITFIELD = tag.getInt("ES");
+            ModHelper.ModHelperFields.GLASS_PLACED = tag.getInt("GP");
+            ModHelper.ModHelperFields.BRICKS_PLACED = tag.getInt("IP");
+            ModHelper.ModHelperFields.WOOL_TYPES_PLACED = tag.getInt("WT");
+            ModHelper.ModHelperFields.WOOL_PLACED_BITFIELD = tag.getInt("WP");
+            ModHelper.ModHelperFields.HAS_CRASH_SLAB_BEEN_PLACED = tag.getBoolean("CP");
+            ModHelper.ModHelperFields.GLASS_PLACED = 0;
+            ModHelper.ModHelperFields.BRICKS_PLACED = 0;
+            ModHelper.ModHelperFields.WOOL_TYPES_PLACED = 0;
+            ModHelper.ModHelperFields.WOOL_PLACED_BITFIELD = 0;
+            ModHelper.ModHelperFields.HAS_CRASH_SLAB_BEEN_PLACED = false;
         }
     }
 }
