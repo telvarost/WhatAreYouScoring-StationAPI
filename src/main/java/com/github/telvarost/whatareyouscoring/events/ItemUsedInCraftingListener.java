@@ -21,17 +21,19 @@ public class ItemUsedInCraftingListener {
     @EventListener
     public void combineDurability(ItemUsedInCraftingEvent event) {
         if (Config.config.CHALLENGE_404_SCORING_ENABLED) {
-            if (null != event.itemCrafted) {
-
-                if (0x00E4 != ModHelper.ModHelperFields.BOW_AND_ARROW_CRAFTING_BITFIELD) {
+            if (  (0 == event.itemOrdinal)
+               && (null != event.itemCrafted)
+            ) {
+                if (0x00C0 != ModHelper.ModHelperFields.BOW_AND_ARROW_CRAFTING_BITFIELD) {
                     if (event.itemCrafted.itemId == ItemBase.arrow.id) {
                         int arrowIncrement = 0x007F & ModHelper.ModHelperFields.BOW_AND_ARROW_CRAFTING_BITFIELD;
                         if (64 > arrowIncrement) {
-                            arrowIncrement = arrowIncrement + event.itemCrafted.count;
+                            arrowIncrement = arrowIncrement + 4;
+                            ModHelper.ModHelperFields.BOW_AND_ARROW_CRAFTING_BITFIELD &= 0x0080;
                             ModHelper.ModHelperFields.BOW_AND_ARROW_CRAFTING_BITFIELD |= arrowIncrement;
                         }
 
-                        if (0x00E4 == ModHelper.ModHelperFields.BOW_AND_ARROW_CRAFTING_BITFIELD) {
+                        if (0x00C0 == ModHelper.ModHelperFields.BOW_AND_ARROW_CRAFTING_BITFIELD) {
                             PlayerBase player = PlayerHelper.getPlayerFromGame();
                             player.incrementStat(Ways404Achievements.CRAFT_BOW_AND_ARROWS);
                         }
@@ -39,7 +41,7 @@ public class ItemUsedInCraftingListener {
                     } else if (event.itemCrafted.itemId == ItemBase.bow.id) {
                         ModHelper.ModHelperFields.BOW_AND_ARROW_CRAFTING_BITFIELD |= 0x0080;
 
-                        if (0x00E4 == ModHelper.ModHelperFields.BOW_AND_ARROW_CRAFTING_BITFIELD) {
+                        if (0x00C0 == ModHelper.ModHelperFields.BOW_AND_ARROW_CRAFTING_BITFIELD) {
                             PlayerBase player = PlayerHelper.getPlayerFromGame();
                             player.incrementStat(Ways404Achievements.CRAFT_BOW_AND_ARROWS);
                         }
@@ -179,13 +181,13 @@ public class ItemUsedInCraftingListener {
     private void checkForArmorSetComplete() {
         PlayerBase player = PlayerHelper.getPlayerFromGame();
 
-        if (0x000F == (0x000F | ModHelper.ModHelperFields.ARMOR_CRAFTING_BITFIELD)) {
+        if (0x000F == (0x000F & ModHelper.ModHelperFields.ARMOR_CRAFTING_BITFIELD)) {
             player.incrementStat(Ways404Achievements.LEATHER_ARMOR);
-        } else if (0x00F0 == (0x00F0 | ModHelper.ModHelperFields.ARMOR_CRAFTING_BITFIELD)) {
+        } else if (0x00F0 == (0x00F0 & ModHelper.ModHelperFields.ARMOR_CRAFTING_BITFIELD)) {
             player.incrementStat(Ways404Achievements.IRON_ARMOR);
-        } else if (0x0F00 == (0x0F00 | ModHelper.ModHelperFields.ARMOR_CRAFTING_BITFIELD)) {
+        } else if (0x0F00 == (0x0F00 & ModHelper.ModHelperFields.ARMOR_CRAFTING_BITFIELD)) {
             player.incrementStat(Ways404Achievements.GOLD_ARMOR);
-        } else if (0xF000 == (0xF000 | ModHelper.ModHelperFields.ARMOR_CRAFTING_BITFIELD)) {
+        } else if (0xF000 == (0xF000 & ModHelper.ModHelperFields.ARMOR_CRAFTING_BITFIELD)) {
             player.incrementStat(Ways404Achievements.DIAMOND_ARMOR);
         }
     }
