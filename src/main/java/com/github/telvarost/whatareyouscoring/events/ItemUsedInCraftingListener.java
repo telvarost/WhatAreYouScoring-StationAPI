@@ -20,7 +20,7 @@ public class ItemUsedInCraftingListener {
      */
     @EventListener
     public void combineDurability(ItemUsedInCraftingEvent event) {
-        if (Config.config.CHALLENGE_404_SCORING_ENABLED) {
+        if (Config.config.CHALLENGE_404_CONFIG.CHALLENGE_404_SCORING_ENABLED) {
             if (  (0 == event.itemOrdinal)
                && (null != event.itemCrafted)
             ) {

@@ -28,7 +28,7 @@ public class BedMixin extends BlockBase {
         )
     )
     public void canUse(Level arg, int i, int j, int k, PlayerBase arg2, CallbackInfoReturnable<Boolean> cir) {
-        if (Config.config.CHALLENGE_404_SCORING_ENABLED) {
+        if (Config.config.CHALLENGE_404_CONFIG.CHALLENGE_404_SCORING_ENABLED) {
             if (null != arg2) {
                 arg2.incrementStat(Ways404Achievements.NEVER_SLEEP);
             }

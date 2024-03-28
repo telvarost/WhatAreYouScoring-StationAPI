@@ -25,7 +25,7 @@ public class BlockBaseMixin {
     @Inject(method = "afterBreak", at = @At("HEAD"), cancellable = true)
     public void clientsideEssentials_afterBreakBlock(Level arg, PlayerBase arg2, int i, int j, int k, int l, CallbackInfo ci) {
         if (null != arg2) {
-            if (Config.config.SCORE_CONFIG.ADD_SCORE_ON_BLOCK_REMOVED) {
+            if (Config.config.BASIC_SCORE_CONFIG.ADD_SCORE_ON_BLOCK_REMOVED) {
                 if (0 == ModHelper.ModHelperFields.BLOCKS_REMOVED) {
                     arg2.incrementStat(WaysBasicAchievements.BLOCKS_REMOVED);
                 }
@@ -34,8 +34,8 @@ public class BlockBaseMixin {
                 arg2.score++;
             }
 
-            if (Config.config.CHALLENGE_404_SCORING_ENABLED) {
-                
+            if (Config.config.CHALLENGE_404_CONFIG.CHALLENGE_404_SCORING_ENABLED) {
+
             }
         }
     }
@@ -44,7 +44,7 @@ public class BlockBaseMixin {
     public void clientsideEssentials_afterPlaced(Level arg, int i, int j, int k, Living arg2, CallbackInfo ci) {
         if (null != arg2) {
             if (arg2 instanceof PlayerBase) {
-                if (Config.config.SCORE_CONFIG.ADD_SCORE_ON_BLOCK_PLACED) {
+                if (Config.config.BASIC_SCORE_CONFIG.ADD_SCORE_ON_BLOCK_PLACED) {
                     if (0 == ModHelper.ModHelperFields.BLOCKS_PLACED) {
                         ((PlayerBase) arg2).incrementStat(WaysBasicAchievements.BLOCKS_PLACED);
                     }
@@ -53,7 +53,7 @@ public class BlockBaseMixin {
                     ((PlayerBase) arg2).score++;
                 }
 
-                if (Config.config.CHALLENGE_404_SCORING_ENABLED) {
+                if (Config.config.CHALLENGE_404_CONFIG.CHALLENGE_404_SCORING_ENABLED) {
                     if (32 > ModHelper.ModHelperFields.GLASS_PLACED) {
                         if (this.id == BlockBase.GLASS.id) {
                             ModHelper.ModHelperFields.GLASS_PLACED++;

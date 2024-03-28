@@ -1,6 +1,7 @@
 package com.github.telvarost.whatareyouscoring.mixin;
 
 import com.github.telvarost.whatareyouscoring.Config;
+import com.github.telvarost.whatareyouscoring.achievement.Ways404Achievements;
 import com.github.telvarost.whatareyouscoring.achievement.WaysBasicAchievements;
 import com.github.telvarost.whatareyouscoring.achievement.WaysDaysAchievements;
 import net.fabricmc.api.EnvType;
@@ -26,12 +27,16 @@ public class PauseMixin extends ScreenBase {
             )
     )
     protected void buttonClicked(Button par1, CallbackInfo ci) {
-        if (Config.config.BASIC_SCORING_ENABLED) {
+        if (Config.config.BASIC_SCORE_CONFIG.BASIC_SCORING_ENABLED) {
             WaysBasicAchievements.updateAchievementCounts();
         }
 
-        if (Config.config.DAYS_SCORING_ENABLED) {
+        if (Config.config.DAYS_SCORE_CONFIG.DAYS_SCORING_ENABLED) {
             WaysDaysAchievements.updateAchievementCounts();
+        }
+
+        if (Config.config.CHALLENGE_404_CONFIG.CHALLENGE_404_SCORING_ENABLED) {
+            Ways404Achievements.updateAchievementCounts();
         }
     }
 }

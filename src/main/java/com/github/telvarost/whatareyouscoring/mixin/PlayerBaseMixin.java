@@ -41,14 +41,14 @@ public abstract class PlayerBaseMixin extends Living {
 
     @Inject(method = "writeCustomDataToTag", at = @At("HEAD"))
     private void betaTweaks_writeCustomDataToTag(CompoundTag tag, CallbackInfo info) {
-        if (Config.config.BASIC_SCORING_ENABLED) {
+        if (Config.config.BASIC_SCORE_CONFIG.BASIC_SCORING_ENABLED) {
             tag.put("BP", ModHelper.ModHelperFields.BLOCKS_PLACED);
             tag.put("BR", ModHelper.ModHelperFields.BLOCKS_REMOVED);
             tag.put("MK", ModHelper.ModHelperFields.MONSTER_MOBS_KILLED);
             tag.put("PK", ModHelper.ModHelperFields.PASSIVE_MOBS_KILLED);
         }
 
-        if (Config.config.DAYS_SCORING_ENABLED) {
+        if (Config.config.DAYS_SCORE_CONFIG.DAYS_SCORING_ENABLED) {
             ModHelper.ModHelperFields.DAYS_SURVIVED = (int)Math.floor(this.level.getProperties().getTime() / 24000) - ModHelper.ModHelperFields.LAST_DEATH_DAY;
             tag.put("DS", ModHelper.ModHelperFields.DAYS_SURVIVED);
             tag.put("LD", ModHelper.ModHelperFields.LAST_DEATH_DAY);
@@ -65,7 +65,7 @@ public abstract class PlayerBaseMixin extends Living {
             }
         }
 
-        if (Config.config.CHALLENGE_404_SCORING_ENABLED) {
+        if (Config.config.CHALLENGE_404_CONFIG.CHALLENGE_404_SCORING_ENABLED) {
             if (ModHelper.ModHelperFields.HAS_PLAYER_EXITED_THE_NETHER) {
                 if (-1 == this.dimensionId) {
                     ModHelper.ModHelperFields.IS_PLAYER_IN_NETHER = true;
@@ -91,7 +91,7 @@ public abstract class PlayerBaseMixin extends Living {
 
     @Inject(method = "readCustomDataFromTag", at = @At("HEAD"))
     private void betaTweaks_readCustomDataFromTag(CompoundTag tag, CallbackInfo info) {
-        if (Config.config.BASIC_SCORING_ENABLED) {
+        if (Config.config.BASIC_SCORE_CONFIG.BASIC_SCORING_ENABLED) {
             this.incrementStat(WaysBasicAchievements.START_BASIC);
             ModHelper.ModHelperFields.BLOCKS_PLACED = tag.getInt("BP");
             ModHelper.ModHelperFields.BLOCKS_REMOVED = tag.getInt("BR");
@@ -99,7 +99,7 @@ public abstract class PlayerBaseMixin extends Living {
             ModHelper.ModHelperFields.PASSIVE_MOBS_KILLED = tag.getInt("PK");
         }
 
-        if (Config.config.DAYS_SCORING_ENABLED) {
+        if (Config.config.DAYS_SCORE_CONFIG.DAYS_SCORING_ENABLED) {
             this.incrementStat(WaysDaysAchievements.START_DAYS);
             ModHelper.ModHelperFields.DAYS_SURVIVED = tag.getInt("DS");
             ModHelper.ModHelperFields.LAST_DEATH_DAY = tag.getInt("LD");
@@ -117,7 +117,7 @@ public abstract class PlayerBaseMixin extends Living {
             }
         }
 
-        if (Config.config.CHALLENGE_404_SCORING_ENABLED) {
+        if (Config.config.CHALLENGE_404_CONFIG.CHALLENGE_404_SCORING_ENABLED) {
             this.incrementStat(Ways404Achievements.START_404);
             ModHelper.ModHelperFields.BOW_AND_ARROW_CRAFTING_BITFIELD = tag.getInt("OC");
             ModHelper.ModHelperFields.MISC_CRAFTING_BITFIELD = tag.getInt("IC");

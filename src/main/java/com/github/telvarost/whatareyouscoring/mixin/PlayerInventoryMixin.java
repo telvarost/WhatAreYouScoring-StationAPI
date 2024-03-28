@@ -27,7 +27,7 @@ public abstract class PlayerInventoryMixin implements InventoryBase, StationFlat
             at = @At("HEAD")
     )
     public void miscTweaks_getArmourValue(CallbackInfoReturnable<Integer> cir) {
-        if (Config.config.CHALLENGE_404_SCORING_ENABLED) {
+        if (Config.config.CHALLENGE_404_CONFIG.CHALLENGE_404_SCORING_ENABLED) {
             if (false == ModHelper.ModHelperFields.HAS_PLAYER_WORN_ARMOR) {
                 for (int var4 = 0; var4 < this.armour.length; ++var4) {
                     if (this.armour[var4] != null && this.armour[var4].getType() instanceof Armour) {

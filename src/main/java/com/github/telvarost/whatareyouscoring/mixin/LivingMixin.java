@@ -25,12 +25,12 @@ public abstract class LivingMixin extends EntityBase {
 
     @Inject(method = "onKilledBy", at = @At("HEAD"), cancellable = true)
     public void onKilledBy(EntityBase entity, CallbackInfo ci) {
-        if (Config.config.BASIC_SCORING_ENABLED) {
+        if (Config.config.BASIC_SCORE_CONFIG.BASIC_SCORING_ENABLED) {
             if (entity instanceof PlayerBase)
             {
                 Living instance = ((Living) (Object)this);
 
-                if (  (Config.config.SCORE_CONFIG.ADD_SCORE_ON_MONSTER_KILLED)
+                if (  (Config.config.BASIC_SCORE_CONFIG.ADD_SCORE_ON_MONSTER_KILLED)
                    && (  (instance instanceof MonsterBase)
                       || (instance instanceof Ghast)
                       || (instance instanceof Slime)
@@ -44,7 +44,7 @@ public abstract class LivingMixin extends EntityBase {
                     ((PlayerBase)entity).score++;
                 }
 
-                if (  (Config.config.SCORE_CONFIG.ADD_SCORE_ON_PASSIVE_KILLED)
+                if (  (Config.config.BASIC_SCORE_CONFIG.ADD_SCORE_ON_PASSIVE_KILLED)
                    && (instance instanceof AnimalBase)
                 ) {
                     if (0 == ModHelper.ModHelperFields.PASSIVE_MOBS_KILLED) {
@@ -57,7 +57,7 @@ public abstract class LivingMixin extends EntityBase {
             }
         }
 
-        if (Config.config.CHALLENGE_404_SCORING_ENABLED) {
+        if (Config.config.CHALLENGE_404_CONFIG.CHALLENGE_404_SCORING_ENABLED) {
             if (entity instanceof PlayerBase) {
                 Living instance = ((Living) (Object) this);
 

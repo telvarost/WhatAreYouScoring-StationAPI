@@ -28,7 +28,7 @@ public class ExplosionMixin {
 
     @Inject(method = "kaboomPhase2", at = @At("HEAD"), cancellable = true)
     public void miscTweaks_cancelAllExplosionTileDamage(boolean renderParticles, CallbackInfo ci) {
-        if (Config.config.CHALLENGE_404_SCORING_ENABLED) {
+        if (Config.config.CHALLENGE_404_CONFIG.CHALLENGE_404_SCORING_ENABLED) {
             if (0xF != ModHelper.ModHelperFields.EXPLOSION_STATUS_BITFIELD) {
                 if (0 < ModHelper.ModHelperFields.DETECT_CREEPER_EXPLOSION) {
                     ModHelper.ModHelperFields.DETECT_CREEPER_EXPLOSION--;

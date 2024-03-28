@@ -25,7 +25,7 @@ public class CreeperMixin extends MonsterBase {
             )
     )
     public boolean miscTweaks_tryAttackBeforeCreateExplosion(Creeper instance) {
-        if (Config.config.CHALLENGE_404_SCORING_ENABLED)
+        if (Config.config.CHALLENGE_404_CONFIG.CHALLENGE_404_SCORING_ENABLED)
         {
             ModHelper.ModHelperFields.DETECT_CREEPER_EXPLOSION++;
         }

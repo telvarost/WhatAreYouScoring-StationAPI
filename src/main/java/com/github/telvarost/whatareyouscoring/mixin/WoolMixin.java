@@ -20,7 +20,7 @@ public class WoolMixin extends BlockBase {
 
     @Override
     public void afterPlaced(Level arg, int i, int j, int k, Living arg2) {
-        if (Config.config.CHALLENGE_404_SCORING_ENABLED) {
+        if (Config.config.CHALLENGE_404_CONFIG.CHALLENGE_404_SCORING_ENABLED) {
             if (0xFFFF != ModHelper.ModHelperFields.WOOL_PLACED_BITFIELD) {
                 if (null != arg2) {
                     if (arg2 instanceof PlayerBase) {
