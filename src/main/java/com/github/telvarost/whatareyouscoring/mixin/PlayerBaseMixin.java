@@ -66,7 +66,7 @@ public abstract class PlayerBaseMixin extends Living {
         }
 
         if (Config.config.CHALLENGE_404_CONFIG.CHALLENGE_404_SCORING_ENABLED) {
-            if (ModHelper.ModHelperFields.HAS_PLAYER_EXITED_THE_NETHER) {
+            if (false == ModHelper.ModHelperFields.HAS_PLAYER_EXITED_THE_NETHER) {
                 if (-1 == this.dimensionId) {
                     ModHelper.ModHelperFields.IS_PLAYER_IN_NETHER = true;
                 } else if (ModHelper.ModHelperFields.IS_PLAYER_IN_NETHER) {

@@ -8,6 +8,7 @@
     "BedMixin",
     "BlockBaseMixin",
     "CreeperMixin",
+    "CropsMixin",
     "ExplosionMixin",
     "LivingMixin",
     "PlayerBaseMixin",

@@ -35,7 +35,58 @@ public class BlockBaseMixin {
             }
 
             if (Config.config.CHALLENGE_404_CONFIG.CHALLENGE_404_SCORING_ENABLED) {
+                if (3 > ModHelper.ModHelperFields.PUMPKINS_BROKEN) {
+                    if (this.id == BlockBase.PUMPKIN.id) {
+                        ModHelper.ModHelperFields.PUMPKINS_BROKEN++;
 
+                        if (3 == ModHelper.ModHelperFields.PUMPKINS_BROKEN) {
+                            PlayerBase player = PlayerHelper.getPlayerFromGame();
+                            if (null != player) {
+                                player.incrementStat(Ways404Achievements.BREAK_3_PUMPKINS);
+                            }
+                        }
+                        return;
+                    }
+                }
+
+                if (20 > ModHelper.ModHelperFields.SUGAR_CANES_BROKEN) {
+                    if (this.id == BlockBase.SUGAR_CANES.id) {
+                        ModHelper.ModHelperFields.SUGAR_CANES_BROKEN++;
+
+                        if (20 == ModHelper.ModHelperFields.SUGAR_CANES_BROKEN) {
+                            PlayerBase player = PlayerHelper.getPlayerFromGame();
+                            if (null != player) {
+                                player.incrementStat(Ways404Achievements.BREAK_20_SUGAR_CANES);
+                            }
+                        }
+                        return;
+                    }
+                }
+
+                if (32 > ModHelper.ModHelperFields.CACTI_BROKEN) {
+                    if (this.id == BlockBase.CACTUS.id) {
+                        ModHelper.ModHelperFields.CACTI_BROKEN++;
+
+                        if (32 == ModHelper.ModHelperFields.CACTI_BROKEN) {
+                            PlayerBase player = PlayerHelper.getPlayerFromGame();
+                            if (null != player) {
+                                player.incrementStat(Ways404Achievements.BREAK_32_CACTI);
+                            }
+                        }
+                        return;
+                    }
+                }
+
+                if (false == ModHelper.ModHelperFields.HAS_OBSIDIAN_BEEN_BROKEN) {
+                    if (this.id == BlockBase.OBSIDIAN.id) {
+                        ModHelper.ModHelperFields.HAS_OBSIDIAN_BEEN_BROKEN = true;
+                        PlayerBase player = PlayerHelper.getPlayerFromGame();
+                        if (null != player) {
+                            player.incrementStat(Ways404Achievements.BREAK_AN_OBSIDIAN_BLOCK);
+                        }
+                        return;
+                    }
+                }
             }
         }
     }
@@ -89,6 +140,19 @@ public class BlockBaseMixin {
                                 PlayerBase player = PlayerHelper.getPlayerFromGame();
                                 if (null != player) {
                                     player.incrementStat(Ways404Achievements.PLACE_A_CRASH_SLAB);
+                                }
+                            }
+                            return;
+                        }
+                    }
+
+                    if (false == ModHelper.ModHelperFields.HAS_OVERWORLD_GLOWSTONE_BEEN_PLACED) {
+                        if (this.id == BlockBase.GLOWSTONE.id) {
+                            ModHelper.ModHelperFields.HAS_OVERWORLD_GLOWSTONE_BEEN_PLACED = true;
+                            PlayerBase player = PlayerHelper.getPlayerFromGame();
+                            if (null != player) {
+                                if (0 == player.dimensionId) {
+                                    player.incrementStat(Ways404Achievements.PLACE_GLOWSTONE_IN_THE_OVERWORLD);
                                 }
                             }
                             return;

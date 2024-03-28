@@ -40,7 +40,9 @@ public class ModHelper {
         public static Integer ARMOR_CRAFTING_BITFIELD = 0x0000;
         public static Integer EXPLOSION_STATUS_BITFIELD = 0x0000;
         public static Boolean HAS_PLAYER_WORN_ARMOR = false;
+        public static Boolean HAS_OBSIDIAN_BEEN_BROKEN = false;
         public static Boolean HAS_PLAYER_EXITED_THE_NETHER = false;
         public static Boolean IS_PLAYER_IN_NETHER = false;
+        public static Boolean HAS_OVERWORLD_GLOWSTONE_BEEN_PLACED = false;
     }
 }
