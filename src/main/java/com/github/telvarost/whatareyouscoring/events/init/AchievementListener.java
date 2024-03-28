@@ -26,9 +26,9 @@ public class AchievementListener {
         achievementPageWaysDays.addAchievements(WaysDaysAchievements.ACHIEVEMENTS.toArray(Achievement[]::new));
         WaysDaysAchievements.ACHIEVEMENTS.forEach(Stat::register);
 
-//        AchievementPage achievementPageWays404 = new Ways404AchievementPage(namespace.id("ways404"));
-//        event.achievements.addAll(Ways404Achievements.ACHIEVEMENTS);
-//        achievementPageWays404.addAchievements(Ways404Achievements.ACHIEVEMENTS.toArray(Achievement[]::new));
-//        Ways404Achievements.ACHIEVEMENTS.forEach(Stat::register);
+        AchievementPage achievementPageWays404 = new Ways404AchievementPage(namespace.id("ways404"));
+        event.achievements.addAll(Ways404Achievements.ACHIEVEMENTS);
+        achievementPageWays404.addAchievements(Ways404Achievements.ACHIEVEMENTS.toArray(Achievement[]::new));
+        Ways404Achievements.ACHIEVEMENTS.forEach(Stat::register);
     }
 }

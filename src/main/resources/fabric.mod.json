@@ -20,7 +20,8 @@
   "environment": "*",
   "entrypoints": {
     "stationapi:event_bus": [
-      "com.github.telvarost.whatareyouscoring.events.init.AchievementListener"
+      "com.github.telvarost.whatareyouscoring.events.init.AchievementListener",
+      "com.github.telvarost.whatareyouscoring.events.ItemUsedInCraftingListener"
     ],
     "stationapi:event_bus_client": [
     ],

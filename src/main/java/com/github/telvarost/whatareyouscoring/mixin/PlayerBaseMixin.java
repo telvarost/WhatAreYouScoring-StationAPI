@@ -2,6 +2,7 @@ package com.github.telvarost.whatareyouscoring.mixin;
 
 import com.github.telvarost.whatareyouscoring.Config;
 import com.github.telvarost.whatareyouscoring.ModHelper;
+import com.github.telvarost.whatareyouscoring.achievement.Ways404Achievements;
 import com.github.telvarost.whatareyouscoring.achievement.WaysBasicAchievements;
 import com.github.telvarost.whatareyouscoring.achievement.WaysDaysAchievements;
 import net.minecraft.client.Minecraft;
@@ -61,6 +62,14 @@ public abstract class PlayerBaseMixin extends Living {
                 }
             }
         }
+
+        if (Config.config.CHALLENGE_404_SCORING_ENABLED) {
+            tag.put("OC", ModHelper.ModHelperFields.BOW_AND_ARROW_CRAFTING_BITFIELD);
+            tag.put("GC", ModHelper.ModHelperFields.GLASS_CRAFTED);
+            tag.put("BC", ModHelper.ModHelperFields.BRICKS_CRAFTED);
+            tag.put("IC", ModHelper.ModHelperFields.MISC_CRAFTING_BITFIELD);
+            tag.put("AC", ModHelper.ModHelperFields.ARMOR_CRAFTING_BITFIELD);
+        }
     }
 
     @Inject(method = "readCustomDataFromTag", at = @At("HEAD"))
@@ -91,8 +100,13 @@ public abstract class PlayerBaseMixin extends Living {
             }
         }
 
-//        if (Config.config.CHALLENGE_404_SCORING_ENABLED) {
-//            this.incrementStat(Ways404Achievements.START_404);
-//        }
+        if (Config.config.CHALLENGE_404_SCORING_ENABLED) {
+            this.incrementStat(Ways404Achievements.START_404);
+            ModHelper.ModHelperFields.BOW_AND_ARROW_CRAFTING_BITFIELD = tag.getInt("OC");
+            ModHelper.ModHelperFields.GLASS_CRAFTED = tag.getInt("GC");
+            ModHelper.ModHelperFields.BRICKS_CRAFTED = tag.getInt("BC");
+            ModHelper.ModHelperFields.MISC_CRAFTING_BITFIELD = tag.getInt("IC");
+            ModHelper.ModHelperFields.ARMOR_CRAFTING_BITFIELD = tag.getInt("AC");
+        }
     }
 }
