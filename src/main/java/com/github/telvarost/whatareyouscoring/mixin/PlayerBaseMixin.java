@@ -101,7 +101,6 @@ public abstract class PlayerBaseMixin extends Living {
     @Inject(method = "readCustomDataFromTag", at = @At("HEAD"))
     private void betaTweaks_readCustomDataFromTag(CompoundTag tag, CallbackInfo info) {
         if (Config.config.BASIC_SCORE_CONFIG.BASIC_SCORING_ENABLED) {
-            this.incrementStat(WaysBasicAchievements.START_BASIC);
             ModHelper.ModHelperFields.BLOCKS_PLACED       = tag.getInt("BP");
             ModHelper.ModHelperFields.BLOCKS_REMOVED      = tag.getInt("BR");
             ModHelper.ModHelperFields.MONSTER_MOBS_KILLED = tag.getInt("BM");
@@ -109,7 +108,6 @@ public abstract class PlayerBaseMixin extends Living {
         }
 
         if (Config.config.DAYS_SCORE_CONFIG.DAYS_SCORING_ENABLED) {
-            this.incrementStat(WaysDaysAchievements.START_DAYS);
             ModHelper.ModHelperFields.DAYS_PLAYED    = tag.getInt("DP");
             ModHelper.ModHelperFields.LAST_DEATH_DAY = tag.getInt("DL");
 
@@ -127,7 +125,6 @@ public abstract class PlayerBaseMixin extends Living {
         }
 
         if (Config.config.CHALLENGE_404_CONFIG.CHALLENGE_404_SCORING_ENABLED) {
-            this.incrementStat(Ways404Achievements.START_404);
             ModHelper.ModHelperFields.ZOMBIE_KILLED                     = tag.getInt("CKZ");
             ModHelper.ModHelperFields.SKELETON_KILLED                   = tag.getInt("CKK");
             ModHelper.ModHelperFields.SPIDER_KILLED                     = tag.getInt("CKS");

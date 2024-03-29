@@ -20,6 +20,7 @@
   ],
   "client": [
     "DeathScreenMixin",
+    "LevelMixin",
     "MinecraftAccessor",
     "PauseMixin"
   ],
