@@ -147,7 +147,7 @@ public class ModHelper {
         ModHelperFields.PASSIVE_MOBS_KILLED = 0;
 
         /** - Reset Days Score Fields */
-        ModHelperFields.DEATH_SCORE_DAYS_SURVIVED = ModHelperFields.DAYS_SURVIVED;
+        ModHelperFields.DEATH_SCORE_DAYS_SURVIVED = (ModHelperFields.DAYS_PLAYED - ModHelperFields.LAST_DEATH_DAY);
         ModHelperFields.LAST_DEATH_DAY = (int)Math.floor(level.getProperties().getTime() / 24000);
 
         /** - Reset 404 Challenge Score Fields */
@@ -186,8 +186,8 @@ public class ModHelper {
         /** - Days helper fields */
         public static Integer DEATH_SCORE_DAYS_SURVIVED = 0;
         public static Integer LAST_DEATH_DAY = 0;
-        public static Integer DAYS_SURVIVED = 0;
-        public static Integer PREV_DAYS_SURVIVED = 0;
+        public static Integer DAYS_PLAYED = 0;
+        public static Integer PREV_DAYS_PLAYED = 0;
 
         /** - 404 Challenge helper fields */
         public static Integer DEATH_SCORE_404_CHALLENGE = 0;

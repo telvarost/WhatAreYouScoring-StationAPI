@@ -48,16 +48,16 @@ public abstract class PlayerBaseMixin extends Living {
         }
 
         if (Config.config.DAYS_SCORE_CONFIG.DAYS_SCORING_ENABLED) {
-            ModHelper.ModHelperFields.DAYS_SURVIVED = (int)Math.floor(this.level.getProperties().getTime() / 24000) - ModHelper.ModHelperFields.LAST_DEATH_DAY;
-            tag.put("DS", ModHelper.ModHelperFields.DAYS_SURVIVED);
+            ModHelper.ModHelperFields.DAYS_PLAYED = (int)Math.floor(this.level.getProperties().getTime() / 24000);
+            tag.put("DP", ModHelper.ModHelperFields.DAYS_PLAYED);
             tag.put("DL", ModHelper.ModHelperFields.LAST_DEATH_DAY);
 
-            if (ModHelper.ModHelperFields.PREV_DAYS_SURVIVED != ModHelper.ModHelperFields.DAYS_SURVIVED) {
-                ModHelper.ModHelperFields.PREV_DAYS_SURVIVED = ModHelper.ModHelperFields.DAYS_SURVIVED;
+            if (ModHelper.ModHelperFields.PREV_DAYS_PLAYED != ModHelper.ModHelperFields.DAYS_PLAYED) {
+                ModHelper.ModHelperFields.PREV_DAYS_PLAYED = ModHelper.ModHelperFields.DAYS_PLAYED;
                 this.incrementStat(WaysDaysAchievements.MINECRAFT_DAY);
-                if (100 <= ModHelper.ModHelperFields.DAYS_SURVIVED) {
+                if (100 <= ModHelper.ModHelperFields.DAYS_PLAYED) {
                     this.incrementStat(WaysDaysAchievements.MINECRAFT_100);
-                    if (365 <= ModHelper.ModHelperFields.DAYS_SURVIVED) {
+                    if (365 <= ModHelper.ModHelperFields.DAYS_PLAYED) {
                         this.incrementStat(WaysDaysAchievements.MINECRAFT_YEAR);
                     }
                 }
@@ -104,14 +104,14 @@ public abstract class PlayerBaseMixin extends Living {
             this.incrementStat(WaysBasicAchievements.START_BASIC);
             ModHelper.ModHelperFields.BLOCKS_PLACED       = tag.getInt("BP");
             ModHelper.ModHelperFields.BLOCKS_REMOVED      = tag.getInt("BR");
-            ModHelper.ModHelperFields.MONSTER_MOBS_KILLED = tag.getInt("MK");
-            ModHelper.ModHelperFields.PASSIVE_MOBS_KILLED = tag.getInt("PK");
+            ModHelper.ModHelperFields.MONSTER_MOBS_KILLED = tag.getInt("BM");
+            ModHelper.ModHelperFields.PASSIVE_MOBS_KILLED = tag.getInt("BA");
         }
 
         if (Config.config.DAYS_SCORE_CONFIG.DAYS_SCORING_ENABLED) {
             this.incrementStat(WaysDaysAchievements.START_DAYS);
-            ModHelper.ModHelperFields.DAYS_SURVIVED  = tag.getInt("DS");
-            ModHelper.ModHelperFields.LAST_DEATH_DAY = tag.getInt("LD");
+            ModHelper.ModHelperFields.DAYS_PLAYED    = tag.getInt("DP");
+            ModHelper.ModHelperFields.LAST_DEATH_DAY = tag.getInt("DL");
 
             Minecraft minecraft = MinecraftAccessor.getInstance();
             long realDaysPlayed = Duration.ofSeconds(minecraft.statFileWriter.write(Stats.playOneMinute) / 20).toDays();
