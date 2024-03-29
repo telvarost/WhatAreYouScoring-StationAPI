@@ -19,47 +19,45 @@ You will need ModMenu and GlassConfigAPI if you want to tweak different parts of
 - Surviving a minecraft day:    +1
 - (Real world days are also tracked, but not scored)
 
-## (Incomplete) 404 Challenge Scoring (Red)
+## 404 Challenge Scoring (Red)
 - Score multiplier of 1.5 on hard difficulty:
-  - WARNING! Changing onto or off of hard difficulty will set your score to: 0
 - Killing a certain mob:
-  - Zombies:                    +0.5
-  - Skeletons:                  +1
-  - Spiders:                    +1
-  - Creepers:                   +2
-  - Zombie Pigmen:              +3
-  - Ghast:                      +6
+  - Zombies:                      +0.5
+  - Skeletons:                    +1
+  - Spiders:                      +1
+  - Creepers:                     +2
+  - Zombie Pigmen:                +3
+  - Ghast:                        +6
 - Getting certain achievements (or not getting them):
-  - Never use a bed:            +15
-  - Never wear armor:           +15
-  - Aquire 3 pumpkins:          +2
-  - Aquire 32 cacti:            +4
-  - Aquire 20 sugar Canes:      +4
-  - Aquire 8 types of wool:     +10
-  - Aquire all types of wool:   +15
-  - Aquire 1 crash slab:        +15
-  - Break 15 wheat:             +10
-  - Break an obsidian block:    +5
-  - Enter the nether:           +15
-  - Put glowstone in overworld: +10
-  - Creeper breaks iron block:  +10
-  - Creeper breaks gold block:  +10
-  - Creeper breaks lapis block: +10
+  - Never use a bed:              +15
+  - Never wear armor:             +15
+  - Break 3 pumpkins:             +2
+  - Break 20 sugar Canes:         +4
+  - Break 32 cacti:               +4
+  - Break 15 wheat:               +10
+  - Break an obsidian block:      +5
+  - Exit the nether:              +15
+  - Place glowstone in overworld: +10
+  - Place 32 glass:               +5
+  - Place 20 bricks:              +10
+  - Place 8 types of wool:        +10
+  - Place all types of wool:      +15
+  - Place a crash slab:           +15
+  - Craft jack-o'-Lantern:        +2
+  - Craft bread:                  +4
+  - Craft bow + 64 arrows:        +10
+  - Craft full leather armor:     +10
+  - Craft full iron armor:        +10
+  - Craft full gold armor:        +20
+  - Craft full diamond armor:     +50
+  - Craft block of iron:          +2
+  - Craft block of gold:          +5
+  - Craft block of lapis lazuli:  +5
+  - Craft block of diamond:       +20
+  - Creeper breaks iron block:    +10
+  - Creeper breaks gold block:    +10
+  - Creeper breaks lapis block:   +10
   - Creeper breaks diamond block: +20
-- Crafting certain items for the first time:
-  - Jack-O-Lantern:             +2
-  - Bread:                      +4
-  - 32 glass:                   +5
-  - 20 bricks:                  +10
-  - Bow + 64 arrows:            +10
-  - Complete leather armor:     +10
-  - Complete iron armor:        +10
-  - Complete gold armor:        +20
-  - Complete diamond armor:     +50
-  - Block of iron:              +2
-  - Block of gold:              +5
-  - Block of lapis lazuli:      +5
-  - Block of diamond:           +20
 
 ## Installation using Prism Launcher
 
