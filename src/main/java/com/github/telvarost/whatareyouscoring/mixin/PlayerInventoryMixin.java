@@ -28,10 +28,10 @@ public abstract class PlayerInventoryMixin implements InventoryBase, StationFlat
     )
     public void miscTweaks_getArmourValue(CallbackInfoReturnable<Integer> cir) {
         if (Config.config.CHALLENGE_404_CONFIG.CHALLENGE_404_SCORING_ENABLED) {
-            if (false == ModHelper.ModHelperFields.HAS_PLAYER_WORN_ARMOR) {
+            if (ModHelper.ModHelperFields.HAS_PLAYER_WORN_ARMOR != (ModHelper.ModHelperFields.HAS_PLAYER_WORN_ARMOR & ModHelper.ModHelperFields.OTHER_BITFIELD)) {
                 for (int var4 = 0; var4 < this.armour.length; ++var4) {
                     if (this.armour[var4] != null && this.armour[var4].getType() instanceof Armour) {
-                        ModHelper.ModHelperFields.HAS_PLAYER_WORN_ARMOR = true;
+                        ModHelper.ModHelperFields.OTHER_BITFIELD |= ModHelper.ModHelperFields.HAS_PLAYER_WORN_ARMOR;
                         this.player.incrementStat(Ways404Achievements.NEVER_WEAR_ARMOR);
                     }
                 }

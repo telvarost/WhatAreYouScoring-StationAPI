@@ -6,8 +6,10 @@ import com.github.telvarost.whatareyouscoring.mixin.MinecraftAccessor;
 import net.minecraft.achievement.Achievement;
 import net.minecraft.block.BlockBase;
 import net.minecraft.client.Minecraft;
+import net.minecraft.entity.player.PlayerBase;
 import net.minecraft.item.ItemBase;
 import net.minecraft.stat.Stats;
+import net.modificationstation.stationapi.api.entity.player.PlayerHelper;
 
 import java.time.Duration;
 import java.util.ArrayList;
@@ -83,5 +85,179 @@ public class Ways404Achievements {
         ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(CREEPER_KILLED))).setAchievementDescription("Count: " + ModHelper.ModHelperFields.CREEPER_KILLED);
         ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(GHAST_KILLED))).setAchievementDescription("Count: " + ModHelper.ModHelperFields.GHAST_KILLED);
         ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(ZOMBIE_PIGMAN_KILLED))).setAchievementDescription("Count: " + ModHelper.ModHelperFields.ZOMBIE_PIGMAN_KILLED);
+
+        if (15 <= ModHelper.ModHelperFields.WHEAT_BROKEN) {
+            ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(BREAK_15_WHEAT))).setAchievementDescription("Break 15 wheat. [Completed!]");
+        } else {
+            ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(BREAK_15_WHEAT))).setAchievementDescription("Break 15 wheat. [Incomplete]");
+        }
+
+        if (32 <= ModHelper.ModHelperFields.CACTI_BROKEN) {
+            ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(BREAK_32_CACTI))).setAchievementDescription("Break 32 cacti. [Completed!]");
+        } else {
+            ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(BREAK_32_CACTI))).setAchievementDescription("Break 32 cacti. [Incomplete]");
+        }
+
+        if (20 <= ModHelper.ModHelperFields.SUGAR_CANES_BROKEN) {
+            ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(BREAK_20_SUGAR_CANES))).setAchievementDescription("Break 20 sugar canes. [Completed!]");
+        } else {
+            ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(BREAK_20_SUGAR_CANES))).setAchievementDescription("Break 20 sugar canes. [Incomplete]");
+        }
+
+        if (3 <= ModHelper.ModHelperFields.PUMPKINS_BROKEN) {
+            ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(BREAK_3_PUMPKINS))).setAchievementDescription("Break 3 pumpkins. [Completed!]");
+        } else {
+            ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(BREAK_3_PUMPKINS))).setAchievementDescription("Break 3 pumpkins. [Incomplete]");
+        }
+
+        if (32 <= ModHelper.ModHelperFields.GLASS_PLACED) {
+            ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(PLACE_32_GLASS))).setAchievementDescription("Place 32 glass. [Completed!]");
+        } else {
+            ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(PLACE_32_GLASS))).setAchievementDescription("Place 32 glass. [Incomplete]");
+        }
+
+        if (20 <= ModHelper.ModHelperFields.BRICKS_PLACED) {
+            ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(PLACE_20_BRICKS))).setAchievementDescription("Place 20 bricks. [Completed!]");
+        } else {
+            ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(PLACE_20_BRICKS))).setAchievementDescription("Place 20 bricks. [Incomplete]");
+        }
+
+        if (8 <= ModHelper.ModHelperFields.WOOL_TYPES_PLACED) {
+            ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(PLACE_8_TYPES_OF_WOOL))).setAchievementDescription("Place 8 different wool types. [Completed!]");
+        } else {
+            ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(PLACE_8_TYPES_OF_WOOL))).setAchievementDescription("Place 8 different wool types. [Incomplete]");
+        }
+
+        if (16 <= ModHelper.ModHelperFields.WOOL_TYPES_PLACED) {
+            ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(PLACE_ALL_TYPES_OF_WOOL))).setAchievementDescription("Place all different wool types. [Completed!]");
+        } else {
+            ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(PLACE_ALL_TYPES_OF_WOOL))).setAchievementDescription("Place all different wool types. [Incomplete]");
+        }
+
+        if (0xC0 == ModHelper.ModHelperFields.BOW_AND_ARROW_CRAFTING_BITFIELD) {
+            ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(CRAFT_BOW_AND_ARROWS))).setAchievementDescription("Craft a bow and 64 arrows. [Completed!]");
+        } else {
+            ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(CRAFT_BOW_AND_ARROWS))).setAchievementDescription("Craft a bow and 64 arrows. [Incomplete]");
+        }
+
+        if (0x0001 == (0x0001 & ModHelper.ModHelperFields.MISC_CRAFTING_BITFIELD)) {
+            ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(CRAFT_LAPIS_LAZULI_BLOCK))).setAchievementDescription("Craft a lapiz lazuli block. [Completed!]");
+        } else {
+            ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(CRAFT_LAPIS_LAZULI_BLOCK))).setAchievementDescription("Craft a lapiz lazuli block. [Incomplete]");
+        }
+
+        if (0x0002 == (0x0002 & ModHelper.ModHelperFields.MISC_CRAFTING_BITFIELD)) {
+            ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(CRAFT_IRON_BLOCK))).setAchievementDescription("Craft an iron block. [Completed!]");
+        } else {
+            ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(CRAFT_IRON_BLOCK))).setAchievementDescription("Craft an iron block. [Incomplete]");
+        }
+
+        if (0x0004 == (0x0004 & ModHelper.ModHelperFields.MISC_CRAFTING_BITFIELD)) {
+            ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(CRAFT_GOLD_BLOCK))).setAchievementDescription("Craft a gold block. [Completed!]");
+        } else {
+            ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(CRAFT_GOLD_BLOCK))).setAchievementDescription("Craft a gold block. [Incomplete]");
+        }
+
+        if (0x0008 == (0x0008 & ModHelper.ModHelperFields.MISC_CRAFTING_BITFIELD)) {
+            ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(CRAFT_DIAMOND_BLOCK))).setAchievementDescription("Craft a diamond block. [Completed!]");
+        } else {
+            ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(CRAFT_DIAMOND_BLOCK))).setAchievementDescription("Craft a diamond block. [Incomplete]");
+        }
+
+        if (0x0010 == (0x0010 & ModHelper.ModHelperFields.MISC_CRAFTING_BITFIELD)) {
+            ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(CRAFT_JACK_O_LANTERN))).setAchievementDescription("Craft a jack o' lantern. [Completed!]");
+        } else {
+            ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(CRAFT_JACK_O_LANTERN))).setAchievementDescription("Craft a jack o' lantern. [Incomplete]");
+        }
+
+        if (0x0020 == (0x0020 & ModHelper.ModHelperFields.MISC_CRAFTING_BITFIELD)) {
+            ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(CRAFT_BREAD))).setAchievementDescription("Craft bread. [Completed!]");
+        } else {
+            ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(CRAFT_BREAD))).setAchievementDescription("Craft bread. [Incomplete]");
+        }
+
+        if (0x000F == (0x000F & ModHelper.ModHelperFields.ARMOR_CRAFTING_BITFIELD)) {
+            ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(LEATHER_ARMOR))).setAchievementDescription("Craft a full set of leather armor. [Completed!]");
+        } else {
+            ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(LEATHER_ARMOR))).setAchievementDescription("Craft a full set of leather armor. [Incomplete]");
+        }
+
+        if (0x00F0 == (0x00F0 & ModHelper.ModHelperFields.ARMOR_CRAFTING_BITFIELD)) {
+            ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(IRON_ARMOR))).setAchievementDescription("Craft a full set of iron armor. [Completed!]");
+        } else {
+            ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(IRON_ARMOR))).setAchievementDescription("Craft a full set of iron armor. [Incomplete]");
+        }
+
+        if (0x0F00 == (0x0F00 & ModHelper.ModHelperFields.ARMOR_CRAFTING_BITFIELD)) {
+            ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(GOLD_ARMOR))).setAchievementDescription("Craft a full set of gold armor. [Completed!]");
+        } else {
+            ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(GOLD_ARMOR))).setAchievementDescription("Craft a full set of gold armor. [Incomplete]");
+        }
+
+        if (0xF000 == (0xF000 & ModHelper.ModHelperFields.ARMOR_CRAFTING_BITFIELD)) {
+            ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(DIAMOND_ARMOR))).setAchievementDescription("Craft a full set of diamond armor. [Completed!]");
+        } else {
+            ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(DIAMOND_ARMOR))).setAchievementDescription("Craft a full set of diamond armor. [Incomplete]");
+        }
+
+        if (0x0001 == (0x0001 & ModHelper.ModHelperFields.EXPLOSION_STATUS_BITFIELD)) {
+            ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(CREEPER_IRON_BLOCK))).setAchievementDescription("Have a creeper destroy an iron block. [Completed!]");
+        } else {
+            ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(CREEPER_IRON_BLOCK))).setAchievementDescription("Have a creeper destroy an iron block. [Incomplete]");
+        }
+
+        if (0x0002 == (0x0002 & ModHelper.ModHelperFields.EXPLOSION_STATUS_BITFIELD)) {
+            ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(CREEPER_GOLD_BLOCK))).setAchievementDescription("Have a creeper destroy a gold block. [Completed!]");
+        } else {
+            ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(CREEPER_GOLD_BLOCK))).setAchievementDescription("Have a creeper destroy a gold block. [Incomplete]");
+        }
+
+        if (0x0004 == (0x0004 & ModHelper.ModHelperFields.EXPLOSION_STATUS_BITFIELD)) {
+            ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(CREEPER_LAPIS_LAZULI_BLOCK))).setAchievementDescription("Have a creeper destroy a lapis lazuli block. [Completed!]");
+        } else {
+            ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(CREEPER_LAPIS_LAZULI_BLOCK))).setAchievementDescription("Have a creeper destroy a lapis lazuli block. [Incomplete]");
+        }
+
+        if (0x0008 == (0x0008 & ModHelper.ModHelperFields.EXPLOSION_STATUS_BITFIELD)) {
+            ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(CREEPER_DIAMOND_BLOCK))).setAchievementDescription("Have a creeper destroy a diamond block. [Completed!]");
+        } else {
+            ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(CREEPER_DIAMOND_BLOCK))).setAchievementDescription("Have a creeper destroy a diamond block. [Incomplete]");
+        }
+
+        if (0x0001 == (0x0001 & ModHelper.ModHelperFields.OTHER_BITFIELD)) {
+            ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(NEVER_SLEEP))).setAchievementDescription("Never sleep. [Failed]");
+        } else {
+            ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(NEVER_SLEEP))).setAchievementDescription("Never sleep. [Success!]");
+        }
+
+        if (0x0002 == (0x0002 & ModHelper.ModHelperFields.OTHER_BITFIELD)) {
+            ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(NEVER_WEAR_ARMOR))).setAchievementDescription("Never wear armor. [Failed]");
+        } else {
+            ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(NEVER_WEAR_ARMOR))).setAchievementDescription("Never wear armor. [Success!]");
+        }
+
+        if (0x0004 == (0x0004 & ModHelper.ModHelperFields.OTHER_BITFIELD)) {
+            ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(BREAK_AN_OBSIDIAN_BLOCK))).setAchievementDescription("Break an obsidian block. [Completed!]");
+        } else {
+            ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(BREAK_AN_OBSIDIAN_BLOCK))).setAchievementDescription("Break an obsidian block. [Incomplete]");
+        }
+
+        if (0x0008 == (0x0008 & ModHelper.ModHelperFields.OTHER_BITFIELD)) {
+            ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(EXIT_THE_NETHER))).setAchievementDescription("Exit the nether. [Completed!]");
+        } else {
+            ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(EXIT_THE_NETHER))).setAchievementDescription("Exit the nether. [Incomplete]");
+        }
+
+        if (0x0010 == (0x0010 & ModHelper.ModHelperFields.OTHER_BITFIELD)) {
+            ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(PLACE_GLOWSTONE_IN_THE_OVERWORLD))).setAchievementDescription("Place a glowstone block in the overworld. [Completed!]");
+        } else {
+            ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(PLACE_GLOWSTONE_IN_THE_OVERWORLD))).setAchievementDescription("Place a glowstone block in the overworld. [Incomplete]");
+        }
+
+        if (0x0020 == (0x0020 & ModHelper.ModHelperFields.OTHER_BITFIELD)) {
+            ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(PLACE_A_CRASH_SLAB))).setAchievementDescription("Place a crash slab. [Completed!]");
+        } else {
+            ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(PLACE_A_CRASH_SLAB))).setAchievementDescription("Place a crash slab. [Incomplete]");
+        }
     }
 }

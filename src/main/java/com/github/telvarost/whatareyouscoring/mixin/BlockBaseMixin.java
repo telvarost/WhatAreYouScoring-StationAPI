@@ -77,9 +77,9 @@ public class BlockBaseMixin {
                     }
                 }
 
-                if (false == ModHelper.ModHelperFields.HAS_OBSIDIAN_BEEN_BROKEN) {
+                if (ModHelper.ModHelperFields.HAS_OBSIDIAN_BEEN_BROKEN != (ModHelper.ModHelperFields.HAS_OBSIDIAN_BEEN_BROKEN & ModHelper.ModHelperFields.OTHER_BITFIELD)) {
                     if (this.id == BlockBase.OBSIDIAN.id) {
-                        ModHelper.ModHelperFields.HAS_OBSIDIAN_BEEN_BROKEN = true;
+                        ModHelper.ModHelperFields.OTHER_BITFIELD |= ModHelper.ModHelperFields.HAS_OBSIDIAN_BEEN_BROKEN;
                         PlayerBase player = PlayerHelper.getPlayerFromGame();
                         if (null != player) {
                             player.incrementStat(Ways404Achievements.BREAK_AN_OBSIDIAN_BLOCK);
@@ -133,10 +133,10 @@ public class BlockBaseMixin {
                         }
                     }
 
-                    if (false == ModHelper.ModHelperFields.HAS_CRASH_SLAB_BEEN_PLACED) {
+                    if (ModHelper.ModHelperFields.HAS_CRASH_SLAB_BEEN_PLACED != (ModHelper.ModHelperFields.HAS_CRASH_SLAB_BEEN_PLACED & ModHelper.ModHelperFields.OTHER_BITFIELD)) {
                         if (arg.getTileId(i, j - 1, k) == BlockBase.DOUBLE_STONE_SLAB.id) {
                             if (3 < arg.getTileMeta(i, j - 1, k)) {
-                                ModHelper.ModHelperFields.HAS_CRASH_SLAB_BEEN_PLACED = true;
+                                ModHelper.ModHelperFields.OTHER_BITFIELD |= ModHelper.ModHelperFields.HAS_CRASH_SLAB_BEEN_PLACED;
                                 PlayerBase player = PlayerHelper.getPlayerFromGame();
                                 if (null != player) {
                                     player.incrementStat(Ways404Achievements.PLACE_A_CRASH_SLAB);
@@ -146,9 +146,9 @@ public class BlockBaseMixin {
                         }
                     }
 
-                    if (false == ModHelper.ModHelperFields.HAS_OVERWORLD_GLOWSTONE_BEEN_PLACED) {
+                    if (ModHelper.ModHelperFields.HAS_OVERWORLD_GLOWSTONE_BEEN_PLACED != (ModHelper.ModHelperFields.HAS_OVERWORLD_GLOWSTONE_BEEN_PLACED & ModHelper.ModHelperFields.OTHER_BITFIELD)) {
                         if (this.id == BlockBase.GLOWSTONE.id) {
-                            ModHelper.ModHelperFields.HAS_OVERWORLD_GLOWSTONE_BEEN_PLACED = true;
+                            ModHelper.ModHelperFields.OTHER_BITFIELD |= ModHelper.ModHelperFields.HAS_OVERWORLD_GLOWSTONE_BEEN_PLACED;
                             PlayerBase player = PlayerHelper.getPlayerFromGame();
                             if (null != player) {
                                 if (0 == player.dimensionId) {

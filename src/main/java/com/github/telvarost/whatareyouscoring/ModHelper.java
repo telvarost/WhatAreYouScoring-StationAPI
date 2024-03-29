@@ -73,12 +73,12 @@ public class ModHelper {
         public static Integer ARMOR_CRAFTING_BITFIELD = 0x0000;
         public static Integer EXPLOSION_STATUS_BITFIELD = 0x0000;
         public static Integer OTHER_BITFIELD = 0x0000;
-        public static Boolean HAS_PLAYER_SLEPT = false;
-        public static Boolean HAS_PLAYER_WORN_ARMOR = false;
-        public static Boolean HAS_OBSIDIAN_BEEN_BROKEN = false;
-        public static Boolean HAS_PLAYER_EXITED_THE_NETHER = false;
-        public static Boolean HAS_OVERWORLD_GLOWSTONE_BEEN_PLACED = false;
-        public static Boolean HAS_CRASH_SLAB_BEEN_PLACED = false;
+        public static final Integer HAS_PLAYER_SLEPT = 0x0001;
+        public static final Integer HAS_PLAYER_WORN_ARMOR = 0x0002;
+        public static final Integer HAS_OBSIDIAN_BEEN_BROKEN = 0x0004;
+        public static final Integer HAS_PLAYER_EXITED_THE_NETHER = 0x0008;
+        public static final Integer HAS_OVERWORLD_GLOWSTONE_BEEN_PLACED = 0x0010;
+        public static final Integer HAS_CRASH_SLAB_BEEN_PLACED = 0x0020;
         public static Boolean IS_PLAYER_IN_NETHER = false;
     }
 }
