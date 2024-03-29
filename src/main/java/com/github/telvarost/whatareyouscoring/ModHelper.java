@@ -1,6 +1,41 @@
 package com.github.telvarost.whatareyouscoring;
 
+import net.minecraft.level.Level;
+
 public class ModHelper {
+
+    public static void resetFieldsOnDeath(Level level) {
+        /** - Reset Basic Score Fields */
+        ModHelperFields.BLOCKS_PLACED = 0;
+        ModHelperFields.BLOCKS_REMOVED = 0;
+        ModHelperFields.MONSTER_MOBS_KILLED = 0;
+        ModHelperFields.PASSIVE_MOBS_KILLED = 0;
+
+        /** - Reset Days Score Fields */
+        ModHelperFields.DEATH_SCORE_DAYS_SURVIVED = ModHelperFields.DAYS_SURVIVED;
+        ModHelperFields.LAST_DEATH_DAY = (int)Math.floor(level.getProperties().getTime() / 24000);
+
+        /** - Reset 404 Challenge Score Fields */
+        ModHelperFields.ZOMBIE_KILLED = 0;
+        ModHelperFields.SKELETON_KILLED = 0;
+        ModHelperFields.SPIDER_KILLED = 0;
+        ModHelperFields.CREEPER_KILLED = 0;
+        ModHelperFields.GHAST_KILLED = 0;
+        ModHelperFields.ZOMBIE_PIGMAN_KILLED = 0;
+        ModHelperFields.WHEAT_BROKEN = 0;
+        ModHelperFields.CACTI_BROKEN = 0;
+        ModHelperFields.SUGAR_CANES_BROKEN = 0;
+        ModHelperFields.PUMPKINS_BROKEN = 0;
+        ModHelperFields.GLASS_PLACED = 0;
+        ModHelperFields.BRICKS_PLACED = 0;
+        ModHelperFields.WOOL_TYPES_PLACED = 0;
+        ModHelperFields.WOOL_PLACED_BITFIELD = 0;
+        ModHelperFields.BOW_AND_ARROW_CRAFTING_BITFIELD = 0;
+        ModHelperFields.MISC_CRAFTING_BITFIELD = 0;
+        ModHelperFields.ARMOR_CRAFTING_BITFIELD = 0;
+        ModHelperFields.EXPLOSION_STATUS_BITFIELD = 0;
+        ModHelperFields.OTHER_BITFIELD = 0;
+    }
 
     public static class ModHelperFields {
         public static int ACHIEVEMENT_ID = 11500;
@@ -29,20 +64,21 @@ public class ModHelper {
         public static Integer CACTI_BROKEN = 0;
         public static Integer SUGAR_CANES_BROKEN = 0;
         public static Integer PUMPKINS_BROKEN = 0;
-        public static Integer BLOCKS_BROKEN_BITFIELD = 0x0000;
         public static Integer GLASS_PLACED = 0;
         public static Integer BRICKS_PLACED = 0;
         public static Integer WOOL_TYPES_PLACED = 0;
         public static Integer WOOL_PLACED_BITFIELD = 0x0000;
-        public static Boolean HAS_CRASH_SLAB_BEEN_PLACED = false;
         public static Integer BOW_AND_ARROW_CRAFTING_BITFIELD = 0x0000;
         public static Integer MISC_CRAFTING_BITFIELD = 0x0000;
         public static Integer ARMOR_CRAFTING_BITFIELD = 0x0000;
         public static Integer EXPLOSION_STATUS_BITFIELD = 0x0000;
+        public static Integer OTHER_BITFIELD = 0x0000;
+        public static Boolean HAS_PLAYER_SLEPT = false;
         public static Boolean HAS_PLAYER_WORN_ARMOR = false;
         public static Boolean HAS_OBSIDIAN_BEEN_BROKEN = false;
         public static Boolean HAS_PLAYER_EXITED_THE_NETHER = false;
-        public static Boolean IS_PLAYER_IN_NETHER = false;
         public static Boolean HAS_OVERWORLD_GLOWSTONE_BEEN_PLACED = false;
+        public static Boolean HAS_CRASH_SLAB_BEEN_PLACED = false;
+        public static Boolean IS_PLAYER_IN_NETHER = false;
     }
 }

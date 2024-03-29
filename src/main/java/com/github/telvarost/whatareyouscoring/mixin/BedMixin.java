@@ -1,6 +1,7 @@
 package com.github.telvarost.whatareyouscoring.mixin;
 
 import com.github.telvarost.whatareyouscoring.Config;
+import com.github.telvarost.whatareyouscoring.ModHelper;
 import com.github.telvarost.whatareyouscoring.achievement.Ways404Achievements;
 import net.minecraft.block.Bed;
 import net.minecraft.block.BlockBase;
@@ -30,6 +31,7 @@ public class BedMixin extends BlockBase {
     public void canUse(Level arg, int i, int j, int k, PlayerBase arg2, CallbackInfoReturnable<Boolean> cir) {
         if (Config.config.CHALLENGE_404_CONFIG.CHALLENGE_404_SCORING_ENABLED) {
             if (null != arg2) {
+                ModHelper.ModHelperFields.HAS_PLAYER_SLEPT = true;
                 arg2.incrementStat(Ways404Achievements.NEVER_SLEEP);
             }
         }
