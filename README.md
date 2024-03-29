@@ -22,12 +22,12 @@ You will need ModMenu and GlassConfigAPI if you want to tweak different parts of
 ## 404 Challenge Scoring (Red)
 - Score multiplier of 1.5 on hard difficulty:
 - Killing a certain mob:
-  - Zombies:                      +0.5
-  - Skeletons:                    +1
-  - Spiders:                      +1
-  - Creepers:                     +2
-  - Zombie Pigmen:                +3
-  - Ghast:                        +6
+  - Zombies:                      +(0.5 * count)
+  - Skeletons:                    +(1 * count)
+  - Spiders:                      +(1 * count)
+  - Creepers:                     +(2 * count)
+  - Zombie Pigmen:                +(3 * count)
+  - Ghast:                        +(6 * count)
 - Avoiding certain actions:
   - Never use a bed:              +15
   - Never wear armor:             +15
