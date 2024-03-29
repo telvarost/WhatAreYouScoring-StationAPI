@@ -4,7 +4,7 @@ import com.github.telvarost.whatareyouscoring.mixin.AchievementAccessor;
 import net.minecraft.level.Level;
 
 public class ModHelper {
-    private static int calculate404ChallengeScore() {
+    private static int calculate404ChallengeScore(Level level) {
         double challenge404Score = 0;
 
         if (Config.config.CHALLENGE_404_CONFIG.SCORE_MOB_KILLS_404) {
@@ -132,6 +132,10 @@ public class ModHelper {
             challenge404Score += 15;
         }
 
+        if (3 <= level.difficulty) {
+            challenge404Score *= 1.5;
+        }
+
         return (int)Math.round(challenge404Score);
     }
 
@@ -147,7 +151,7 @@ public class ModHelper {
         ModHelperFields.LAST_DEATH_DAY = (int)Math.floor(level.getProperties().getTime() / 24000);
 
         /** - Reset 404 Challenge Score Fields */
-        ModHelperFields.DEATH_SCORE_404_CHALLENGE = calculate404ChallengeScore();
+        ModHelperFields.DEATH_SCORE_404_CHALLENGE = calculate404ChallengeScore(level);
         ModHelperFields.ZOMBIE_KILLED = 0;
         ModHelperFields.SKELETON_KILLED = 0;
         ModHelperFields.SPIDER_KILLED = 0;
