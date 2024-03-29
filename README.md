@@ -7,7 +7,7 @@ Player score resets upon death in singleplayer and upon logout in multiplayer.
 # What Are You Scoring? (W.A.Y.S. Score/Achievement Mod)
 
 You will need ModMenu and GlassConfigAPI if you want to tweak different parts of the mod. See installation instructions below.
-* (Incomplete) Mod now works on Multiplayer with GlassConfigAPI version 2.0+ used to sync configs!
+* (Planned) Mod does not work on Multiplayer yet with GlassConfigAPI version 2.0+ used to sync configs
 
 ## Basic Scoring (Yellow)
 - Placing a block:              +1
