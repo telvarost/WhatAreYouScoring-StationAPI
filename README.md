@@ -28,21 +28,10 @@ You will need ModMenu and GlassConfigAPI if you want to tweak different parts of
   - Creepers:                     +2
   - Zombie Pigmen:                +3
   - Ghast:                        +6
-- Getting certain achievements (or not getting them):
+- Avoiding certain actions:
   - Never use a bed:              +15
   - Never wear armor:             +15
-  - Break 3 pumpkins:             +2
-  - Break 20 sugar Canes:         +4
-  - Break 32 cacti:               +4
-  - Break 15 wheat:               +10
-  - Break an obsidian block:      +5
-  - Exit the nether:              +15
-  - Place glowstone in overworld: +10
-  - Place 32 glass:               +5
-  - Place 20 bricks:              +10
-  - Place 8 types of wool:        +10
-  - Place all types of wool:      +15
-  - Place a crash slab:           +15
+- Crafting certain items:
   - Craft jack-o'-Lantern:        +2
   - Craft bread:                  +4
   - Craft bow + 64 arrows:        +10
@@ -54,6 +43,21 @@ You will need ModMenu and GlassConfigAPI if you want to tweak different parts of
   - Craft block of gold:          +5
   - Craft block of lapis lazuli:  +5
   - Craft block of diamond:       +20
+- Breaking certain blocks:
+  - Break 3 pumpkins:             +2
+  - Break 20 sugar Canes:         +4
+  - Break 32 cacti:               +4
+  - Break 15 wheat:               +10
+  - Break an obsidian block:      +5
+- Placing certain blocks:
+  - Place 32 glass:               +5
+  - Place 20 bricks:              +10
+  - Place 8 types of wool:        +10
+  - Place all types of wool:      +15
+  - Place a crash slab:           +15
+- Meeting certain criteria:
+  - Place glowstone in overworld: +10
+  - Exit the nether:              +15
   - Creeper breaks iron block:    +10
   - Creeper breaks gold block:    +10
   - Creeper breaks lapis block:   +10
