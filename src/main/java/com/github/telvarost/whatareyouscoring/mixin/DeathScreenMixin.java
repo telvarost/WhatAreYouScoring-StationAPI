@@ -39,7 +39,7 @@ public class DeathScreenMixin extends ScreenBase {
         if (ScoreDisplayEnum.VANILLA == Config.config.SCORING_DISPLAY_TYPE) {
             this.drawTextWithShadowCentred(textRenderer, s, i, j, k);
         } else if (ScoreDisplayEnum.BASIC_SCORE == Config.config.SCORING_DISPLAY_TYPE) {
-            /** - Get current basic score */
+            /** - Get basic score */
             int currentScore = 0;
             currentScore += ModHelper.ModHelperFields.BLOCKS_PLACED;
             currentScore += ModHelper.ModHelperFields.BLOCKS_REMOVED;
@@ -51,8 +51,8 @@ public class DeathScreenMixin extends ScreenBase {
             int currentScore = ModHelper.ModHelperFields.DEATH_SCORE_DAYS_SURVIVED;
             this.drawTextWithShadowCentred(textRenderer, "Score: \u00a7b" + currentScore, i, j, k);
         } else if (ScoreDisplayEnum.CHALLENGE_404 == Config.config.SCORING_DISPLAY_TYPE) {
-            /** - Get current 404 challenge score */
-            int currentScore = 0;
+            /** - Get 404 challenge score */
+            int currentScore = ModHelper.ModHelperFields.DEATH_SCORE_404_CHALLENGE;
             this.drawTextWithShadowCentred(textRenderer, "Score: \u00a7c" + currentScore, i, j, k);
         } else {
             this.drawTextWithShadowCentred(textRenderer, s, i, j, k);

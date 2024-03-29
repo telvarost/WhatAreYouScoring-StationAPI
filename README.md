@@ -36,7 +36,7 @@ You will need ModMenu and GlassConfigAPI if you want to tweak different parts of
   - Break 32 cacti:               +4
   - Break 15 wheat:               +10
   - Break an obsidian block:      +5
-  - Enter the nether:             +15
+  - Exit the nether:              +15
   - Place glowstone in overworld: +10
   - Place 32 glass:               +5
   - Place 20 bricks:              +10
