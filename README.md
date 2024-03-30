@@ -9,6 +9,12 @@ Player score resets upon death in singleplayer and upon logout in multiplayer.
 You will need ModMenu and GlassConfigAPI if you want to tweak different parts of the mod. See installation instructions below.
 * (Planned) Mod does not work on Multiplayer yet with GlassConfigAPI version 2.0+ used to sync configs
 
+## Some example configs
+* Add ability to retain score on death on certain difficulties
+* (Basic Scoring) Enable/disable scoring sources
+* (404 Scoring) Enable/disable mob kill scoring
+* (404 Scoring) Allow different scoring for never sleep and never wear armor
+
 ## Basic Scoring (Yellow)
 - Placing a block:              +1
 - Removing a block:             +1

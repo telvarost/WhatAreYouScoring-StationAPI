@@ -1,5 +1,6 @@
 package com.github.telvarost.whatareyouscoring.achievement;
 
+import com.github.telvarost.whatareyouscoring.Config;
 import com.github.telvarost.whatareyouscoring.ModHelper;
 import com.github.telvarost.whatareyouscoring.mixin.AchievementAccessor;
 import net.minecraft.achievement.Achievement;
@@ -37,6 +38,17 @@ public class WaysBasicAchievements {
 	}
 
 	public static void updateAchievementCounts() {
+		if (Config.config.DISPLAY_SCORE_ON_BEGIN_ACHIEVEMENT) {
+			/** - Get basic score */
+			int currentScore = ModHelper.calculateBasicScore();
+			if (Config.config.SPECIAL_DEATH_EFFECT_ON_SCORE) {
+				currentScore += ModHelper.ModHelperFields.PrevCumulativeBasicScore;
+			}
+			((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(START_BASIC))).setAchievementDescription("Scores each block placed/removed and each mob killed.\n\nScore: " + currentScore);
+		} else {
+			((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(START_BASIC))).setAchievementDescription("Scores each block placed/removed and each mob killed.");
+		}
+
 		((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(BLOCKS_PLACED))).setAchievementDescription("Count: " + ModHelper.ModHelperFields.BLOCKS_PLACED);
 		((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(BLOCKS_REMOVED))).setAchievementDescription("Count: " + ModHelper.ModHelperFields.BLOCKS_REMOVED);
 		((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(MONSTER_MOBS_KILLED))).setAchievementDescription("Count: " + ModHelper.ModHelperFields.MONSTER_MOBS_KILLED);

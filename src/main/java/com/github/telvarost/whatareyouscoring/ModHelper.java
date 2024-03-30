@@ -4,7 +4,27 @@ import com.github.telvarost.whatareyouscoring.mixin.AchievementAccessor;
 import net.minecraft.level.Level;
 
 public class ModHelper {
-    private static int calculate404ChallengeScore(Level level) {
+
+    public static int calculateBasicScore() {
+        int basicScore = 0;
+
+        basicScore += ModHelper.ModHelperFields.BLOCKS_PLACED;
+        basicScore += ModHelper.ModHelperFields.BLOCKS_REMOVED;
+        basicScore += ModHelper.ModHelperFields.MONSTER_MOBS_KILLED;
+        basicScore += ModHelper.ModHelperFields.PASSIVE_MOBS_KILLED;
+
+        return basicScore;
+    }
+
+    public static int calculateDaysScore() {
+        int daysScore = 0;
+
+        daysScore += (ModHelperFields.DAYS_PLAYED - ModHelperFields.LAST_DEATH_DAY);
+
+        return daysScore;
+    }
+
+    public static int calculate404ChallengeScore(Level level) {
         double challenge404Score = 0;
 
         if (Config.config.CHALLENGE_404_CONFIG.SCORE_MOB_KILLS_404) {
@@ -144,8 +164,10 @@ public class ModHelper {
             challenge404Score += 15;
         }
 
-        if (3 <= level.difficulty) {
-            challenge404Score *= 1.5;
+        if (Config.config.CHALLENGE_404_CONFIG.ENABLE_HARD_MODE_MULTIPLIER) {
+            if (3 <= level.difficulty) {
+                challenge404Score *= 1.5;
+            }
         }
 
         return (int)Math.round(challenge404Score);
@@ -155,6 +177,9 @@ public class ModHelper {
         /** - Reset Basic Score Fields */
         if (isLevelLoad) {
             ModHelperFields.CumulativeBasicScore = 0;
+            ModHelperFields.DEATH_SCORE_BASIC_MODE = 0;
+        } else {
+            ModHelperFields.DEATH_SCORE_BASIC_MODE = calculateBasicScore();
         }
         ModHelperFields.BLOCKS_PLACED = 0;
         ModHelperFields.BLOCKS_REMOVED = 0;
@@ -164,21 +189,21 @@ public class ModHelper {
         /** - Reset Days Score Fields */
         if (isLevelLoad) {
             ModHelperFields.CumulativeDaysScore = 0;
-            ModHelperFields.DEATH_SCORE_DAYS_SURVIVED = 0;
+            ModHelperFields.DEATH_SCORE_DAYS_MODE = 0;
             ModHelperFields.LAST_DEATH_DAY = 0;
             ModHelperFields.DAYS_PLAYED = 0;
             ModHelperFields.PREV_DAYS_PLAYED = 0;
         } else {
-            ModHelperFields.DEATH_SCORE_DAYS_SURVIVED = (ModHelperFields.DAYS_PLAYED - ModHelperFields.LAST_DEATH_DAY);
+            ModHelperFields.DEATH_SCORE_DAYS_MODE = calculateDaysScore();
             ModHelperFields.LAST_DEATH_DAY = (int) Math.floor(level.getProperties().getTime() / 24000);
         }
 
         /** - Reset 404 Challenge Score Fields */
         if (isLevelLoad) {
             ModHelperFields.Cumulative404Score = 0;
-            ModHelperFields.DEATH_SCORE_404_CHALLENGE = 0;
+            ModHelperFields.DEATH_SCORE_404_MODE = 0;
         } else {
-            ModHelperFields.DEATH_SCORE_404_CHALLENGE = calculate404ChallengeScore(level);
+            ModHelperFields.DEATH_SCORE_404_MODE = calculate404ChallengeScore(level);
         }
         ModHelperFields.ZOMBIE_KILLED = 0;
         ModHelperFields.SKELETON_KILLED = 0;
@@ -208,6 +233,7 @@ public class ModHelper {
         /** - Basic helper fields */
         public static Integer PrevCumulativeBasicScore = 0;
         public static Integer CumulativeBasicScore = 0;
+        public static Integer DEATH_SCORE_BASIC_MODE = 0;
         public static Integer BLOCKS_PLACED = 0;
         public static Integer BLOCKS_REMOVED = 0;
         public static Integer MONSTER_MOBS_KILLED = 0;
@@ -216,7 +242,7 @@ public class ModHelper {
         /** - Days helper fields */
         public static Integer PrevCumulativeDaysScore = 0;
         public static Integer CumulativeDaysScore = 0;
-        public static Integer DEATH_SCORE_DAYS_SURVIVED = 0;
+        public static Integer DEATH_SCORE_DAYS_MODE = 0;
         public static Integer LAST_DEATH_DAY = 0;
         public static Integer DAYS_PLAYED = 0;
         public static Integer PREV_DAYS_PLAYED = 0;
@@ -224,7 +250,7 @@ public class ModHelper {
         /** - 404 Challenge helper fields */
         public static Integer PrevCumulative404Score = 0;
         public static Integer Cumulative404Score = 0;
-        public static Integer DEATH_SCORE_404_CHALLENGE = 0;
+        public static Integer DEATH_SCORE_404_MODE = 0;
         public static Integer ZOMBIE_KILLED = 0;
         public static Integer SKELETON_KILLED = 0;
         public static Integer SPIDER_KILLED = 0;

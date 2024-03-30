@@ -1,5 +1,6 @@
 package com.github.telvarost.whatareyouscoring.achievement;
 
+import com.github.telvarost.whatareyouscoring.Config;
 import com.github.telvarost.whatareyouscoring.ModHelper;
 import com.github.telvarost.whatareyouscoring.mixin.AchievementAccessor;
 import com.github.telvarost.whatareyouscoring.mixin.MinecraftAccessor;
@@ -43,6 +44,17 @@ public class WaysDaysAchievements {
     }
 
     public static void updateAchievementCounts() {
+        if (Config.config.DISPLAY_SCORE_ON_BEGIN_ACHIEVEMENT) {
+            /** - Get basic score */
+            int currentScore = ModHelper.calculateDaysScore();
+            if (Config.config.SPECIAL_DEATH_EFFECT_ON_SCORE) {
+                currentScore += ModHelper.ModHelperFields.PrevCumulativeDaysScore;
+            }
+            ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(START_DAYS))).setAchievementDescription("Scores each in-game day survived (and tracks real world days).\n\nScore: " + currentScore);
+        } else {
+            ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(START_DAYS))).setAchievementDescription("Scores each in-game day survived (and tracks real world days).");
+        }
+
         int daysSurvived = (ModHelper.ModHelperFields.DAYS_PLAYED - ModHelper.ModHelperFields.LAST_DEATH_DAY);
         ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(MINECRAFT_DAY))).setAchievementDescription("Current: " + daysSurvived);
         ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(MINECRAFT_100))).setAchievementDescription("Current: " + (int)Math.floor(daysSurvived / 100));

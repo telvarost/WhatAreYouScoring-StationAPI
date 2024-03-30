@@ -34,23 +34,17 @@ public abstract class PlayerBaseMixin extends Living {
 
     @Inject(method = "onKilledBy", at = @At("HEAD"))
     public void onKilledBy(EntityBase par1, CallbackInfo ci) {
-        int currentScoreBasic = 0;
 
-        if (Config.config.SPECIAL_DEATH_EFFECT_ON_SCORE) {
-            /** - Get basic score */
-            currentScoreBasic += ModHelper.ModHelperFields.BLOCKS_PLACED;
-            currentScoreBasic += ModHelper.ModHelperFields.BLOCKS_REMOVED;
-            currentScoreBasic += ModHelper.ModHelperFields.MONSTER_MOBS_KILLED;
-            currentScoreBasic += ModHelper.ModHelperFields.PASSIVE_MOBS_KILLED;
-        }
-
+        /** - Calculate score and reset score fields */
         ModHelper.resetFieldsOnDeath(this.level, false);
 
         if (Config.config.SPECIAL_DEATH_EFFECT_ON_SCORE) {
+            /** - Get basic score */
+            int currentScoreBasic = ModHelper.ModHelperFields.DEATH_SCORE_BASIC_MODE;
             /** - Get days survived */
-            int currentScoreDays = ModHelper.ModHelperFields.DEATH_SCORE_DAYS_SURVIVED;
+            int currentScoreDays = ModHelper.ModHelperFields.DEATH_SCORE_DAYS_MODE;
             /** - Get 404 challenge score */
-            int currentScore404 = ModHelper.ModHelperFields.DEATH_SCORE_404_CHALLENGE;
+            int currentScore404 = ModHelper.ModHelperFields.DEATH_SCORE_404_MODE;
 
             double saveScoreMultiplier;
 

@@ -1,5 +1,6 @@
 package com.github.telvarost.whatareyouscoring.achievement;
 
+import com.github.telvarost.whatareyouscoring.Config;
 import com.github.telvarost.whatareyouscoring.ModHelper;
 import com.github.telvarost.whatareyouscoring.mixin.AchievementAccessor;
 import com.github.telvarost.whatareyouscoring.mixin.MinecraftAccessor;
@@ -79,6 +80,22 @@ public class Ways404Achievements {
     }
 
     public static void updateAchievementCounts() {
+        if (Config.config.DISPLAY_SCORE_ON_BEGIN_ACHIEVEMENT) {
+            PlayerBase player = PlayerHelper.getPlayerFromGame();
+            if ((null != player) && (null != player.level)) {
+                /** - Get 404 challenge score */
+                int currentScore = ModHelper.calculate404ChallengeScore(player.level);
+                if (Config.config.SPECIAL_DEATH_EFFECT_ON_SCORE) {
+                    currentScore += ModHelper.ModHelperFields.PrevCumulative404Score;
+                }
+                ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(START_404))).setAchievementDescription("Scores certain aspects of the game for the 404 challenge.\n\nScore: " + currentScore);
+            } else {
+                ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(START_404))).setAchievementDescription("Scores certain aspects of the game for the 404 challenge.\nCurrent Score: N/A");
+            }
+        } else {
+            ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(START_404))).setAchievementDescription("Scores certain aspects of the game for the 404 challenge.");
+        }
+
         ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(ZOMBIE_KILLED))).setAchievementDescription("Count: " + ModHelper.ModHelperFields.ZOMBIE_KILLED);
         ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(SKELETON_KILLED))).setAchievementDescription("Count: " + ModHelper.ModHelperFields.SKELETON_KILLED);
         ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(SPIDER_KILLED))).setAchievementDescription("Count: " + ModHelper.ModHelperFields.SPIDER_KILLED);

@@ -17,6 +17,10 @@ public class Config {
         @Comment("Hard=0, Normal=0.5, Easy=0.75, Peaceful=1")
         public Boolean SPECIAL_DEATH_EFFECT_ON_SCORE = false;
 
+        @ConfigName("Show Score On Begin Scoring Achievement")
+        @Comment("Score will display at the end of the tooltip")
+        public Boolean DISPLAY_SCORE_ON_BEGIN_ACHIEVEMENT = true;
+
         @ConfigCategory("Basic Score Config")
         public BasicScoreConfig BASIC_SCORE_CONFIG = new BasicScoreConfig();
 
@@ -55,6 +59,9 @@ public class Config {
         @ConfigName("Enable 404 Challenge Scoring")
         @Comment("Reload world for changes to take effect")
         public Boolean CHALLENGE_404_SCORING_ENABLED = false;
+
+        @ConfigName("Enable Hard Mode Multiplier")
+        public Boolean ENABLE_HARD_MODE_MULTIPLIER = true;
 
         @ConfigName("Score Mob Kills")
         public Boolean SCORE_MOB_KILLS_404 = true;
