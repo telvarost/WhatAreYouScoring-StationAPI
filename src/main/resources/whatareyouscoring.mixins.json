@@ -22,6 +22,7 @@
     "DeathScreenMixin",
     "LevelMixin",
     "MinecraftAccessor",
+    "MinecraftMixin",
     "PauseMixin"
   ],
   "injectors": {

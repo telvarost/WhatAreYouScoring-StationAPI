@@ -139,7 +139,7 @@ public class ModHelper {
         return (int)Math.round(challenge404Score);
     }
 
-    public static void resetFieldsOnDeath(Level level) {
+    public static void resetFieldsOnDeath(Level level, boolean isLevelLoad) {
         /** - Reset Basic Score Fields */
         ModHelperFields.BLOCKS_PLACED = 0;
         ModHelperFields.BLOCKS_REMOVED = 0;
@@ -147,11 +147,22 @@ public class ModHelper {
         ModHelperFields.PASSIVE_MOBS_KILLED = 0;
 
         /** - Reset Days Score Fields */
-        ModHelperFields.DEATH_SCORE_DAYS_SURVIVED = (ModHelperFields.DAYS_PLAYED - ModHelperFields.LAST_DEATH_DAY);
-        ModHelperFields.LAST_DEATH_DAY = (int)Math.floor(level.getProperties().getTime() / 24000);
+        if (isLevelLoad) {
+            ModHelperFields.DEATH_SCORE_DAYS_SURVIVED = 0;
+            ModHelperFields.LAST_DEATH_DAY = 0;
+            ModHelperFields.DAYS_PLAYED = 0;
+            ModHelperFields.PREV_DAYS_PLAYED = 0;
+        } else {
+            ModHelperFields.DEATH_SCORE_DAYS_SURVIVED = (ModHelperFields.DAYS_PLAYED - ModHelperFields.LAST_DEATH_DAY);
+            ModHelperFields.LAST_DEATH_DAY = (int) Math.floor(level.getProperties().getTime() / 24000);
+        }
 
         /** - Reset 404 Challenge Score Fields */
-        ModHelperFields.DEATH_SCORE_404_CHALLENGE = calculate404ChallengeScore(level);
+        if (isLevelLoad) {
+            ModHelperFields.DEATH_SCORE_404_CHALLENGE = 0;
+        } else {
+            ModHelperFields.DEATH_SCORE_404_CHALLENGE = calculate404ChallengeScore(level);
+        }
         ModHelperFields.ZOMBIE_KILLED = 0;
         ModHelperFields.SKELETON_KILLED = 0;
         ModHelperFields.SPIDER_KILLED = 0;

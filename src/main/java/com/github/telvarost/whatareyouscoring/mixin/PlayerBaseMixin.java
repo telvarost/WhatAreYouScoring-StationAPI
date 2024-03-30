@@ -35,7 +35,7 @@ public abstract class PlayerBaseMixin extends Living {
 
     @Inject(method = "onKilledBy", at = @At("HEAD"))
     public void onKilledBy(EntityBase par1, CallbackInfo ci) {
-        ModHelper.resetFieldsOnDeath(this.level);
+        ModHelper.resetFieldsOnDeath(this.level, false);
     }
 
     @Inject(method = "writeCustomDataToTag", at = @At("HEAD"))
