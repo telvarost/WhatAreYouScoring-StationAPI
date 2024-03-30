@@ -20,6 +20,8 @@ You will need ModMenu and GlassConfigAPI if you want to tweak different parts of
 - (Real world days are also tracked, but not scored)
 
 ## 404 Challenge Scoring (Red)
+- [Original Minecraft Forum Post](https://www.minecraftforum.net/forums/minecraft-java-edition/seeds/298932-ironman-challenge-series-404)
+  - Note: This mod tweaks the original challenge slightly for easier tracking in code.
 - Score multiplier of 1.5 on hard difficulty:
 - Killing a certain mob:
   - Zombies:                      +(0.5 * count)
