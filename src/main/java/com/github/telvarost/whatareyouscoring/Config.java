@@ -9,9 +9,13 @@ public class Config {
     public static ConfigFields config = new ConfigFields();
 
     public static class ConfigFields {
-        @ConfigName("What Score To Display")
+        @ConfigName("Death Score To Display")
+        @Comment("Enable/Disable Scoring Modes In Their Config")
         public ScoreDisplayEnum SCORING_DISPLAY_TYPE = ScoreDisplayEnum.BASIC_SCORE;
 
+        @ConfigName("Reset Score Instead With Difficulty Multipliers")
+        @Comment("Hard=0, Normal=0.5, Easy=0.75, Peaceful=1")
+        public Boolean SPECIAL_DEATH_EFFECT_ON_SCORE = false;
 
         @ConfigCategory("Basic Score Config")
         public BasicScoreConfig BASIC_SCORE_CONFIG = new BasicScoreConfig();
@@ -24,7 +28,8 @@ public class Config {
     }
 
     public static class BasicScoreConfig {
-        @ConfigName("Basic Scoring Enabled")
+        @ConfigName("Enable Basic Scoring")
+        @Comment("Reload world for changes to take effect")
         public Boolean BASIC_SCORING_ENABLED = true;
 
         @ConfigName("Each Block Placed Adds +1 To Score")
@@ -41,15 +46,21 @@ public class Config {
     }
 
     public static class DaysConfig {
-        @ConfigName("Days Scoring Enabled")
+        @ConfigName("Enable Days Scoring")
+        @Comment("Reload world for changes to take effect")
         public Boolean DAYS_SCORING_ENABLED = true;
     }
 
     public static class Challenge404Config {
-        @ConfigName("404 Challenge Scoring Enabled")
+        @ConfigName("Enable 404 Challenge Scoring")
+        @Comment("Reload world for changes to take effect")
         public Boolean CHALLENGE_404_SCORING_ENABLED = false;
 
         @ConfigName("Score Mob Kills")
         public Boolean SCORE_MOB_KILLS_404 = true;
+
+        @ConfigName("Never Sleep/Wear Armor Gives Points")
+        @Comment("When false they subtract points when failed")
+        public Boolean POSITIVE_NEVER_SLEEP_WEAR_ARMOR = true;
     }
 }

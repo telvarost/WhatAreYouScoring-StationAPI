@@ -31,7 +31,6 @@ public class BlockBaseMixin {
                 }
 
                 ModHelper.ModHelperFields.BLOCKS_REMOVED++;
-                arg2.score++;
             }
 
             if (Config.config.CHALLENGE_404_CONFIG.CHALLENGE_404_SCORING_ENABLED) {
@@ -101,7 +100,6 @@ public class BlockBaseMixin {
                     }
 
                     ModHelper.ModHelperFields.BLOCKS_PLACED++;
-                    ((PlayerBase) arg2).score++;
                 }
 
                 if (Config.config.CHALLENGE_404_CONFIG.CHALLENGE_404_SCORING_ENABLED) {

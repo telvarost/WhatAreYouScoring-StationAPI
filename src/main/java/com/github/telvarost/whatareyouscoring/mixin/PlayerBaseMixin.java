@@ -3,7 +3,6 @@ package com.github.telvarost.whatareyouscoring.mixin;
 import com.github.telvarost.whatareyouscoring.Config;
 import com.github.telvarost.whatareyouscoring.ModHelper;
 import com.github.telvarost.whatareyouscoring.achievement.Ways404Achievements;
-import com.github.telvarost.whatareyouscoring.achievement.WaysBasicAchievements;
 import com.github.telvarost.whatareyouscoring.achievement.WaysDaysAchievements;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityBase;
@@ -35,11 +34,53 @@ public abstract class PlayerBaseMixin extends Living {
 
     @Inject(method = "onKilledBy", at = @At("HEAD"))
     public void onKilledBy(EntityBase par1, CallbackInfo ci) {
+        int currentScoreBasic = 0;
+
+        if (Config.config.SPECIAL_DEATH_EFFECT_ON_SCORE) {
+            /** - Get basic score */
+            currentScoreBasic += ModHelper.ModHelperFields.BLOCKS_PLACED;
+            currentScoreBasic += ModHelper.ModHelperFields.BLOCKS_REMOVED;
+            currentScoreBasic += ModHelper.ModHelperFields.MONSTER_MOBS_KILLED;
+            currentScoreBasic += ModHelper.ModHelperFields.PASSIVE_MOBS_KILLED;
+        }
+
         ModHelper.resetFieldsOnDeath(this.level, false);
+
+        if (Config.config.SPECIAL_DEATH_EFFECT_ON_SCORE) {
+            /** - Get days survived */
+            int currentScoreDays = ModHelper.ModHelperFields.DEATH_SCORE_DAYS_SURVIVED;
+            /** - Get 404 challenge score */
+            int currentScore404 = ModHelper.ModHelperFields.DEATH_SCORE_404_CHALLENGE;
+
+            double saveScoreMultiplier;
+
+            if (0 == this.level.difficulty) {
+                saveScoreMultiplier = 1;
+            } else if (1 == this.level.difficulty) {
+                saveScoreMultiplier = 0.75;
+            } else if (2 == this.level.difficulty) {
+                saveScoreMultiplier = 0.5;
+            } else {
+                saveScoreMultiplier = 0;
+            }
+
+            ModHelper.ModHelperFields.PrevCumulativeBasicScore = ModHelper.ModHelperFields.CumulativeBasicScore;
+            ModHelper.ModHelperFields.PrevCumulativeDaysScore = ModHelper.ModHelperFields.CumulativeDaysScore;
+            ModHelper.ModHelperFields.PrevCumulative404Score = ModHelper.ModHelperFields.Cumulative404Score;
+            ModHelper.ModHelperFields.CumulativeBasicScore = (int)((currentScoreBasic + ModHelper.ModHelperFields.CumulativeBasicScore) * saveScoreMultiplier);
+            ModHelper.ModHelperFields.CumulativeDaysScore = (int)((currentScoreDays + ModHelper.ModHelperFields.CumulativeDaysScore) * saveScoreMultiplier);
+            ModHelper.ModHelperFields.Cumulative404Score = (int)((currentScore404 + ModHelper.ModHelperFields.Cumulative404Score) * saveScoreMultiplier);
+        }
     }
 
     @Inject(method = "writeCustomDataToTag", at = @At("HEAD"))
     private void betaTweaks_writeCustomDataToTag(CompoundTag tag, CallbackInfo info) {
+        if (Config.config.SPECIAL_DEATH_EFFECT_ON_SCORE) {
+            tag.put("SB", ModHelper.ModHelperFields.CumulativeBasicScore);
+            tag.put("SD", ModHelper.ModHelperFields.CumulativeDaysScore);
+            tag.put("SC", ModHelper.ModHelperFields.Cumulative404Score);
+        }
+
         if (Config.config.BASIC_SCORE_CONFIG.BASIC_SCORING_ENABLED) {
             tag.put("BP", ModHelper.ModHelperFields.BLOCKS_PLACED);
             tag.put("BR", ModHelper.ModHelperFields.BLOCKS_REMOVED);
@@ -100,6 +141,15 @@ public abstract class PlayerBaseMixin extends Living {
 
     @Inject(method = "readCustomDataFromTag", at = @At("HEAD"))
     private void betaTweaks_readCustomDataFromTag(CompoundTag tag, CallbackInfo info) {
+        if (Config.config.SPECIAL_DEATH_EFFECT_ON_SCORE) {
+            ModHelper.ModHelperFields.CumulativeBasicScore = tag.getInt("SB");
+            ModHelper.ModHelperFields.CumulativeDaysScore  = tag.getInt("SD");
+            ModHelper.ModHelperFields.Cumulative404Score   = tag.getInt("SC");
+            ModHelper.ModHelperFields.PrevCumulativeBasicScore = ModHelper.ModHelperFields.CumulativeBasicScore;
+            ModHelper.ModHelperFields.PrevCumulativeDaysScore = ModHelper.ModHelperFields.CumulativeDaysScore;
+            ModHelper.ModHelperFields.PrevCumulative404Score = ModHelper.ModHelperFields.Cumulative404Score;
+        }
+
         if (Config.config.BASIC_SCORE_CONFIG.BASIC_SCORING_ENABLED) {
             ModHelper.ModHelperFields.BLOCKS_PLACED       = tag.getInt("BP");
             ModHelper.ModHelperFields.BLOCKS_REMOVED      = tag.getInt("BR");

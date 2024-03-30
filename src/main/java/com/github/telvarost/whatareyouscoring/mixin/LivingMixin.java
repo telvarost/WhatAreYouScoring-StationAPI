@@ -41,7 +41,6 @@ public abstract class LivingMixin extends EntityBase {
                     }
 
                     ModHelper.ModHelperFields.MONSTER_MOBS_KILLED++;
-                    ((PlayerBase)entity).score++;
                 }
 
                 if (  (Config.config.BASIC_SCORE_CONFIG.ADD_SCORE_ON_PASSIVE_KILLED)
@@ -52,7 +51,6 @@ public abstract class LivingMixin extends EntityBase {
                     }
 
                     ModHelper.ModHelperFields.PASSIVE_MOBS_KILLED++;
-                    ((PlayerBase)entity).score++;
                 }
             }
         }

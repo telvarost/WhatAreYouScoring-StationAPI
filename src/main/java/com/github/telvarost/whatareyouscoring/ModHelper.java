@@ -108,27 +108,39 @@ public class ModHelper {
             challenge404Score += 20;
         }
 
-        if (0x0001 != (0x0001 & ModHelper.ModHelperFields.OTHER_BITFIELD)) {
-            challenge404Score += 15;
+        if (ModHelperFields.HAS_PLAYER_SLEPT != (ModHelperFields.HAS_PLAYER_SLEPT & ModHelperFields.OTHER_BITFIELD)) {
+            if (true == Config.config.CHALLENGE_404_CONFIG.POSITIVE_NEVER_SLEEP_WEAR_ARMOR) {
+                challenge404Score += 15;
+            }
+        } else {
+            if (false == Config.config.CHALLENGE_404_CONFIG.POSITIVE_NEVER_SLEEP_WEAR_ARMOR) {
+                challenge404Score -= 15;
+            }
         }
 
-        if (0x0002 != (0x0002 & ModHelper.ModHelperFields.OTHER_BITFIELD)) {
-            challenge404Score += 15;
+        if (ModHelperFields.HAS_PLAYER_WORN_ARMOR != (ModHelperFields.HAS_PLAYER_WORN_ARMOR & ModHelperFields.OTHER_BITFIELD)) {
+            if (true == Config.config.CHALLENGE_404_CONFIG.POSITIVE_NEVER_SLEEP_WEAR_ARMOR) {
+                challenge404Score += 15;
+            }
+        } else {
+            if (false == Config.config.CHALLENGE_404_CONFIG.POSITIVE_NEVER_SLEEP_WEAR_ARMOR) {
+                challenge404Score -= 15;
+            }
         }
 
-        if (0x0004 == (0x0004 & ModHelper.ModHelperFields.OTHER_BITFIELD)) {
+        if (ModHelperFields.HAS_OBSIDIAN_BEEN_BROKEN == (ModHelperFields.HAS_OBSIDIAN_BEEN_BROKEN & ModHelperFields.OTHER_BITFIELD)) {
             challenge404Score += 5;
         }
 
-        if (0x0008 == (0x0008 & ModHelper.ModHelperFields.OTHER_BITFIELD)) {
+        if (ModHelperFields.HAS_PLAYER_EXITED_THE_NETHER == (ModHelperFields.HAS_PLAYER_EXITED_THE_NETHER & ModHelperFields.OTHER_BITFIELD)) {
             challenge404Score += 15;
         }
 
-        if (0x0010 == (0x0010 & ModHelper.ModHelperFields.OTHER_BITFIELD)) {
+        if (ModHelperFields.HAS_OVERWORLD_GLOWSTONE_BEEN_PLACED == (ModHelperFields.HAS_OVERWORLD_GLOWSTONE_BEEN_PLACED & ModHelperFields.OTHER_BITFIELD)) {
             challenge404Score += 10;
         }
 
-        if (0x0020 == (0x0020 & ModHelper.ModHelperFields.OTHER_BITFIELD)) {
+        if (ModHelperFields.HAS_CRASH_SLAB_BEEN_PLACED == (ModHelperFields.HAS_CRASH_SLAB_BEEN_PLACED & ModHelperFields.OTHER_BITFIELD)) {
             challenge404Score += 15;
         }
 
@@ -141,6 +153,9 @@ public class ModHelper {
 
     public static void resetFieldsOnDeath(Level level, boolean isLevelLoad) {
         /** - Reset Basic Score Fields */
+        if (isLevelLoad) {
+            ModHelperFields.CumulativeBasicScore = 0;
+        }
         ModHelperFields.BLOCKS_PLACED = 0;
         ModHelperFields.BLOCKS_REMOVED = 0;
         ModHelperFields.MONSTER_MOBS_KILLED = 0;
@@ -148,6 +163,7 @@ public class ModHelper {
 
         /** - Reset Days Score Fields */
         if (isLevelLoad) {
+            ModHelperFields.CumulativeDaysScore = 0;
             ModHelperFields.DEATH_SCORE_DAYS_SURVIVED = 0;
             ModHelperFields.LAST_DEATH_DAY = 0;
             ModHelperFields.DAYS_PLAYED = 0;
@@ -159,6 +175,7 @@ public class ModHelper {
 
         /** - Reset 404 Challenge Score Fields */
         if (isLevelLoad) {
+            ModHelperFields.Cumulative404Score = 0;
             ModHelperFields.DEATH_SCORE_404_CHALLENGE = 0;
         } else {
             ModHelperFields.DEATH_SCORE_404_CHALLENGE = calculate404ChallengeScore(level);
@@ -189,18 +206,24 @@ public class ModHelper {
         public static Integer DETECT_CREEPER_EXPLOSION = 0;
 
         /** - Basic helper fields */
+        public static Integer PrevCumulativeBasicScore = 0;
+        public static Integer CumulativeBasicScore = 0;
         public static Integer BLOCKS_PLACED = 0;
         public static Integer BLOCKS_REMOVED = 0;
         public static Integer MONSTER_MOBS_KILLED = 0;
         public static Integer PASSIVE_MOBS_KILLED = 0;
 
         /** - Days helper fields */
+        public static Integer PrevCumulativeDaysScore = 0;
+        public static Integer CumulativeDaysScore = 0;
         public static Integer DEATH_SCORE_DAYS_SURVIVED = 0;
         public static Integer LAST_DEATH_DAY = 0;
         public static Integer DAYS_PLAYED = 0;
         public static Integer PREV_DAYS_PLAYED = 0;
 
         /** - 404 Challenge helper fields */
+        public static Integer PrevCumulative404Score = 0;
+        public static Integer Cumulative404Score = 0;
         public static Integer DEATH_SCORE_404_CHALLENGE = 0;
         public static Integer ZOMBIE_KILLED = 0;
         public static Integer SKELETON_KILLED = 0;

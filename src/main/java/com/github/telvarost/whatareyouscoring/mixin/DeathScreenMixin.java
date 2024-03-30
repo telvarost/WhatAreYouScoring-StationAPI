@@ -45,14 +45,23 @@ public class DeathScreenMixin extends ScreenBase {
             currentScore += ModHelper.ModHelperFields.BLOCKS_REMOVED;
             currentScore += ModHelper.ModHelperFields.MONSTER_MOBS_KILLED;
             currentScore += ModHelper.ModHelperFields.PASSIVE_MOBS_KILLED;
+            if (Config.config.SPECIAL_DEATH_EFFECT_ON_SCORE) {
+                currentScore += ModHelper.ModHelperFields.PrevCumulativeBasicScore;
+            }
             this.drawTextWithShadowCentred(textRenderer, "Score: \u00a7e" + currentScore, i, j, k);
         } else if (ScoreDisplayEnum.DAYS_SCORE == Config.config.SCORING_DISPLAY_TYPE) {
             /** - Get days survived */
             int currentScore = ModHelper.ModHelperFields.DEATH_SCORE_DAYS_SURVIVED;
+            if (Config.config.SPECIAL_DEATH_EFFECT_ON_SCORE) {
+                currentScore += ModHelper.ModHelperFields.PrevCumulativeDaysScore;
+            }
             this.drawTextWithShadowCentred(textRenderer, "Score: \u00a7b" + currentScore, i, j, k);
         } else if (ScoreDisplayEnum.CHALLENGE_404 == Config.config.SCORING_DISPLAY_TYPE) {
             /** - Get 404 challenge score */
             int currentScore = ModHelper.ModHelperFields.DEATH_SCORE_404_CHALLENGE;
+            if (Config.config.SPECIAL_DEATH_EFFECT_ON_SCORE) {
+                currentScore += ModHelper.ModHelperFields.PrevCumulative404Score;
+            }
             this.drawTextWithShadowCentred(textRenderer, "Score: \u00a7c" + currentScore, i, j, k);
         } else {
             this.drawTextWithShadowCentred(textRenderer, s, i, j, k);
