@@ -30,7 +30,7 @@ public class Config {
     public static class BasicScoreConfig {
         @ConfigName("Display Basic Score On Death")
         public Boolean DISPLAY_BASIC_SCORE_ON_DEATH = true;
-        
+
         @ConfigName("Enable Basic Scoring")
         @Comment("Reload world for changes to take effect")
         public Boolean BASIC_SCORING_ENABLED = true;
