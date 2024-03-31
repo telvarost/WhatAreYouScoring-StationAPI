@@ -19,7 +19,19 @@ public class ModHelper {
     public static int calculateDaysScore() {
         int daysScore = 0;
 
-        daysScore += (ModHelperFields.DAYS_PLAYED - ModHelperFields.LAST_DEATH_DAY);
+        int daysSurvived = (ModHelperFields.DAYS_PLAYED - ModHelperFields.LAST_DEATH_DAY);
+
+        if (Config.config.DAYS_SCORE_CONFIG.ADD_SCORE_FOR_EACH_DAY_SURVIVED) {
+            daysScore += daysSurvived;
+        }
+
+        if (Config.config.DAYS_SCORE_CONFIG.ADD_100_DAYS_BONUS_SCORE) {
+            daysScore += ((daysSurvived / 100) * 25);
+        }
+
+        if (Config.config.DAYS_SCORE_CONFIG.ADD_YEAR_BONUS_SCORE) {
+            daysScore += ((daysSurvived / 365) * 100);
+        }
 
         return daysScore;
     }

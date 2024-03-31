@@ -36,16 +36,16 @@ public class Config {
         @Comment("Reload world for changes to take effect")
         public Boolean BASIC_SCORING_ENABLED = true;
 
-        @ConfigName("Each Block Placed Adds +1 To Score")
+        @ConfigName("Score: +1 From Each Block Placed")
         public Boolean ADD_SCORE_ON_BLOCK_PLACED = true;
 
-        @ConfigName("Each Block Removed Adds +1 To Score")
+        @ConfigName("Score: +1 From Each Block Removed")
         public Boolean ADD_SCORE_ON_BLOCK_REMOVED = true;
 
-        @ConfigName("Each Monster Mob Killed Adds +1 To Score")
+        @ConfigName("Score: +1 From Each Monster Mob Killed")
         public Boolean ADD_SCORE_ON_MONSTER_KILLED = true;
 
-        @ConfigName("Each Passive Mob Killed Adds +1 To Score")
+        @ConfigName("Score: +1 From Each Passive Mob Killed")
         public Boolean ADD_SCORE_ON_PASSIVE_KILLED = true;
     }
 
@@ -53,6 +53,15 @@ public class Config {
         @ConfigName("Enable Days Scoring")
         @Comment("Reload world for changes to take effect")
         public Boolean DAYS_SCORING_ENABLED = true;
+
+        @ConfigName("Score: +1 From Each Day Survived")
+        public Boolean ADD_SCORE_FOR_EACH_DAY_SURVIVED = true;
+
+        @ConfigName("Score: +25 For Every 100 Days Survived")
+        public Boolean ADD_100_DAYS_BONUS_SCORE = false;
+
+        @ConfigName("Score: +100 For Every 365 Days Survived")
+        public Boolean ADD_YEAR_BONUS_SCORE = false;
     }
 
     public static class Challenge404Config {
@@ -63,11 +72,11 @@ public class Config {
         @ConfigName("Enable Hard Mode Multiplier")
         public Boolean ENABLE_HARD_MODE_MULTIPLIER = true;
 
-        @ConfigName("Score Mob Kills")
-        public Boolean SCORE_MOB_KILLS_404 = true;
-
         @ConfigName("Never Sleep/Wear Armor Gives Points")
         @Comment("When false they subtract points when failed")
         public Boolean POSITIVE_NEVER_SLEEP_WEAR_ARMOR = true;
+
+        @ConfigName("Score Mob Kills")
+        public Boolean SCORE_MOB_KILLS_404 = true;
     }
 }
