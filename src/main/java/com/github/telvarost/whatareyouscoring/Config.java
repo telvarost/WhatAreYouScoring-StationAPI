@@ -9,18 +9,6 @@ public class Config {
     public static ConfigFields config = new ConfigFields();
 
     public static class ConfigFields {
-        @ConfigName("Death Score To Display")
-        @Comment("Enable/Disable Scoring Modes In Their Config")
-        public ScoreDisplayEnum SCORING_DISPLAY_TYPE = ScoreDisplayEnum.BASIC_SCORE;
-
-        @ConfigName("Reset Score Instead With Difficulty Multipliers")
-        @Comment("Hard=0, Normal=0.5, Easy=0.75, Peaceful=1")
-        public Boolean SPECIAL_DEATH_EFFECT_ON_SCORE = false;
-
-        @ConfigName("Show Score On Begin Scoring Achievement")
-        @Comment("Score will display at the end of the tooltip")
-        public Boolean DISPLAY_SCORE_ON_BEGIN_ACHIEVEMENT = true;
-
         @ConfigCategory("Basic Score Config")
         public BasicScoreConfig BASIC_SCORE_CONFIG = new BasicScoreConfig();
 
@@ -29,9 +17,20 @@ public class Config {
 
         @ConfigCategory("404 Challenge Score Config")
         public Challenge404Config CHALLENGE_404_CONFIG = new Challenge404Config();
+
+        @ConfigName("Reset Score Instead With Difficulty Multipliers")
+        @Comment("Hard=0, Normal=0.5, Easy=0.75, Peaceful=1")
+        public Boolean SPECIAL_DEATH_EFFECT_ON_SCORE = false;
+
+        @ConfigName("Show Score On Begin Scoring Achievement")
+        @Comment("Score will display at the end of the tooltip")
+        public Boolean DISPLAY_SCORE_ON_BEGIN_ACHIEVEMENT = true;
     }
 
     public static class BasicScoreConfig {
+        @ConfigName("Display Basic Score On Death")
+        public Boolean DISPLAY_BASIC_SCORE_ON_DEATH = true;
+        
         @ConfigName("Enable Basic Scoring")
         @Comment("Reload world for changes to take effect")
         public Boolean BASIC_SCORING_ENABLED = true;
@@ -50,6 +49,9 @@ public class Config {
     }
 
     public static class DaysConfig {
+        @ConfigName("Display Days Score On Death")
+        public Boolean DISPLAY_DAYS_SCORE_ON_DEATH = false;
+
         @ConfigName("Enable Days Scoring")
         @Comment("Reload world for changes to take effect")
         public Boolean DAYS_SCORING_ENABLED = true;
@@ -65,6 +67,9 @@ public class Config {
     }
 
     public static class Challenge404Config {
+        @ConfigName("Display 404 Challenge Score On Death")
+        public Boolean DISPLAY_404_CHALLENGE_SCORE_ON_DEATH = false;
+
         @ConfigName("Enable 404 Challenge Scoring")
         @Comment("Reload world for changes to take effect")
         public Boolean CHALLENGE_404_SCORING_ENABLED = false;
