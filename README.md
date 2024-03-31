@@ -23,6 +23,8 @@ You will need ModMenu and GlassConfigAPI if you want to tweak different parts of
 
 ## Days Scoring (Blue)
 - Surviving a minecraft day:    +1
+- Surviving 100 minecraft days: +25 (off by default)
+- Surviving 365 minecraft days: +100 (off by default)
 - (Real world days are also tracked, but not scored)
 
 ## 404 Challenge Scoring (Red)
