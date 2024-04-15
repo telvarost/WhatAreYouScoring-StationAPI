@@ -159,10 +159,10 @@ public abstract class PlayerBaseMixin extends Living {
             long realDaysPlayed = Duration.ofSeconds(minecraft.statFileWriter.write(Stats.playOneMinute) / 20).toDays();
             if (0 < realDaysPlayed) {
                 this.incrementStat(WaysDaysAchievements.REAL_DAY);
-                if (100 <= realDaysPlayed) {
-                    this.incrementStat(WaysDaysAchievements.REAL_100);
-                    if (365 <= realDaysPlayed) {
-                        this.incrementStat(WaysDaysAchievements.REAL_YEAR);
+                if (10 <= realDaysPlayed) {
+                    this.incrementStat(WaysDaysAchievements.REAL_10_DAYS);
+                    if (100 <= realDaysPlayed) {
+                        this.incrementStat(WaysDaysAchievements.REAL_100_DAYS);
                     }
                 }
             }

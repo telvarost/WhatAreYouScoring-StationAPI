@@ -22,8 +22,8 @@ public class WaysDaysAchievements {
     public static final Achievement MINECRAFT_100 = make("minecraft_100_days", ItemBase.goldIngot, -2, 2, MINECRAFT_DAY, true);
     public static final Achievement MINECRAFT_YEAR = make("minecraft_year", ItemBase.diamond, -2, 0, MINECRAFT_100, true);
     public static final Achievement REAL_DAY = make("real_day", BlockBase.IRON_BLOCK, 0, -2, START_DAYS, false);
-    public static final Achievement REAL_100 = make("real_100_days", BlockBase.GOLD_BLOCK, 2, -2, REAL_DAY, true);
-    public static final Achievement REAL_YEAR = make("real_year", BlockBase.DIAMOND_BLOCK, 2, 0, REAL_100, true);
+    public static final Achievement REAL_10_DAYS = make("real_10_days", BlockBase.GOLD_BLOCK, 2, -2, REAL_DAY, true);
+    public static final Achievement REAL_100_DAYS = make("real_100_days", BlockBase.DIAMOND_BLOCK, 2, 0, REAL_10_DAYS, true);
 
     private static Achievement make(String name, BlockBase icon, int x, int y, Achievement parent, boolean isChallenge) {
         Achievement achievement = new Achievement(ModHelper.ModHelperFields.ACHIEVEMENT_ID++, "whatareyouscoring:" + name, x, y, icon, parent);

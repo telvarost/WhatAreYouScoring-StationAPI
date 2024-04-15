@@ -23,10 +23,10 @@ achievement.minecraft_year=In-game Year Survived!
 achievement.minecraft_year.desc=Current: 0
 achievement.real_day=Real Day Completed!
 achievement.real_day.desc=Count: 0
-achievement.real_100_days=Ready for YouTube!
+achievement.real_10_days=Ready for YouTube!
+achievement.real_10_days.desc=Play for 10 real days.
+achievement.real_100_days=It's a work of art!
 achievement.real_100_days.desc=Play for 100 real days.
-achievement.real_year=It's a work of art!
-achievement.real_year.desc=Play for 365 real days.
 
 
 
