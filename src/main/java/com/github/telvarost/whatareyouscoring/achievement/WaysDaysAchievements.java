@@ -26,7 +26,7 @@ public class WaysDaysAchievements {
     public static final Achievement REAL_100_DAYS = make("real_100_days", BlockBase.DIAMOND_BLOCK, 2, 0, REAL_10_DAYS, true);
 
     private static Achievement make(String name, BlockBase icon, int x, int y, Achievement parent, boolean isChallenge) {
-        Achievement achievement = new Achievement(ModHelper.ModHelperFields.ACHIEVEMENT_ID++, "whatareyouscoring:" + name, x, y, icon, parent);
+        Achievement achievement = new Achievement(ModHelper.ModHelperFields.ACHIEVEMENT_ID++, "whatareyouscoring." + name, x, y, icon, parent);
         if (isChallenge) {
             achievement.setUnusual();
         }
@@ -35,7 +35,7 @@ public class WaysDaysAchievements {
     }
 
     private static Achievement make(String name, ItemBase icon, int x, int y, Achievement parent, boolean isChallenge) {
-        Achievement achievement = new Achievement(ModHelper.ModHelperFields.ACHIEVEMENT_ID++, "whatareyouscoring:" + name, x, y, icon, parent);
+        Achievement achievement = new Achievement(ModHelper.ModHelperFields.ACHIEVEMENT_ID++, "whatareyouscoring." + name, x, y, icon, parent);
         if (isChallenge) {
             achievement.setUnusual();
         }

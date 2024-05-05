@@ -20,7 +20,7 @@ public class WaysBasicAchievements {
 	public static final Achievement PASSIVE_MOBS_KILLED = make("passive_mob_killed", ItemBase.leather, -2, 0, START_BASIC, false);
 
 	private static Achievement make(String name, BlockBase icon, int x, int y, Achievement parent, boolean isChallenge) {
-		Achievement achievement = new Achievement(ModHelper.ModHelperFields.ACHIEVEMENT_ID++, "whatareyouscoring:" + name, x, y, icon, parent);
+		Achievement achievement = new Achievement(ModHelper.ModHelperFields.ACHIEVEMENT_ID++, "whatareyouscoring." + name, x, y, icon, parent);
 		if (isChallenge) {
 			achievement.setUnusual();
 		}
@@ -29,7 +29,7 @@ public class WaysBasicAchievements {
 	}
 
 	private static Achievement make(String name, ItemBase icon, int x, int y, Achievement parent, boolean isChallenge) {
-		Achievement achievement = new Achievement(ModHelper.ModHelperFields.ACHIEVEMENT_ID++, "whatareyouscoring:" + name, x, y, icon, parent);
+		Achievement achievement = new Achievement(ModHelper.ModHelperFields.ACHIEVEMENT_ID++, "whatareyouscoring." + name, x, y, icon, parent);
 		if (isChallenge) {
 			achievement.setUnusual();
 		}
