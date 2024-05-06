@@ -62,7 +62,7 @@ public class Ways404Achievements {
     public static final Achievement PLACE_GLOWSTONE_IN_THE_OVERWORLD = make("place_glowstone_in_the_overworld", BlockBase.GLOWSTONE, -3, -3, EXIT_THE_NETHER, true);
 
     private static Achievement make(String name, BlockBase icon, int x, int y, Achievement parent, boolean isChallenge) {
-        Achievement achievement = new Achievement(ModHelper.ModHelperFields.ACHIEVEMENT_ID++, "whatareyouscoring:" + name, x, y, icon, parent);
+        Achievement achievement = new Achievement(ModHelper.ModHelperFields.ACHIEVEMENT_ID++, "whatareyouscoring." + name, x, y, icon, parent);
         if (isChallenge) {
             achievement.setUnusual();
         }
@@ -71,7 +71,7 @@ public class Ways404Achievements {
     }
 
     private static Achievement make(String name, ItemBase icon, int x, int y, Achievement parent, boolean isChallenge) {
-        Achievement achievement = new Achievement(ModHelper.ModHelperFields.ACHIEVEMENT_ID++, "whatareyouscoring:" + name, x, y, icon, parent);
+        Achievement achievement = new Achievement(ModHelper.ModHelperFields.ACHIEVEMENT_ID++, "whatareyouscoring." + name, x, y, icon, parent);
         if (isChallenge) {
             achievement.setUnusual();
         }
