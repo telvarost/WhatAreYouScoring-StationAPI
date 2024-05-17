@@ -9,6 +9,7 @@ import net.minecraft.entity.Living;
 import net.minecraft.entity.animal.AnimalBase;
 import net.minecraft.entity.monster.*;
 import net.minecraft.entity.player.PlayerBase;
+import net.minecraft.entity.swimming.Squid;
 import net.minecraft.level.Level;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -44,7 +45,9 @@ public abstract class LivingMixin extends EntityBase {
                 }
 
                 if (  (Config.config.BASIC_SCORE_CONFIG.ADD_SCORE_ON_PASSIVE_KILLED)
-                   && (instance instanceof AnimalBase)
+                   && (  (instance instanceof AnimalBase)
+                      || (instance instanceof Squid)
+                      )
                 ) {
                     if (0 == ModHelper.ModHelperFields.PASSIVE_MOBS_KILLED) {
                         ((PlayerBase)entity).incrementStat(WaysBasicAchievements.PASSIVE_MOBS_KILLED);
