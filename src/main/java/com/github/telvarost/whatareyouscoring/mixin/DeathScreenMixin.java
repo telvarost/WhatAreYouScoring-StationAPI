@@ -34,7 +34,7 @@ public class DeathScreenMixin extends Screen {
                     ordinal = 1
             )
     )
-    private void clientsideEssentials_renderDeathScreenText(DeathScreen instance, TextRenderer textRenderer, String s, int i, int j, int k) {
+    private void whatAreYouScoring_renderDeathScreenText(DeathScreen instance, TextRenderer textRenderer, String s, int i, int j, int k) {
         ArrayList scoresToDisplay = new ArrayList<Integer>();
         ArrayList scoresToDisplayColor = new ArrayList<Character>();
 

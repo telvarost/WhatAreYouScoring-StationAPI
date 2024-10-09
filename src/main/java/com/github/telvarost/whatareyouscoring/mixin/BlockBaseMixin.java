@@ -22,7 +22,7 @@ public class BlockBaseMixin {
     @Shadow @Final public int id;
 
     @Inject(method = "afterBreak", at = @At("HEAD"), cancellable = true)
-    public void clientsideEssentials_afterBreakBlock(World arg, PlayerEntity arg2, int i, int j, int k, int l, CallbackInfo ci) {
+    public void whatAreYouScoring_afterBreakBlock(World arg, PlayerEntity arg2, int i, int j, int k, int l, CallbackInfo ci) {
         if (null != arg2) {
             if (Config.config.BASIC_SCORE_CONFIG.ADD_SCORE_ON_BLOCK_REMOVED) {
                 if (0 == ModHelper.ModHelperFields.BLOCKS_REMOVED) {
@@ -90,7 +90,7 @@ public class BlockBaseMixin {
     }
 
     @Inject(method = "onPlaced", at = @At("HEAD"), cancellable = true)
-    public void clientsideEssentials_afterPlaced(World arg, int i, int j, int k, LivingEntity arg2, CallbackInfo ci) {
+    public void whatAreYouScoring_afterPlaced(World arg, int i, int j, int k, LivingEntity arg2, CallbackInfo ci) {
         if (null != arg2) {
             if (arg2 instanceof PlayerEntity) {
                 if (Config.config.BASIC_SCORE_CONFIG.ADD_SCORE_ON_BLOCK_PLACED) {
