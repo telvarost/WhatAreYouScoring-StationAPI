@@ -89,7 +89,7 @@ public class BlockBaseMixin {
         }
     }
 
-    @Inject(method = "onPlaced", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "onPlaced(Lnet/minecraft/world/World;IIILnet/minecraft/entity/LivingEntity;)V", at = @At("HEAD"), cancellable = true)
     public void whatAreYouScoring_afterPlaced(World arg, int i, int j, int k, LivingEntity arg2, CallbackInfo ci) {
         if (null != arg2) {
             if (arg2 instanceof PlayerEntity) {
