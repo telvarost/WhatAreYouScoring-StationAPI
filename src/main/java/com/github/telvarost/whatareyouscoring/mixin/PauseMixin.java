@@ -6,27 +6,27 @@ import com.github.telvarost.whatareyouscoring.achievement.WaysBasicAchievements;
 import com.github.telvarost.whatareyouscoring.achievement.WaysDaysAchievements;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.client.gui.screen.ScreenBase;
-import net.minecraft.client.gui.screen.ingame.Pause;
-import net.minecraft.client.gui.widgets.Button;
+import net.minecraft.client.gui.screen.GameMenuScreen;
+import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.gui.widget.ButtonWidget;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Environment(EnvType.CLIENT)
-@Mixin(Pause.class)
-public class PauseMixin extends ScreenBase {
+@Mixin(GameMenuScreen.class)
+public class PauseMixin extends Screen {
 
     @Inject(
             method = "buttonClicked",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/client/Minecraft;openScreen(Lnet/minecraft/client/gui/screen/ScreenBase;)V",
+                    target = "Lnet/minecraft/client/Minecraft;setScreen(Lnet/minecraft/client/gui/screen/Screen;)V",
                     ordinal = 3
             )
     )
-    protected void buttonClicked(Button par1, CallbackInfo ci) {
+    protected void buttonClicked(ButtonWidget par1, CallbackInfo ci) {
         if (Config.config.BASIC_SCORE_CONFIG.BASIC_SCORING_ENABLED) {
             WaysBasicAchievements.updateAchievementCounts();
         }

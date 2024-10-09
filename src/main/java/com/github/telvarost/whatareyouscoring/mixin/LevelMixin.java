@@ -6,15 +6,15 @@ import com.github.telvarost.whatareyouscoring.achievement.WaysBasicAchievements;
 import com.github.telvarost.whatareyouscoring.achievement.WaysDaysAchievements;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.entity.player.PlayerBase;
-import net.minecraft.level.BlockView;
-import net.minecraft.level.Level;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.BlockView;
+import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(Level.class)
+@Mixin(World.class)
 public abstract class LevelMixin implements BlockView {
 
     @Environment(EnvType.CLIENT)
@@ -22,10 +22,10 @@ public abstract class LevelMixin implements BlockView {
             method = "addPlayer",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/level/Level;spawnEntity(Lnet/minecraft/entity/EntityBase;)Z"
+                    target = "Lnet/minecraft/world/World;spawnEntity(Lnet/minecraft/entity/Entity;)Z"
             )
     )
-    public void addPlayer(PlayerBase player, CallbackInfo ci) {
+    public void addPlayer(PlayerEntity player, CallbackInfo ci) {
         if (Config.config.BASIC_SCORE_CONFIG.BASIC_SCORING_ENABLED) {
             player.incrementStat(WaysBasicAchievements.START_BASIC);
         }

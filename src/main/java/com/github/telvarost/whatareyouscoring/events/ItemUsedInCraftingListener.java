@@ -4,14 +4,11 @@ import com.github.telvarost.whatareyouscoring.Config;
 import com.github.telvarost.whatareyouscoring.ModHelper;
 import com.github.telvarost.whatareyouscoring.achievement.Ways404Achievements;
 import net.mine_diver.unsafeevents.listener.EventListener;
-import net.minecraft.block.BlockBase;
-import net.minecraft.entity.player.PlayerBase;
-import net.minecraft.item.ItemBase;
+import net.minecraft.block.Block;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.modificationstation.stationapi.api.entity.player.PlayerHelper;
 import net.modificationstation.stationapi.api.event.container.slot.ItemUsedInCraftingEvent;
-import org.spongepowered.asm.mixin.Unique;
-
-import static java.lang.Math.floor;
 
 public class ItemUsedInCraftingListener {
 
@@ -25,7 +22,7 @@ public class ItemUsedInCraftingListener {
                && (null != event.itemCrafted)
             ) {
                 if (0x00C0 != ModHelper.ModHelperFields.BOW_AND_ARROW_CRAFTING_BITFIELD) {
-                    if (event.itemCrafted.itemId == ItemBase.arrow.id) {
+                    if (event.itemCrafted.itemId == Item.ARROW.id) {
                         int arrowIncrement = 0x007F & ModHelper.ModHelperFields.BOW_AND_ARROW_CRAFTING_BITFIELD;
                         if (64 > arrowIncrement) {
                             arrowIncrement = arrowIncrement + 4;
@@ -34,15 +31,15 @@ public class ItemUsedInCraftingListener {
                         }
 
                         if (0x00C0 == ModHelper.ModHelperFields.BOW_AND_ARROW_CRAFTING_BITFIELD) {
-                            PlayerBase player = PlayerHelper.getPlayerFromGame();
+                            PlayerEntity player = PlayerHelper.getPlayerFromGame();
                             player.incrementStat(Ways404Achievements.CRAFT_BOW_AND_ARROWS);
                         }
                         return;
-                    } else if (event.itemCrafted.itemId == ItemBase.bow.id) {
+                    } else if (event.itemCrafted.itemId == Item.BOW.id) {
                         ModHelper.ModHelperFields.BOW_AND_ARROW_CRAFTING_BITFIELD |= 0x0080;
 
                         if (0x00C0 == ModHelper.ModHelperFields.BOW_AND_ARROW_CRAFTING_BITFIELD) {
-                            PlayerBase player = PlayerHelper.getPlayerFromGame();
+                            PlayerEntity player = PlayerHelper.getPlayerFromGame();
                             player.incrementStat(Ways404Achievements.CRAFT_BOW_AND_ARROWS);
                         }
                         return;
@@ -50,101 +47,101 @@ public class ItemUsedInCraftingListener {
                 }
 
                 if (0x003F != ModHelper.ModHelperFields.MISC_CRAFTING_BITFIELD) {
-                    if (event.itemCrafted.itemId == BlockBase.LAPIS_LAZULI_BLOCK.asItem().id) {
+                    if (event.itemCrafted.itemId == Block.LAPIS_BLOCK.asItem().id) {
                         ModHelper.ModHelperFields.MISC_CRAFTING_BITFIELD |= 0x0001;
-                        PlayerBase player = PlayerHelper.getPlayerFromGame();
+                        PlayerEntity player = PlayerHelper.getPlayerFromGame();
                         player.incrementStat(Ways404Achievements.CRAFT_LAPIS_LAZULI_BLOCK);
                         return;
-                    } else if (event.itemCrafted.itemId == BlockBase.IRON_BLOCK.asItem().id) {
+                    } else if (event.itemCrafted.itemId == Block.IRON_BLOCK.asItem().id) {
                         ModHelper.ModHelperFields.MISC_CRAFTING_BITFIELD |= 0x0002;
-                        PlayerBase player = PlayerHelper.getPlayerFromGame();
+                        PlayerEntity player = PlayerHelper.getPlayerFromGame();
                         player.incrementStat(Ways404Achievements.CRAFT_IRON_BLOCK);
                         return;
-                    } else if (event.itemCrafted.itemId == BlockBase.GOLD_BLOCK.asItem().id) {
+                    } else if (event.itemCrafted.itemId == Block.GOLD_BLOCK.asItem().id) {
                         ModHelper.ModHelperFields.MISC_CRAFTING_BITFIELD |= 0x0004;
-                        PlayerBase player = PlayerHelper.getPlayerFromGame();
+                        PlayerEntity player = PlayerHelper.getPlayerFromGame();
                         player.incrementStat(Ways404Achievements.CRAFT_GOLD_BLOCK);
                         return;
-                    } else if (event.itemCrafted.itemId == BlockBase.DIAMOND_BLOCK.asItem().id) {
+                    } else if (event.itemCrafted.itemId == Block.DIAMOND_BLOCK.asItem().id) {
                         ModHelper.ModHelperFields.MISC_CRAFTING_BITFIELD |= 0x0008;
-                        PlayerBase player = PlayerHelper.getPlayerFromGame();
+                        PlayerEntity player = PlayerHelper.getPlayerFromGame();
                         player.incrementStat(Ways404Achievements.CRAFT_DIAMOND_BLOCK);
                         return;
-                    } else if (event.itemCrafted.itemId == BlockBase.JACK_O_LANTERN.asItem().id) {
+                    } else if (event.itemCrafted.itemId == Block.JACK_O_LANTERN.asItem().id) {
                         ModHelper.ModHelperFields.MISC_CRAFTING_BITFIELD |= 0x0010;
-                        PlayerBase player = PlayerHelper.getPlayerFromGame();
+                        PlayerEntity player = PlayerHelper.getPlayerFromGame();
                         player.incrementStat(Ways404Achievements.CRAFT_JACK_O_LANTERN);
                         return;
-                    } else if (event.itemCrafted.itemId == ItemBase.bread.id) {
+                    } else if (event.itemCrafted.itemId == Item.BREAD.id) {
                         ModHelper.ModHelperFields.MISC_CRAFTING_BITFIELD |= 0x0020;
-                        PlayerBase player = PlayerHelper.getPlayerFromGame();
+                        PlayerEntity player = PlayerHelper.getPlayerFromGame();
                         player.incrementStat(Ways404Achievements.CRAFT_BREAD);
                         return;
                     }
                 }
 
                 if (0xFFFF != ModHelper.ModHelperFields.ARMOR_CRAFTING_BITFIELD) {
-                    if (event.itemCrafted.itemId == ItemBase.leatherHelmet.id) {
+                    if (event.itemCrafted.itemId == Item.LEATHER_HELMET.id) {
                         ModHelper.ModHelperFields.ARMOR_CRAFTING_BITFIELD |= 0x0008;
                         checkForArmorSetComplete();
                         return;
-                    } else if (event.itemCrafted.itemId == ItemBase.leatherChestplate.id) {
+                    } else if (event.itemCrafted.itemId == Item.LEATHER_CHESTPLATE.id) {
                         ModHelper.ModHelperFields.ARMOR_CRAFTING_BITFIELD |= 0x0004;
                         checkForArmorSetComplete();
                         return;
-                    } else if (event.itemCrafted.itemId == ItemBase.leatherLeggings.id) {
+                    } else if (event.itemCrafted.itemId == Item.LEATHER_LEGGINGS.id) {
                         ModHelper.ModHelperFields.ARMOR_CRAFTING_BITFIELD |= 0x0002;
                         checkForArmorSetComplete();
                         return;
-                    } else if (event.itemCrafted.itemId == ItemBase.leatherBoots.id) {
+                    } else if (event.itemCrafted.itemId == Item.LEATHER_BOOTS.id) {
                         ModHelper.ModHelperFields.ARMOR_CRAFTING_BITFIELD |= 0x0001;
                         checkForArmorSetComplete();
                         return;
-                    } else if (event.itemCrafted.itemId == ItemBase.ironHelmet.id) {
+                    } else if (event.itemCrafted.itemId == Item.IRON_HELMET.id) {
                         ModHelper.ModHelperFields.ARMOR_CRAFTING_BITFIELD |= 0x0080;
                         checkForArmorSetComplete();
                         return;
-                    } else if (event.itemCrafted.itemId == ItemBase.ironChestplate.id) {
+                    } else if (event.itemCrafted.itemId == Item.IRON_CHESTPLATE.id) {
                         ModHelper.ModHelperFields.ARMOR_CRAFTING_BITFIELD |= 0x0040;
                         checkForArmorSetComplete();
                         return;
-                    } else if (event.itemCrafted.itemId == ItemBase.ironLeggings.id) {
+                    } else if (event.itemCrafted.itemId == Item.IRON_LEGGINGS.id) {
                         ModHelper.ModHelperFields.ARMOR_CRAFTING_BITFIELD |= 0x0020;
                         checkForArmorSetComplete();
                         return;
-                    } else if (event.itemCrafted.itemId == ItemBase.ironBoots.id) {
+                    } else if (event.itemCrafted.itemId == Item.IRON_BOOTS.id) {
                         ModHelper.ModHelperFields.ARMOR_CRAFTING_BITFIELD |= 0x0010;
                         checkForArmorSetComplete();
                         return;
-                    } else if (event.itemCrafted.itemId == ItemBase.goldHelmet.id) {
+                    } else if (event.itemCrafted.itemId == Item.GOLDEN_HELMET.id) {
                         ModHelper.ModHelperFields.ARMOR_CRAFTING_BITFIELD |= 0x0800;
                         checkForArmorSetComplete();
                         return;
-                    } else if (event.itemCrafted.itemId == ItemBase.goldChestplate.id) {
+                    } else if (event.itemCrafted.itemId == Item.GOLDEN_CHESTPLATE.id) {
                         ModHelper.ModHelperFields.ARMOR_CRAFTING_BITFIELD |= 0x0400;
                         checkForArmorSetComplete();
                         return;
-                    } else if (event.itemCrafted.itemId == ItemBase.goldLeggings.id) {
+                    } else if (event.itemCrafted.itemId == Item.GOLDEN_LEGGINGS.id) {
                         ModHelper.ModHelperFields.ARMOR_CRAFTING_BITFIELD |= 0x0200;
                         checkForArmorSetComplete();
                         return;
-                    } else if (event.itemCrafted.itemId == ItemBase.goldBoots.id) {
+                    } else if (event.itemCrafted.itemId == Item.GOLDEN_BOOTS.id) {
                         ModHelper.ModHelperFields.ARMOR_CRAFTING_BITFIELD |= 0x0100;
                         checkForArmorSetComplete();
                         return;
-                    } else if (event.itemCrafted.itemId == ItemBase.diamondHelmet.id) {
+                    } else if (event.itemCrafted.itemId == Item.DIAMOND_HELMET.id) {
                         ModHelper.ModHelperFields.ARMOR_CRAFTING_BITFIELD |= 0x8000;
                         checkForArmorSetComplete();
                         return;
-                    } else if (event.itemCrafted.itemId == ItemBase.diamondChestplate.id) {
+                    } else if (event.itemCrafted.itemId == Item.DIAMOND_CHESTPLATE.id) {
                         ModHelper.ModHelperFields.ARMOR_CRAFTING_BITFIELD |= 0x4000;
                         checkForArmorSetComplete();
                         return;
-                    } else if (event.itemCrafted.itemId == ItemBase.diamondLeggings.id) {
+                    } else if (event.itemCrafted.itemId == Item.DIAMOND_LEGGINGS.id) {
                         ModHelper.ModHelperFields.ARMOR_CRAFTING_BITFIELD |= 0x2000;
                         checkForArmorSetComplete();
                         return;
-                    } else if (event.itemCrafted.itemId == ItemBase.diamondBoots.id) {
+                    } else if (event.itemCrafted.itemId == Item.DIAMOND_BOOTS.id) {
                         ModHelper.ModHelperFields.ARMOR_CRAFTING_BITFIELD |= 0x1000;
                         checkForArmorSetComplete();
                         return;
@@ -155,7 +152,7 @@ public class ItemUsedInCraftingListener {
     }
 
     private void checkForArmorSetComplete() {
-        PlayerBase player = PlayerHelper.getPlayerFromGame();
+        PlayerEntity player = PlayerHelper.getPlayerFromGame();
 
         if (0x000F == (0x000F & ModHelper.ModHelperFields.ARMOR_CRAFTING_BITFIELD)) {
             player.incrementStat(Ways404Achievements.LEATHER_ARMOR);

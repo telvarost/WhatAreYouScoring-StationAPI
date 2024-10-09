@@ -3,77 +3,73 @@ package com.github.telvarost.whatareyouscoring.achievement;
 import com.github.telvarost.whatareyouscoring.Config;
 import com.github.telvarost.whatareyouscoring.ModHelper;
 import com.github.telvarost.whatareyouscoring.mixin.AchievementAccessor;
-import com.github.telvarost.whatareyouscoring.mixin.MinecraftAccessor;
 import net.minecraft.achievement.Achievement;
-import net.minecraft.block.BlockBase;
-import net.minecraft.client.Minecraft;
-import net.minecraft.entity.player.PlayerBase;
-import net.minecraft.item.ItemBase;
-import net.minecraft.stat.Stats;
+import net.minecraft.block.Block;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.modificationstation.stationapi.api.entity.player.PlayerHelper;
 
-import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Ways404Achievements {
     public static final List<Achievement> ACHIEVEMENTS = new ArrayList<>();
 
-    public static final Achievement START_404 = make("start_404", ItemBase.book, 0, 0, null, false);
+    public static final Achievement START_404 = make("start_404", Item.BOOK, 0, 0, null, false);
 
-    public static final Achievement CRAFT_BOW_AND_ARROWS = make("craft_bow_and_arrows", ItemBase.bow, 2, -1, START_404, false);
-    public static final Achievement CRAFT_BREAD = make("craft_bread", ItemBase.bread, 2, -2, START_404, false);
-    public static final Achievement CRAFT_JACK_O_LANTERN = make("craft_jack_o_lantern", BlockBase.JACK_O_LANTERN, 2, -3, START_404, false);
+    public static final Achievement CRAFT_BOW_AND_ARROWS = make("craft_bow_and_arrows", Item.BOW, 2, -1, START_404, false);
+    public static final Achievement CRAFT_BREAD = make("craft_bread", Item.BREAD, 2, -2, START_404, false);
+    public static final Achievement CRAFT_JACK_O_LANTERN = make("craft_jack_o_lantern", Block.JACK_O_LANTERN, 2, -3, START_404, false);
 
-    public static final Achievement LEATHER_ARMOR = make("leather_armor", ItemBase.leatherChestplate, 3, 0, START_404, false);
-    public static final Achievement IRON_ARMOR = make("iron_armor", ItemBase.ironChestplate, 3, -1, START_404, false);
-    public static final Achievement GOLD_ARMOR = make("gold_armor", ItemBase.goldChestplate, 3, -2, START_404, false);
-    public static final Achievement DIAMOND_ARMOR = make("diamond_armor", ItemBase.diamondChestplate, 3, -3, START_404, false);
-    public static final Achievement CRAFT_LAPIS_LAZULI_BLOCK = make("craft_lapis_lazuli_block", BlockBase.LAPIS_LAZULI_BLOCK, 4, 0, START_404, false);
-    public static final Achievement CRAFT_IRON_BLOCK = make("craft_iron_block", BlockBase.IRON_BLOCK, 4, -1, START_404, false);
-    public static final Achievement CRAFT_GOLD_BLOCK = make("craft_gold_block", BlockBase.GOLD_BLOCK, 4, -2, START_404, false);
-    public static final Achievement CRAFT_DIAMOND_BLOCK = make("craft_diamond_block", BlockBase.DIAMOND_BLOCK, 4, -3, START_404, false);
-    public static final Achievement CREEPER_LAPIS_LAZULI_BLOCK = make("creeper_lapis_lazuli_block", ItemBase.dyePowder, 5, 0, CRAFT_LAPIS_LAZULI_BLOCK, false);
-    public static final Achievement CREEPER_IRON_BLOCK = make("creeper_iron_block", ItemBase.ironIngot, 5, -1, CRAFT_IRON_BLOCK, false);
-    public static final Achievement CREEPER_GOLD_BLOCK = make("creeper_gold_block", ItemBase.goldIngot, 5, -2, CRAFT_GOLD_BLOCK, false);
-    public static final Achievement CREEPER_DIAMOND_BLOCK = make("creeper_diamond_block", ItemBase.diamond, 5, -3, CRAFT_DIAMOND_BLOCK, true);
+    public static final Achievement LEATHER_ARMOR = make("leather_armor", Item.LEATHER_CHESTPLATE, 3, 0, START_404, false);
+    public static final Achievement IRON_ARMOR = make("iron_armor", Item.IRON_CHESTPLATE, 3, -1, START_404, false);
+    public static final Achievement GOLD_ARMOR = make("gold_armor", Item.GOLDEN_CHESTPLATE, 3, -2, START_404, false);
+    public static final Achievement DIAMOND_ARMOR = make("diamond_armor", Item.DIAMOND_CHESTPLATE, 3, -3, START_404, false);
+    public static final Achievement CRAFT_LAPIS_LAZULI_BLOCK = make("craft_lapis_lazuli_block", Block.LAPIS_BLOCK, 4, 0, START_404, false);
+    public static final Achievement CRAFT_IRON_BLOCK = make("craft_iron_block", Block.IRON_BLOCK, 4, -1, START_404, false);
+    public static final Achievement CRAFT_GOLD_BLOCK = make("craft_gold_block", Block.GOLD_BLOCK, 4, -2, START_404, false);
+    public static final Achievement CRAFT_DIAMOND_BLOCK = make("craft_diamond_block", Block.DIAMOND_BLOCK, 4, -3, START_404, false);
+    public static final Achievement CREEPER_LAPIS_LAZULI_BLOCK = make("creeper_lapis_lazuli_block", Item.DYE, 5, 0, CRAFT_LAPIS_LAZULI_BLOCK, false);
+    public static final Achievement CREEPER_IRON_BLOCK = make("creeper_iron_block", Item.IRON_INGOT, 5, -1, CRAFT_IRON_BLOCK, false);
+    public static final Achievement CREEPER_GOLD_BLOCK = make("creeper_gold_block", Item.GOLD_INGOT, 5, -2, CRAFT_GOLD_BLOCK, false);
+    public static final Achievement CREEPER_DIAMOND_BLOCK = make("creeper_diamond_block", Item.DIAMOND, 5, -3, CRAFT_DIAMOND_BLOCK, true);
 
-    public static final Achievement NEVER_SLEEP = make("never_sleep", ItemBase.bed, 4, 2, START_404, true);
-    public static final Achievement NEVER_WEAR_ARMOR = make("never_wear_armor", ItemBase.chainChestplate, 5, 2, START_404, true);
+    public static final Achievement NEVER_SLEEP = make("never_sleep", Item.BED, 4, 2, START_404, true);
+    public static final Achievement NEVER_WEAR_ARMOR = make("never_wear_armor", Item.CHAIN_CHESTPLATE, 5, 2, START_404, true);
 
-    public static final Achievement ZOMBIE_KILLED = make("zombie_killed", ItemBase.feather, 2, 2, START_404, false);
-    public static final Achievement SKELETON_KILLED = make("skeleton_killed", ItemBase.bone, 1, 2, START_404, false);
-    public static final Achievement SPIDER_KILLED = make("spider_killed", ItemBase.string, 0, 2, START_404, false);
-    public static final Achievement CREEPER_KILLED = make("creeper_killed", ItemBase.gunpowder, -1, 2, START_404, false);
-    public static final Achievement ZOMBIE_PIGMAN_KILLED = make("zombie_pigman_killed", ItemBase.cookedPorkchop, -2, 2, START_404, false);
-    public static final Achievement GHAST_KILLED = make("ghast_killed", ItemBase.snowball, -3, 2, START_404, true);
+    public static final Achievement ZOMBIE_KILLED = make("zombie_killed", Item.FEATHER, 2, 2, START_404, false);
+    public static final Achievement SKELETON_KILLED = make("skeleton_killed", Item.BONE, 1, 2, START_404, false);
+    public static final Achievement SPIDER_KILLED = make("spider_killed", Item.STRING, 0, 2, START_404, false);
+    public static final Achievement CREEPER_KILLED = make("creeper_killed", Item.GUNPOWDER, -1, 2, START_404, false);
+    public static final Achievement ZOMBIE_PIGMAN_KILLED = make("zombie_pigman_killed", Item.COOKED_PORKCHOP, -2, 2, START_404, false);
+    public static final Achievement GHAST_KILLED = make("ghast_killed", Item.SNOWBALL, -3, 2, START_404, true);
 
-    public static final Achievement PLACE_8_TYPES_OF_WOOL = make("place_8_types_of_wool", BlockBase.WOOL, 0, -2, START_404, false);
-    public static final Achievement PLACE_ALL_TYPES_OF_WOOL = make("place_all_types_of_wool", BlockBase.ROSE, -1, -2, START_404, false);
-    public static final Achievement PLACE_32_GLASS = make("place_32_glass", BlockBase.GLASS, 0, -3, START_404, false);
-    public static final Achievement PLACE_20_BRICKS = make("place_20_bricks", BlockBase.BRICKS, -1, -3, START_404, false);
-    public static final Achievement PLACE_A_CRASH_SLAB = make("place_a_crash_slab", BlockBase.STONE_SLAB, -2, -3, START_404, true);
-    public static final Achievement BREAK_20_SUGAR_CANES = make("break_20_sugar_canes", ItemBase.sugarCanes, -2, 0, START_404, false);
-    public static final Achievement BREAK_32_CACTI = make("break_32_cacti", BlockBase.CACTUS, -2, -1, START_404, false);
-    public static final Achievement BREAK_15_WHEAT = make("break_15_wheat", ItemBase.wheat, -2, -2, START_404, false);
-    public static final Achievement BREAK_3_PUMPKINS = make("break_3_pumpkins", BlockBase.PUMPKIN, -3, 0, START_404, false);
-    public static final Achievement BREAK_AN_OBSIDIAN_BLOCK = make("break_an_obsidian_block", BlockBase.OBSIDIAN, -3, -1, START_404, false);
-    public static final Achievement EXIT_THE_NETHER = make("exit_the_nether", BlockBase.PORTAL, -3, -2, BREAK_AN_OBSIDIAN_BLOCK, false);
-    public static final Achievement PLACE_GLOWSTONE_IN_THE_OVERWORLD = make("place_glowstone_in_the_overworld", BlockBase.GLOWSTONE, -3, -3, EXIT_THE_NETHER, true);
+    public static final Achievement PLACE_8_TYPES_OF_WOOL = make("place_8_types_of_wool", Block.WOOL, 0, -2, START_404, false);
+    public static final Achievement PLACE_ALL_TYPES_OF_WOOL = make("place_all_types_of_wool", Block.ROSE, -1, -2, START_404, false);
+    public static final Achievement PLACE_32_GLASS = make("place_32_glass", Block.GLASS, 0, -3, START_404, false);
+    public static final Achievement PLACE_20_BRICKS = make("place_20_bricks", Block.BRICKS, -1, -3, START_404, false);
+    public static final Achievement PLACE_A_CRASH_SLAB = make("place_a_crash_slab", Block.SLAB, -2, -3, START_404, true);
+    public static final Achievement BREAK_20_SUGAR_CANES = make("break_20_sugar_canes", Item.SUGAR_CANE, -2, 0, START_404, false);
+    public static final Achievement BREAK_32_CACTI = make("break_32_cacti", Block.CACTUS, -2, -1, START_404, false);
+    public static final Achievement BREAK_15_WHEAT = make("break_15_wheat", Item.WHEAT, -2, -2, START_404, false);
+    public static final Achievement BREAK_3_PUMPKINS = make("break_3_pumpkins", Block.PUMPKIN, -3, 0, START_404, false);
+    public static final Achievement BREAK_AN_OBSIDIAN_BLOCK = make("break_an_obsidian_block", Block.OBSIDIAN, -3, -1, START_404, false);
+    public static final Achievement EXIT_THE_NETHER = make("exit_the_nether", Block.NETHER_PORTAL, -3, -2, BREAK_AN_OBSIDIAN_BLOCK, false);
+    public static final Achievement PLACE_GLOWSTONE_IN_THE_OVERWORLD = make("place_glowstone_in_the_overworld", Block.GLOWSTONE, -3, -3, EXIT_THE_NETHER, true);
 
-    private static Achievement make(String name, BlockBase icon, int x, int y, Achievement parent, boolean isChallenge) {
+    private static Achievement make(String name, Block icon, int x, int y, Achievement parent, boolean isChallenge) {
         Achievement achievement = new Achievement(ModHelper.ModHelperFields.ACHIEVEMENT_ID++, "whatareyouscoring." + name, x, y, icon, parent);
         if (isChallenge) {
-            achievement.setUnusual();
+            achievement.challenge();
         }
         ACHIEVEMENTS.add(achievement);
         return achievement;
     }
 
-    private static Achievement make(String name, ItemBase icon, int x, int y, Achievement parent, boolean isChallenge) {
+    private static Achievement make(String name, Item icon, int x, int y, Achievement parent, boolean isChallenge) {
         Achievement achievement = new Achievement(ModHelper.ModHelperFields.ACHIEVEMENT_ID++, "whatareyouscoring." + name, x, y, icon, parent);
         if (isChallenge) {
-            achievement.setUnusual();
+            achievement.challenge();
         }
         ACHIEVEMENTS.add(achievement);
         return achievement;
@@ -81,10 +77,10 @@ public class Ways404Achievements {
 
     public static void updateAchievementCounts() {
         if (Config.config.DISPLAY_SCORE_ON_BEGIN_ACHIEVEMENT) {
-            PlayerBase player = PlayerHelper.getPlayerFromGame();
-            if ((null != player) && (null != player.level)) {
+            PlayerEntity player = PlayerHelper.getPlayerFromGame();
+            if ((null != player) && (null != player.world)) {
                 /** - Get 404 challenge score */
-                int currentScore = ModHelper.calculate404ChallengeScore(player.level);
+                int currentScore = ModHelper.calculate404ChallengeScore(player.world);
                 if (Config.config.SPECIAL_DEATH_EFFECT_ON_SCORE) {
                     currentScore += ModHelper.ModHelperFields.PrevCumulative404Score;
                 }

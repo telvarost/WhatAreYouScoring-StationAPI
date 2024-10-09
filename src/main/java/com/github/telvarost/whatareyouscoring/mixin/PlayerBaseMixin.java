@@ -5,13 +5,13 @@ import com.github.telvarost.whatareyouscoring.ModHelper;
 import com.github.telvarost.whatareyouscoring.achievement.Ways404Achievements;
 import com.github.telvarost.whatareyouscoring.achievement.WaysDaysAchievements;
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.EntityBase;
-import net.minecraft.entity.Living;
-import net.minecraft.entity.player.PlayerBase;
-import net.minecraft.level.Level;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.stat.Stat;
 import net.minecraft.stat.Stats;
-import net.minecraft.util.io.CompoundTag;
+import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -20,23 +20,23 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.time.Duration;
 
-@Mixin(PlayerBase.class)
-public abstract class PlayerBaseMixin extends Living {
+@Mixin(PlayerEntity.class)
+public abstract class PlayerBaseMixin extends LivingEntity {
 
     @Shadow public abstract void incrementStat(Stat arg);
 
     @Shadow public int dimensionId;
 
-    public PlayerBaseMixin(Level arg) {
+    public PlayerBaseMixin(World arg) {
         super(arg);
     }
 
 
     @Inject(method = "onKilledBy", at = @At("HEAD"))
-    public void onKilledBy(EntityBase par1, CallbackInfo ci) {
+    public void onKilledBy(Entity par1, CallbackInfo ci) {
 
         /** - Calculate score and reset score fields */
-        ModHelper.resetFieldsOnDeath(this.level, false);
+        ModHelper.resetFieldsOnDeath(this.world, false);
 
         if (Config.config.SPECIAL_DEATH_EFFECT_ON_SCORE) {
             /** - Get basic score */
@@ -48,11 +48,11 @@ public abstract class PlayerBaseMixin extends Living {
 
             double saveScoreMultiplier;
 
-            if (0 == this.level.difficulty) {
+            if (0 == this.world.difficulty) {
                 saveScoreMultiplier = 1;
-            } else if (1 == this.level.difficulty) {
+            } else if (1 == this.world.difficulty) {
                 saveScoreMultiplier = 0.75;
-            } else if (2 == this.level.difficulty) {
+            } else if (2 == this.world.difficulty) {
                 saveScoreMultiplier = 0.5;
             } else {
                 saveScoreMultiplier = 0;
@@ -67,25 +67,25 @@ public abstract class PlayerBaseMixin extends Living {
         }
     }
 
-    @Inject(method = "writeCustomDataToTag", at = @At("HEAD"))
-    private void betaTweaks_writeCustomDataToTag(CompoundTag tag, CallbackInfo info) {
+    @Inject(method = "writeNbt", at = @At("HEAD"))
+    private void betaTweaks_writeCustomDataToTag(NbtCompound tag, CallbackInfo info) {
         if (Config.config.SPECIAL_DEATH_EFFECT_ON_SCORE) {
-            tag.put("SB", ModHelper.ModHelperFields.CumulativeBasicScore);
-            tag.put("SD", ModHelper.ModHelperFields.CumulativeDaysScore);
-            tag.put("SC", ModHelper.ModHelperFields.Cumulative404Score);
+            tag.putInt("SB", ModHelper.ModHelperFields.CumulativeBasicScore);
+            tag.putInt("SD", ModHelper.ModHelperFields.CumulativeDaysScore);
+            tag.putInt("SC", ModHelper.ModHelperFields.Cumulative404Score);
         }
 
         if (Config.config.BASIC_SCORE_CONFIG.BASIC_SCORING_ENABLED) {
-            tag.put("BP", ModHelper.ModHelperFields.BLOCKS_PLACED);
-            tag.put("BR", ModHelper.ModHelperFields.BLOCKS_REMOVED);
-            tag.put("BM", ModHelper.ModHelperFields.MONSTER_MOBS_KILLED);
-            tag.put("BA", ModHelper.ModHelperFields.PASSIVE_MOBS_KILLED);
+            tag.putInt("BP", ModHelper.ModHelperFields.BLOCKS_PLACED);
+            tag.putInt("BR", ModHelper.ModHelperFields.BLOCKS_REMOVED);
+            tag.putInt("BM", ModHelper.ModHelperFields.MONSTER_MOBS_KILLED);
+            tag.putInt("BA", ModHelper.ModHelperFields.PASSIVE_MOBS_KILLED);
         }
 
         if (Config.config.DAYS_SCORE_CONFIG.DAYS_SCORING_ENABLED) {
-            ModHelper.ModHelperFields.DAYS_PLAYED = (int)Math.floor(this.level.getProperties().getTime() / 24000);
-            tag.put("DP", ModHelper.ModHelperFields.DAYS_PLAYED);
-            tag.put("DL", ModHelper.ModHelperFields.LAST_DEATH_DAY);
+            ModHelper.ModHelperFields.DAYS_PLAYED = (int)Math.floor(this.world.getProperties().getTime() / 24000);
+            tag.putInt("DP", ModHelper.ModHelperFields.DAYS_PLAYED);
+            tag.putInt("DL", ModHelper.ModHelperFields.LAST_DEATH_DAY);
 
             if (ModHelper.ModHelperFields.PREV_DAYS_PLAYED != ModHelper.ModHelperFields.DAYS_PLAYED) {
                 ModHelper.ModHelperFields.PREV_DAYS_PLAYED = ModHelper.ModHelperFields.DAYS_PLAYED;
@@ -111,30 +111,30 @@ public abstract class PlayerBaseMixin extends Living {
                 }
             }
 
-            tag.put("CKZ", ModHelper.ModHelperFields.ZOMBIE_KILLED);
-            tag.put("CKK", ModHelper.ModHelperFields.SKELETON_KILLED);
-            tag.put("CKS", ModHelper.ModHelperFields.SPIDER_KILLED);
-            tag.put("CKC", ModHelper.ModHelperFields.CREEPER_KILLED);
-            tag.put("CKG", ModHelper.ModHelperFields.GHAST_KILLED);
-            tag.put("CKP", ModHelper.ModHelperFields.ZOMBIE_PIGMAN_KILLED);
-            tag.put("CBW", ModHelper.ModHelperFields.WHEAT_BROKEN);
-            tag.put("CBC", ModHelper.ModHelperFields.CACTI_BROKEN);
-            tag.put("CBS", ModHelper.ModHelperFields.SUGAR_CANES_BROKEN);
-            tag.put("CBP", ModHelper.ModHelperFields.PUMPKINS_BROKEN);
-            tag.put("CPG", ModHelper.ModHelperFields.GLASS_PLACED);
-            tag.put("CPB", ModHelper.ModHelperFields.BRICKS_PLACED);
-            tag.put("CPW", ModHelper.ModHelperFields.WOOL_TYPES_PLACED);
-            tag.put("CW", ModHelper.ModHelperFields.WOOL_PLACED_BITFIELD);
-            tag.put("CB", ModHelper.ModHelperFields.BOW_AND_ARROW_CRAFTING_BITFIELD);
-            tag.put("CM", ModHelper.ModHelperFields.MISC_CRAFTING_BITFIELD);
-            tag.put("CA", ModHelper.ModHelperFields.ARMOR_CRAFTING_BITFIELD);
-            tag.put("CE", ModHelper.ModHelperFields.EXPLOSION_STATUS_BITFIELD);
-            tag.put("CO", ModHelper.ModHelperFields.OTHER_BITFIELD);
+            tag.putInt("CKZ", ModHelper.ModHelperFields.ZOMBIE_KILLED);
+            tag.putInt("CKK", ModHelper.ModHelperFields.SKELETON_KILLED);
+            tag.putInt("CKS", ModHelper.ModHelperFields.SPIDER_KILLED);
+            tag.putInt("CKC", ModHelper.ModHelperFields.CREEPER_KILLED);
+            tag.putInt("CKG", ModHelper.ModHelperFields.GHAST_KILLED);
+            tag.putInt("CKP", ModHelper.ModHelperFields.ZOMBIE_PIGMAN_KILLED);
+            tag.putInt("CBW", ModHelper.ModHelperFields.WHEAT_BROKEN);
+            tag.putInt("CBC", ModHelper.ModHelperFields.CACTI_BROKEN);
+            tag.putInt("CBS", ModHelper.ModHelperFields.SUGAR_CANES_BROKEN);
+            tag.putInt("CBP", ModHelper.ModHelperFields.PUMPKINS_BROKEN);
+            tag.putInt("CPG", ModHelper.ModHelperFields.GLASS_PLACED);
+            tag.putInt("CPB", ModHelper.ModHelperFields.BRICKS_PLACED);
+            tag.putInt("CPW", ModHelper.ModHelperFields.WOOL_TYPES_PLACED);
+            tag.putInt("CW", ModHelper.ModHelperFields.WOOL_PLACED_BITFIELD);
+            tag.putInt("CB", ModHelper.ModHelperFields.BOW_AND_ARROW_CRAFTING_BITFIELD);
+            tag.putInt("CM", ModHelper.ModHelperFields.MISC_CRAFTING_BITFIELD);
+            tag.putInt("CA", ModHelper.ModHelperFields.ARMOR_CRAFTING_BITFIELD);
+            tag.putInt("CE", ModHelper.ModHelperFields.EXPLOSION_STATUS_BITFIELD);
+            tag.putInt("CO", ModHelper.ModHelperFields.OTHER_BITFIELD);
         }
     }
 
-    @Inject(method = "readCustomDataFromTag", at = @At("HEAD"))
-    private void betaTweaks_readCustomDataFromTag(CompoundTag tag, CallbackInfo info) {
+    @Inject(method = "readNbt", at = @At("HEAD"))
+    private void betaTweaks_readCustomDataFromTag(NbtCompound tag, CallbackInfo info) {
         if (Config.config.SPECIAL_DEATH_EFFECT_ON_SCORE) {
             ModHelper.ModHelperFields.CumulativeBasicScore = tag.getInt("SB");
             ModHelper.ModHelperFields.CumulativeDaysScore  = tag.getInt("SD");
@@ -156,7 +156,7 @@ public abstract class PlayerBaseMixin extends Living {
             ModHelper.ModHelperFields.LAST_DEATH_DAY = tag.getInt("DL");
 
             Minecraft minecraft = MinecraftAccessor.getInstance();
-            long realDaysPlayed = Duration.ofSeconds(minecraft.statFileWriter.write(Stats.playOneMinute) / 20).toDays();
+            long realDaysPlayed = Duration.ofSeconds(minecraft.field_2773.method_1989(Stats.PLAY_ONE_MINUTE) / 20).toDays();
             if (0 < realDaysPlayed) {
                 this.incrementStat(WaysDaysAchievements.REAL_DAY);
                 if (10 <= realDaysPlayed) {

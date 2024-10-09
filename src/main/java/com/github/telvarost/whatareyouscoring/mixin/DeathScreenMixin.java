@@ -7,23 +7,21 @@ import com.github.telvarost.whatareyouscoring.achievement.WaysBasicAchievements;
 import com.github.telvarost.whatareyouscoring.achievement.WaysDaysAchievements;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.client.gui.screen.ScreenBase;
-import net.minecraft.client.render.TextRenderer;
-import net.minecraft.entity.player.PlayerBase;
+import net.minecraft.client.font.TextRenderer;
+import net.minecraft.client.gui.screen.DeathScreen;
+import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.stat.Stats;
 import net.modificationstation.stationapi.api.entity.player.PlayerHelper;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
-
-import net.minecraft.client.gui.screen.ingame.Death;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
 import java.time.Duration;
 import java.util.ArrayList;
 
 @Environment(EnvType.CLIENT)
-@Mixin(Death.class)
-public class DeathScreenMixin extends ScreenBase {
+@Mixin(DeathScreen.class)
+public class DeathScreenMixin extends Screen {
 
     public DeathScreenMixin() {
     }
@@ -32,11 +30,11 @@ public class DeathScreenMixin extends ScreenBase {
             method = "render",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/client/gui/screen/ingame/Death;drawTextWithShadowCentred(Lnet/minecraft/client/render/TextRenderer;Ljava/lang/String;III)V",
+                    target = "Lnet/minecraft/client/gui/screen/DeathScreen;drawCenteredTextWithShadow(Lnet/minecraft/client/font/TextRenderer;Ljava/lang/String;III)V",
                     ordinal = 1
             )
     )
-    private void clientsideEssentials_renderDeathScreenText(Death instance, TextRenderer textRenderer, String s, int i, int j, int k) {
+    private void clientsideEssentials_renderDeathScreenText(DeathScreen instance, TextRenderer textRenderer, String s, int i, int j, int k) {
         ArrayList scoresToDisplay = new ArrayList<Integer>();
         ArrayList scoresToDisplayColor = new ArrayList<Character>();
 
@@ -71,16 +69,16 @@ public class DeathScreenMixin extends ScreenBase {
         }
 
         if (3 == scoresToDisplay.size()) {
-            this.drawTextWithShadowCentred(textRenderer, "Score: \u00a7" + scoresToDisplayColor.get(0) + scoresToDisplay.get(0), i, j - 10, k);
-            this.drawTextWithShadowCentred(textRenderer, "Score: \u00a7" + scoresToDisplayColor.get(1) + scoresToDisplay.get(1), i, j, k);
-            this.drawTextWithShadowCentred(textRenderer, "Score: \u00a7" + scoresToDisplayColor.get(2) + scoresToDisplay.get(2), i, j + 10, k);
+            this.drawCenteredTextWithShadow(textRenderer, "Score: \u00a7" + scoresToDisplayColor.get(0) + scoresToDisplay.get(0), i, j - 10, k);
+            this.drawCenteredTextWithShadow(textRenderer, "Score: \u00a7" + scoresToDisplayColor.get(1) + scoresToDisplay.get(1), i, j, k);
+            this.drawCenteredTextWithShadow(textRenderer, "Score: \u00a7" + scoresToDisplayColor.get(2) + scoresToDisplay.get(2), i, j + 10, k);
         } else if (2 == scoresToDisplay.size()) {
-            this.drawTextWithShadowCentred(textRenderer, "Score: \u00a7" + scoresToDisplayColor.get(0) + scoresToDisplay.get(0), i, j - 5, k);
-            this.drawTextWithShadowCentred(textRenderer, "Score: \u00a7" + scoresToDisplayColor.get(1) + scoresToDisplay.get(1), i, j + 5, k);
+            this.drawCenteredTextWithShadow(textRenderer, "Score: \u00a7" + scoresToDisplayColor.get(0) + scoresToDisplay.get(0), i, j - 5, k);
+            this.drawCenteredTextWithShadow(textRenderer, "Score: \u00a7" + scoresToDisplayColor.get(1) + scoresToDisplay.get(1), i, j + 5, k);
         } else if (1 == scoresToDisplay.size()) {
-            this.drawTextWithShadowCentred(textRenderer, "Score: \u00a7" + scoresToDisplayColor.get(0) + scoresToDisplay.get(0), i, j, k);
+            this.drawCenteredTextWithShadow(textRenderer, "Score: \u00a7" + scoresToDisplayColor.get(0) + scoresToDisplay.get(0), i, j, k);
         } else {
-            this.drawTextWithShadowCentred(textRenderer, s, i, j, k);
+            this.drawCenteredTextWithShadow(textRenderer, s, i, j, k);
         }
     }
 }

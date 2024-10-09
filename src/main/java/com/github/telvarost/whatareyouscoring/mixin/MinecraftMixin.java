@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class MinecraftMixin {
 
     @Inject(
-            method = "createOrLoadWorld",
+            method = "method_2120",
             at = @At("HEAD")
     )
     public void createOrLoadWorld(String string, String string2, long l, CallbackInfo ci) {

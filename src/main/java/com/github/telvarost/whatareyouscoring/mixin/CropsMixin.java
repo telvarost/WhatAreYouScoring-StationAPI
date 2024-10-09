@@ -2,9 +2,9 @@ package com.github.telvarost.whatareyouscoring.mixin;
 
 import com.github.telvarost.whatareyouscoring.ModHelper;
 import com.github.telvarost.whatareyouscoring.achievement.Ways404Achievements;
-import net.minecraft.block.Crops;
-import net.minecraft.block.Plant;
-import net.minecraft.entity.player.PlayerBase;
+import net.minecraft.block.CropBlock;
+import net.minecraft.block.PlantBlock;
+import net.minecraft.entity.player.PlayerEntity;
 import net.modificationstation.stationapi.api.entity.player.PlayerHelper;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -13,14 +13,14 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.Random;
 
-@Mixin(Crops.class)
-public class CropsMixin extends Plant {
+@Mixin(CropBlock.class)
+public class CropsMixin extends PlantBlock {
     public CropsMixin(int i, int j) {
         super(i, j);
     }
 
     @Inject(
-            method = "getDropId",
+            method = "getDroppedItemId",
             at = @At("HEAD")
     )
     public void getDropId(int i, Random random, CallbackInfoReturnable<Integer> cir) {
@@ -28,7 +28,7 @@ public class CropsMixin extends Plant {
             if (15 > ModHelper.ModHelperFields.WHEAT_BROKEN) {
                 ModHelper.ModHelperFields.WHEAT_BROKEN++;
                 if (15 == ModHelper.ModHelperFields.WHEAT_BROKEN) {
-                    PlayerBase player = PlayerHelper.getPlayerFromGame();
+                    PlayerEntity player = PlayerHelper.getPlayerFromGame();
                     if (null != player) {
                         player.incrementStat(Ways404Achievements.BREAK_15_WHEAT);
                     }

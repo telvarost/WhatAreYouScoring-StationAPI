@@ -1,6 +1,6 @@
 package com.github.telvarost.whatareyouscoring.achievement;
 
-import net.minecraft.block.BlockBase;
+import net.minecraft.block.Block;
 import net.modificationstation.stationapi.api.client.gui.screen.achievement.AchievementPage;
 import net.modificationstation.stationapi.api.util.Identifier;
 
@@ -16,22 +16,22 @@ public class Ways404AchievementPage extends AchievementPage {
 
     @Override
     public int getBackgroundTexture(Random random, int column, int row, int randomizedRow, int currentTexture) {
-        int k = BlockBase.BEDROCK.texture;
+        int k = Block.BEDROCK.textureId;
         int l = random.nextInt(1 + row) + row / 2;
         if (l <= 37 && row != 35) {
             if (l == 22) {
-                k = BlockBase.MOSSY_COBBLESTONE.texture;
+                k = Block.MOSSY_COBBLESTONE.textureId;
             } else if (l == 10) {
-                k = BlockBase.COBBLESTONE.texture;
+                k = Block.COBBLESTONE.textureId;
             } else if (l == 8) {
-                k = BlockBase.MOSSY_COBBLESTONE.texture;
+                k = Block.MOSSY_COBBLESTONE.textureId;
             } else if (l > 4) {
-                k = BlockBase.COBBLESTONE.texture;
+                k = Block.COBBLESTONE.textureId;
             } else if (l > 0) {
-                k = BlockBase.STILL_LAVA.texture;
+                k = Block.LAVA.textureId;
             }
         } else {
-            k = BlockBase.STILL_LAVA.texture;
+            k = Block.LAVA.textureId;
         }
 
         return k;

@@ -6,6 +6,6 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 
 @Mixin(Achievement.class)
 public interface AchievementAccessor {
-    @Accessor("description")
+    @Accessor("translationKey")
     public void setAchievementDescription(String description);
 }

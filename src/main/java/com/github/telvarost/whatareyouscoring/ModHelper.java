@@ -1,7 +1,7 @@
 package com.github.telvarost.whatareyouscoring;
 
 import com.github.telvarost.whatareyouscoring.mixin.AchievementAccessor;
-import net.minecraft.level.Level;
+import net.minecraft.world.World;
 
 public class ModHelper {
 
@@ -36,7 +36,7 @@ public class ModHelper {
         return daysScore;
     }
 
-    public static int calculate404ChallengeScore(Level level) {
+    public static int calculate404ChallengeScore(World level) {
         double challenge404Score = 0;
 
         if (Config.config.CHALLENGE_404_CONFIG.SCORE_MOB_KILLS_404) {
@@ -185,7 +185,7 @@ public class ModHelper {
         return (int)Math.round(challenge404Score);
     }
 
-    public static void resetFieldsOnDeath(Level level, boolean isLevelLoad) {
+    public static void resetFieldsOnDeath(World level, boolean isLevelLoad) {
         /** - Reset Basic Score Fields */
         if (isLevelLoad) {
             ModHelperFields.CumulativeBasicScore = 0;
