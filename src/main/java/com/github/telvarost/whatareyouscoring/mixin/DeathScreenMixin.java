@@ -2,21 +2,15 @@ package com.github.telvarost.whatareyouscoring.mixin;
 
 import com.github.telvarost.whatareyouscoring.Config;
 import com.github.telvarost.whatareyouscoring.ModHelper;
-import com.github.telvarost.whatareyouscoring.ScoreDisplayEnum;
-import com.github.telvarost.whatareyouscoring.achievement.WaysBasicAchievements;
-import com.github.telvarost.whatareyouscoring.achievement.WaysDaysAchievements;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.screen.DeathScreen;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.stat.Stats;
-import net.modificationstation.stationapi.api.entity.player.PlayerHelper;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
-import java.time.Duration;
 import java.util.ArrayList;
 
 @Environment(EnvType.CLIENT)

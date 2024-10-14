@@ -60,7 +60,7 @@ public class WaysDaysAchievements {
         ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(MINECRAFT_100))).setAchievementDescription("Current: " + (int)Math.floor(daysSurvived / 100));
         ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(MINECRAFT_YEAR))).setAchievementDescription("Current: " + (int)Math.floor(daysSurvived / 365));
         Minecraft minecraft = MinecraftAccessor.getInstance();
-        long realDaysPlayed = Duration.ofSeconds(minecraft.field_2773.method_1989(Stats.PLAY_ONE_MINUTE) / 20).toDays();
+        long realDaysPlayed = Duration.ofSeconds(minecraft.stats.get(Stats.PLAY_ONE_MINUTE) / 20).toDays();
         ((AchievementAccessor) ACHIEVEMENTS.get(ACHIEVEMENTS.indexOf(REAL_DAY))).setAchievementDescription("Count: " + realDaysPlayed);
     }
 }

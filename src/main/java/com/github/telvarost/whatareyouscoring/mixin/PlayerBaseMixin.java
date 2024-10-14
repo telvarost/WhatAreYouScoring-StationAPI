@@ -156,7 +156,7 @@ public abstract class PlayerBaseMixin extends LivingEntity {
             ModHelper.ModHelperFields.LAST_DEATH_DAY = tag.getInt("DL");
 
             Minecraft minecraft = MinecraftAccessor.getInstance();
-            long realDaysPlayed = Duration.ofSeconds(minecraft.field_2773.method_1989(Stats.PLAY_ONE_MINUTE) / 20).toDays();
+            long realDaysPlayed = Duration.ofSeconds(minecraft.stats.get(Stats.PLAY_ONE_MINUTE) / 20).toDays();
             if (0 < realDaysPlayed) {
                 this.incrementStat(WaysDaysAchievements.REAL_DAY);
                 if (10 <= realDaysPlayed) {

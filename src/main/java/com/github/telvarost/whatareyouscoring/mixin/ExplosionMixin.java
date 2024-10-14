@@ -24,7 +24,7 @@ public class ExplosionMixin {
     @Shadow
     private World world;
     @Shadow
-    public Set field_1397;
+    public Set damagedBlocks;
 
     @Inject(method = "playExplosionSound", at = @At("HEAD"), cancellable = true)
     public void miscTweaks_cancelAllExplosionTileDamage(boolean renderParticles, CallbackInfo ci) {
@@ -33,7 +33,7 @@ public class ExplosionMixin {
                 if (0 < ModHelper.ModHelperFields.DETECT_CREEPER_EXPLOSION) {
                     ModHelper.ModHelperFields.DETECT_CREEPER_EXPLOSION--;
                     ArrayList tilesToCheck = new ArrayList<BlockPos>();
-                    tilesToCheck.addAll(this.field_1397);
+                    tilesToCheck.addAll(this.damagedBlocks);
 
                     for (int tileIndex = tilesToCheck.size() - 1; tileIndex >= 0; --tileIndex) {
                         BlockPos tilePos = (BlockPos) tilesToCheck.get(tileIndex);

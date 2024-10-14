@@ -24,7 +24,7 @@ public class BedMixin extends Block {
         method = "onUse",
         at = @At(
                 value = "INVOKE",
-                target = "Lnet/minecraft/block/BedBlock;method_1657(Lnet/minecraft/world/World;IIIZ)V",
+                target = "Lnet/minecraft/block/BedBlock;updateState(Lnet/minecraft/world/World;IIIZ)V",
                 ordinal = 1
         )
     )
