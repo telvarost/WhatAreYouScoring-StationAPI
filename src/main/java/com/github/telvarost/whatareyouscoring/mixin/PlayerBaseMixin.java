@@ -1,5 +1,6 @@
 package com.github.telvarost.whatareyouscoring.mixin;
 
+import com.github.telvarost.whatareyouscoring.ClientModHelper;
 import com.github.telvarost.whatareyouscoring.Config;
 import com.github.telvarost.whatareyouscoring.ModHelper;
 import com.github.telvarost.whatareyouscoring.achievement.Ways404Achievements;
@@ -151,8 +152,8 @@ public abstract class PlayerBaseMixin extends LivingEntity {
             ModHelper.ModHelperFields.DAYS_PLAYED    = tag.getInt("DP");
             ModHelper.ModHelperFields.LAST_DEATH_DAY = tag.getInt("DL");
 
-            if (false == world.isRemote) {
-                ModHelper.clientsideTimeKeeping();
+            if (world.isRemote) {
+                ClientModHelper.clientsideTimeKeeping();
             }
         }
 
