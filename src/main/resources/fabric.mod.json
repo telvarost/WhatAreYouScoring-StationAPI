@@ -27,13 +27,11 @@
     ],
     "stationapi:event_bus_server": [
     ],
-    "gcapi": [
+    "gcapi3": [
       "com.github.telvarost.whatareyouscoring.Config"
     ],
-    "gcapi:factory_provider": [
+    "gcapi3:factory_provider": [
       "com.github.telvarost.whatareyouscoring.ScoreDisplayEnumFactory"
-    ],
-    "gcapi:presave": [
     ]
   },
   "mixins": [
@@ -42,5 +40,15 @@
 
   "depends": {
     "minecraft": "1.0.0-beta.7.3"
+  },
+
+  "depends": {
+    "minecraft": "1.0.0-beta.7.3"
+  },
+
+  "recommends": {
+    "stationapi": "*",
+    "gcapi3": ">=3.0.1",
+    "modmenu": "*"
   }
 }

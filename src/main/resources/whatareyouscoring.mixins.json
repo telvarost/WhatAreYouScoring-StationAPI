@@ -13,7 +13,6 @@
     "LivingMixin",
     "PlayerBaseMixin",
     "PlayerInventoryMixin",
-    "StoneSlabItemMixin",
     "WoolMixin"
   ],
   "server": [
@@ -23,7 +22,8 @@
     "LevelMixin",
     "MinecraftAccessor",
     "MinecraftMixin",
-    "PauseMixin"
+    "PauseMixin",
+    "StoneSlabItemMixin"
   ],
   "injectors": {
     "defaultRequire": 1

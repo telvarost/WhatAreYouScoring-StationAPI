@@ -4,13 +4,11 @@ import com.github.telvarost.whatareyouscoring.Config;
 import com.github.telvarost.whatareyouscoring.ModHelper;
 import com.github.telvarost.whatareyouscoring.achievement.Ways404Achievements;
 import com.github.telvarost.whatareyouscoring.achievement.WaysDaysAchievements;
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.stat.Stat;
-import net.minecraft.stat.Stats;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -151,21 +149,10 @@ public abstract class PlayerBaseMixin extends LivingEntity {
             ModHelper.ModHelperFields.PASSIVE_MOBS_KILLED = tag.getInt("BA");
         }
 
-        if (Config.config.DAYS_SCORE_CONFIG.DAYS_SCORING_ENABLED) {
+        if (Config.config.DAYS_SCORE_CONFIG.DAYS_SCORING_ENABLED && (false == world.isRemote)) {
             ModHelper.ModHelperFields.DAYS_PLAYED    = tag.getInt("DP");
             ModHelper.ModHelperFields.LAST_DEATH_DAY = tag.getInt("DL");
-
-            Minecraft minecraft = MinecraftAccessor.getInstance();
-            long realDaysPlayed = Duration.ofSeconds(minecraft.stats.get(Stats.PLAY_ONE_MINUTE) / 20).toDays();
-            if (0 < realDaysPlayed) {
-                this.incrementStat(WaysDaysAchievements.REAL_DAY);
-                if (10 <= realDaysPlayed) {
-                    this.incrementStat(WaysDaysAchievements.REAL_10_DAYS);
-                    if (100 <= realDaysPlayed) {
-                        this.incrementStat(WaysDaysAchievements.REAL_100_DAYS);
-                    }
-                }
-            }
+            ModHelper.clientsideTimeKeeping();
         }
 
         if (Config.config.CHALLENGE_404_CONFIG.CHALLENGE_404_SCORING_ENABLED) {
