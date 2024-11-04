@@ -16,8 +16,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import java.time.Duration;
-
 @Mixin(PlayerEntity.class)
 public abstract class PlayerBaseMixin extends LivingEntity {
 
@@ -149,10 +147,13 @@ public abstract class PlayerBaseMixin extends LivingEntity {
             ModHelper.ModHelperFields.PASSIVE_MOBS_KILLED = tag.getInt("BA");
         }
 
-        if (Config.config.DAYS_SCORE_CONFIG.DAYS_SCORING_ENABLED && (false == world.isRemote)) {
+        if (Config.config.DAYS_SCORE_CONFIG.DAYS_SCORING_ENABLED) {
             ModHelper.ModHelperFields.DAYS_PLAYED    = tag.getInt("DP");
             ModHelper.ModHelperFields.LAST_DEATH_DAY = tag.getInt("DL");
-            ModHelper.clientsideTimeKeeping();
+
+            if (false == world.isRemote) {
+                ModHelper.clientsideTimeKeeping();
+            }
         }
 
         if (Config.config.CHALLENGE_404_CONFIG.CHALLENGE_404_SCORING_ENABLED) {
