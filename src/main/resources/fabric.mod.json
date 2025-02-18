@@ -20,6 +20,7 @@
   "environment": "*",
   "entrypoints": {
     "stationapi:event_bus": [
+      "com.github.telvarost.whatareyouscoring.ModHelper",
       "com.github.telvarost.whatareyouscoring.events.init.AchievementListener",
       "com.github.telvarost.whatareyouscoring.events.ItemUsedInCraftingListener"
     ],
@@ -43,12 +44,12 @@
   },
 
   "depends": {
-    "minecraft": "1.0.0-beta.7.3"
+    "minecraft": "1.0.0-beta.7.3",
+    "stationapi": ">=2.0.0-alpha.3",
+    "gcapi3": ">=3.0.2"
   },
 
   "recommends": {
-    "stationapi": "*",
-    "gcapi3": ">=3.0.1",
     "modmenu": "*"
   }
 }
