@@ -2,6 +2,8 @@ package com.github.telvarost.whatareyouscoring.mixin;
 
 import com.github.telvarost.whatareyouscoring.Config;
 import com.github.telvarost.whatareyouscoring.ModHelper;
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.font.TextRenderer;
@@ -9,7 +11,6 @@ import net.minecraft.client.gui.screen.DeathScreen;
 import net.minecraft.client.gui.screen.Screen;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Redirect;
 
 import java.util.ArrayList;
 
@@ -20,7 +21,7 @@ public class DeathScreenMixin extends Screen {
     public DeathScreenMixin() {
     }
 
-    @Redirect(
+    @WrapOperation(
             method = "render",
             at = @At(
                     value = "INVOKE",
@@ -28,7 +29,7 @@ public class DeathScreenMixin extends Screen {
                     ordinal = 1
             )
     )
-    private void whatAreYouScoring_renderDeathScreenText(DeathScreen instance, TextRenderer textRenderer, String s, int i, int j, int k) {
+    private void whatAreYouScoring_renderDeathScreenText(DeathScreen instance, TextRenderer textRenderer, String text, int centerX, int y, int color, Operation<Void> original) {
         ArrayList scoresToDisplay = new ArrayList<Integer>();
         ArrayList scoresToDisplayColor = new ArrayList<Character>();
 
@@ -63,16 +64,16 @@ public class DeathScreenMixin extends Screen {
         }
 
         if (3 == scoresToDisplay.size()) {
-            this.drawCenteredTextWithShadow(textRenderer, "Score: \u00a7" + scoresToDisplayColor.get(0) + scoresToDisplay.get(0), i, j - 10, k);
-            this.drawCenteredTextWithShadow(textRenderer, "Score: \u00a7" + scoresToDisplayColor.get(1) + scoresToDisplay.get(1), i, j, k);
-            this.drawCenteredTextWithShadow(textRenderer, "Score: \u00a7" + scoresToDisplayColor.get(2) + scoresToDisplay.get(2), i, j + 10, k);
+            instance.drawCenteredTextWithShadow(textRenderer, "Score: \u00a7" + scoresToDisplayColor.get(0) + scoresToDisplay.get(0), centerX, y - 10, color);
+            instance.drawCenteredTextWithShadow(textRenderer, "Score: \u00a7" + scoresToDisplayColor.get(1) + scoresToDisplay.get(1), centerX, y, color);
+            instance.drawCenteredTextWithShadow(textRenderer, "Score: \u00a7" + scoresToDisplayColor.get(2) + scoresToDisplay.get(2), centerX, y + 10, color);
         } else if (2 == scoresToDisplay.size()) {
-            this.drawCenteredTextWithShadow(textRenderer, "Score: \u00a7" + scoresToDisplayColor.get(0) + scoresToDisplay.get(0), i, j - 5, k);
-            this.drawCenteredTextWithShadow(textRenderer, "Score: \u00a7" + scoresToDisplayColor.get(1) + scoresToDisplay.get(1), i, j + 5, k);
+            instance.drawCenteredTextWithShadow(textRenderer, "Score: \u00a7" + scoresToDisplayColor.get(0) + scoresToDisplay.get(0), centerX, y - 5, color);
+            instance.drawCenteredTextWithShadow(textRenderer, "Score: \u00a7" + scoresToDisplayColor.get(1) + scoresToDisplay.get(1), centerX, y + 5, color);
         } else if (1 == scoresToDisplay.size()) {
-            this.drawCenteredTextWithShadow(textRenderer, "Score: \u00a7" + scoresToDisplayColor.get(0) + scoresToDisplay.get(0), i, j, k);
+            instance.drawCenteredTextWithShadow(textRenderer, "Score: \u00a7" + scoresToDisplayColor.get(0) + scoresToDisplay.get(0), centerX, y, color);
         } else {
-            this.drawCenteredTextWithShadow(textRenderer, s, i, j, k);
+            original.call(instance, textRenderer, text, centerX, y, color);
         }
     }
 }

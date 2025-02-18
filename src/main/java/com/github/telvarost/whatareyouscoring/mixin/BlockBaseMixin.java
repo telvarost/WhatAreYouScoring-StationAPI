@@ -22,11 +22,11 @@ public class BlockBaseMixin {
     @Shadow @Final public int id;
 
     @Inject(method = "afterBreak", at = @At("HEAD"), cancellable = true)
-    public void whatAreYouScoring_afterBreakBlock(World arg, PlayerEntity arg2, int i, int j, int k, int l, CallbackInfo ci) {
-        if (null != arg2) {
+    public void whatAreYouScoring_afterBreakBlock(World world, PlayerEntity playerEntity, int x, int y, int z, int meta, CallbackInfo ci) {
+        if (null != playerEntity) {
             if (Config.config.BASIC_SCORE_CONFIG.ADD_SCORE_ON_BLOCK_REMOVED) {
                 if (0 == ModHelper.ModHelperFields.BLOCKS_REMOVED) {
-                    arg2.incrementStat(WaysBasicAchievements.BLOCKS_REMOVED);
+                    playerEntity.incrementStat(WaysBasicAchievements.BLOCKS_REMOVED);
                 }
 
                 ModHelper.ModHelperFields.BLOCKS_REMOVED++;
