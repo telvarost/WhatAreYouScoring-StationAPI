@@ -90,12 +90,12 @@ public class BlockBaseMixin {
     }
 
     @Inject(method = "onPlaced(Lnet/minecraft/world/World;IIILnet/minecraft/entity/LivingEntity;)V", at = @At("HEAD"), cancellable = true)
-    public void whatAreYouScoring_afterPlaced(World arg, int i, int j, int k, LivingEntity arg2, CallbackInfo ci) {
-        if (null != arg2) {
-            if (arg2 instanceof PlayerEntity) {
+    public void whatAreYouScoring_afterPlaced(World world, int x, int y, int z, LivingEntity placer, CallbackInfo ci) {
+        if (null != placer) {
+            if (placer instanceof PlayerEntity) {
                 if (Config.config.BASIC_SCORE_CONFIG.ADD_SCORE_ON_BLOCK_PLACED) {
                     if (0 == ModHelper.ModHelperFields.BLOCKS_PLACED) {
-                        ((PlayerEntity) arg2).incrementStat(WaysBasicAchievements.BLOCKS_PLACED);
+                        ((PlayerEntity) placer).incrementStat(WaysBasicAchievements.BLOCKS_PLACED);
                     }
 
                     ModHelper.ModHelperFields.BLOCKS_PLACED++;
@@ -131,8 +131,8 @@ public class BlockBaseMixin {
                     }
 
                     if (ModHelper.ModHelperFields.HAS_CRASH_SLAB_BEEN_PLACED != (ModHelper.ModHelperFields.HAS_CRASH_SLAB_BEEN_PLACED & ModHelper.ModHelperFields.OTHER_BITFIELD)) {
-                        if (arg.getBlockId(i, j - 1, k) == Block.DOUBLE_SLAB.id) {
-                            if (3 < arg.getBlockMeta(i, j - 1, k)) {
+                        if (world.getBlockId(x, y - 1, z) == Block.DOUBLE_SLAB.id) {
+                            if (3 < world.getBlockMeta(x, y - 1, z)) {
                                 ModHelper.ModHelperFields.OTHER_BITFIELD |= ModHelper.ModHelperFields.HAS_CRASH_SLAB_BEEN_PLACED;
                                 PlayerEntity player = PlayerHelper.getPlayerFromGame();
                                 if (null != player) {
