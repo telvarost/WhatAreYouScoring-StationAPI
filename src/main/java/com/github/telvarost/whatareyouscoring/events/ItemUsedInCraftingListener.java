@@ -156,11 +156,17 @@ public class ItemUsedInCraftingListener {
 
         if (0x000F == (0x000F & ModHelper.ModHelperFields.ARMOR_CRAFTING_BITFIELD)) {
             player.incrementStat(Ways404Achievements.LEATHER_ARMOR);
-        } else if (0x00F0 == (0x00F0 & ModHelper.ModHelperFields.ARMOR_CRAFTING_BITFIELD)) {
+        }
+
+        if (0x00F0 == (0x00F0 & ModHelper.ModHelperFields.ARMOR_CRAFTING_BITFIELD)) {
             player.incrementStat(Ways404Achievements.IRON_ARMOR);
-        } else if (0x0F00 == (0x0F00 & ModHelper.ModHelperFields.ARMOR_CRAFTING_BITFIELD)) {
+        }
+
+        if (0x0F00 == (0x0F00 & ModHelper.ModHelperFields.ARMOR_CRAFTING_BITFIELD)) {
             player.incrementStat(Ways404Achievements.GOLD_ARMOR);
-        } else if (0xF000 == (0xF000 & ModHelper.ModHelperFields.ARMOR_CRAFTING_BITFIELD)) {
+        }
+
+        if (0xF000 == (0xF000 & ModHelper.ModHelperFields.ARMOR_CRAFTING_BITFIELD)) {
             player.incrementStat(Ways404Achievements.DIAMOND_ARMOR);
         }
     }
