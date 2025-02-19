@@ -1,13 +1,13 @@
 # WhatAreYouScoring StationAPI for Minecraft Beta 1.7.3
 
 A StationAPI mod for Minecraft Beta 1.7.3 that adds different mechanisms to increase your score!
-Player score resets upon death in singleplayer and upon logout in multiplayer.
-* Achievements are saved per instance and do not reset.
+* Mod is clientside: Player score resets upon death in single-player and upon logout in multiplayer.
+  * Multiplayer is not really supported since stats are saved clientside.
+* Achievements are saved per instance and do not reset, whereas score count is saved per world.
 
 # What Are You Scoring? (W.A.Y.S. Score/Achievement Mod)
 
 You will need ModMenu and GlassConfigAPI if you want to tweak different parts of the mod. See installation instructions below.
-* (Planned) Mod does not work on Multiplayer yet with GlassConfigAPI version 2.0+ used to sync configs
 
 ## Some example configs
 * Add ability to retain score on death on certain difficulties
@@ -83,8 +83,10 @@ You will need ModMenu and GlassConfigAPI if you want to tweak different parts of
 4. Add Glass Networking to the mod folder for the instance: https://modrinth.com/mod/glass-networking
 5. Add StationAPI to the mod folder for the instance: https://modrinth.com/mod/stationapi
 6. (Optional) Add Mod Menu to the mod folder for the instance: https://modrinth.com/mod/modmenu-beta
-7. Add this mod to the mod folder for the instance: https://github.com/telvarost/SameOldSpells-StationAPI/releases
-8. Run and enjoy! 👍
+7. (Optional) Add MojangFix StationAPI Edition to the mod folder for the instance: https://modrinth.com/mod/mojangfix-stationapi-edition
+   * This mod fixes stats resetting when a mod adds/removes or reorganizes achievements or other statistics.
+8. Add this mod to the mod folder for the instance: https://github.com/telvarost/SameOldSpells-StationAPI/releases
+9. Run and enjoy! 👍
 
 ## Feedback
 

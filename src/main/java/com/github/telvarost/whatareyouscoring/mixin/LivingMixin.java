@@ -71,10 +71,17 @@ public abstract class LivingMixin extends Entity {
 
                 if (Config.config.CHALLENGE_404_CONFIG.SCORE_MOB_KILLS_404) {
                     if (instance instanceof ZombieEntity) {
-                        if (0 == ModHelper.ModHelperFields.ZOMBIE_KILLED) {
-                            ((PlayerEntity) entity).incrementStat(Ways404Achievements.ZOMBIE_KILLED);
+                        if (instance instanceof PigZombieEntity) {
+                            if (0 == ModHelper.ModHelperFields.ZOMBIE_PIGMAN_KILLED) {
+                                ((PlayerEntity) entity).incrementStat(Ways404Achievements.ZOMBIE_PIGMAN_KILLED);
+                            }
+                            ModHelper.ModHelperFields.ZOMBIE_PIGMAN_KILLED++;
+                        } else {
+                            if (0 == ModHelper.ModHelperFields.ZOMBIE_KILLED) {
+                                ((PlayerEntity) entity).incrementStat(Ways404Achievements.ZOMBIE_KILLED);
+                            }
+                            ModHelper.ModHelperFields.ZOMBIE_KILLED++;
                         }
-                        ModHelper.ModHelperFields.ZOMBIE_KILLED++;
                     } else if (instance instanceof SkeletonEntity) {
                         if (0 == ModHelper.ModHelperFields.SKELETON_KILLED) {
                             ((PlayerEntity) entity).incrementStat(Ways404Achievements.SKELETON_KILLED);
@@ -95,11 +102,6 @@ public abstract class LivingMixin extends Entity {
                             ((PlayerEntity) entity).incrementStat(Ways404Achievements.GHAST_KILLED);
                         }
                         ModHelper.ModHelperFields.GHAST_KILLED++;
-                    } else if (instance instanceof PigZombieEntity) {
-                        if (0 == ModHelper.ModHelperFields.ZOMBIE_PIGMAN_KILLED) {
-                            ((PlayerEntity) entity).incrementStat(Ways404Achievements.ZOMBIE_PIGMAN_KILLED);
-                        }
-                        ModHelper.ModHelperFields.ZOMBIE_PIGMAN_KILLED++;
                     }
                 }
             }

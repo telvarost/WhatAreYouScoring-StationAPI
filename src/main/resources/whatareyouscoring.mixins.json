@@ -4,26 +4,26 @@
   "package": "com.github.telvarost.whatareyouscoring.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+  ],
+  "server": [
+  ],
+  "client": [
     "AchievementAccessor",
     "BedMixin",
     "BlockBaseMixin",
     "CreeperMixin",
     "CropsMixin",
+    "DeathScreenMixin",
     "ExplosionMixin",
     "LivingMixin",
-    "PlayerBaseMixin",
-    "PlayerInventoryMixin",
-    "WoolMixin"
-  ],
-  "server": [
-  ],
-  "client": [
-    "DeathScreenMixin",
-    "LevelMixin",
     "MinecraftAccessor",
     "MinecraftMixin",
     "PauseMixin",
-    "StoneSlabItemMixin"
+    "PlayerBaseMixin",
+    "PlayerInventoryMixin",
+    "StoneSlabItemMixin",
+    "WorldMixin",
+    "WoolMixin"
   ],
   "injectors": {
     "defaultRequire": 1

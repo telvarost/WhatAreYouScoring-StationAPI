@@ -3,7 +3,6 @@ package com.github.telvarost.whatareyouscoring.mixin;
 import com.github.telvarost.whatareyouscoring.ClientModHelper;
 import com.github.telvarost.whatareyouscoring.Config;
 import com.github.telvarost.whatareyouscoring.ModHelper;
-import com.github.telvarost.whatareyouscoring.achievement.Ways404Achievements;
 import com.github.telvarost.whatareyouscoring.achievement.WaysDaysAchievements;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -97,17 +96,6 @@ public abstract class PlayerBaseMixin extends LivingEntity {
         }
 
         if (Config.config.CHALLENGE_404_CONFIG.CHALLENGE_404_SCORING_ENABLED) {
-            if (ModHelper.ModHelperFields.HAS_PLAYER_EXITED_THE_NETHER != (ModHelper.ModHelperFields.HAS_PLAYER_EXITED_THE_NETHER & ModHelper.ModHelperFields.OTHER_BITFIELD)) {
-                if (-1 == this.dimensionId) {
-                    ModHelper.ModHelperFields.IS_PLAYER_IN_NETHER = true;
-                } else if (ModHelper.ModHelperFields.IS_PLAYER_IN_NETHER) {
-                    if (-1 != this.dimensionId) {
-                        ModHelper.ModHelperFields.OTHER_BITFIELD |= ModHelper.ModHelperFields.HAS_PLAYER_EXITED_THE_NETHER;
-                        this.incrementStat(Ways404Achievements.EXIT_THE_NETHER);
-                    }
-                }
-            }
-
             tag.putInt("CKZ", ModHelper.ModHelperFields.ZOMBIE_KILLED);
             tag.putInt("CKK", ModHelper.ModHelperFields.SKELETON_KILLED);
             tag.putInt("CKS", ModHelper.ModHelperFields.SPIDER_KILLED);
