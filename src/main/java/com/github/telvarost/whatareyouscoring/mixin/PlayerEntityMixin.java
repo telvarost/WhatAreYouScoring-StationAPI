@@ -17,30 +17,27 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(PlayerEntity.class)
-public abstract class PlayerBaseMixin extends LivingEntity {
+public abstract class PlayerEntityMixin extends LivingEntity {
 
-    @Shadow public abstract void incrementStat(Stat arg);
+    @Shadow public abstract void incrementStat(Stat stat);
 
-    @Shadow public int dimensionId;
-
-    public PlayerBaseMixin(World arg) {
-        super(arg);
+    public PlayerEntityMixin(World world) {
+        super(world);
     }
 
-
     @Inject(method = "onKilledBy", at = @At("HEAD"))
-    public void onKilledBy(Entity par1, CallbackInfo ci) {
+    public void whatAreYouScoring_onKilledBy(Entity adversary, CallbackInfo ci) {
 
         /** - Calculate score and reset score fields */
         ModHelper.resetFieldsOnDeath(this.world, false);
 
         if (Config.config.SPECIAL_DEATH_EFFECT_ON_SCORE) {
             /** - Get basic score */
-            int currentScoreBasic = ModHelper.ModHelperFields.DEATH_SCORE_BASIC_MODE;
+            int currentScoreBasic = ModHelper.ModHelperFields.CurrentBasicScore;
             /** - Get days survived */
-            int currentScoreDays = ModHelper.ModHelperFields.DEATH_SCORE_DAYS_MODE;
+            int currentScoreDays = ModHelper.ModHelperFields.CurrentDaysScore;
             /** - Get 404 challenge score */
-            int currentScore404 = ModHelper.ModHelperFields.DEATH_SCORE_404_MODE;
+            int currentScore404 = ModHelper.ModHelperFields.Current404Score;
 
             double saveScoreMultiplier;
 
@@ -64,7 +61,7 @@ public abstract class PlayerBaseMixin extends LivingEntity {
     }
 
     @Inject(method = "writeNbt", at = @At("HEAD"))
-    private void betaTweaks_writeCustomDataToTag(NbtCompound tag, CallbackInfo info) {
+    private void whatAreYouScoring_writeCustomDataToTag(NbtCompound tag, CallbackInfo info) {
         if (Config.config.SPECIAL_DEATH_EFFECT_ON_SCORE) {
             tag.putInt("SB", ModHelper.ModHelperFields.CumulativeBasicScore);
             tag.putInt("SD", ModHelper.ModHelperFields.CumulativeDaysScore);
@@ -85,6 +82,7 @@ public abstract class PlayerBaseMixin extends LivingEntity {
 
             if (ModHelper.ModHelperFields.PREV_DAYS_PLAYED != ModHelper.ModHelperFields.DAYS_PLAYED) {
                 ModHelper.ModHelperFields.PREV_DAYS_PLAYED = ModHelper.ModHelperFields.DAYS_PLAYED;
+                ModHelper.ModHelperFields.CurrentDaysScore = ModHelper.calculateDaysScore();
                 this.incrementStat(WaysDaysAchievements.MINECRAFT_DAY);
                 if (100 <= ModHelper.ModHelperFields.DAYS_PLAYED) {
                     this.incrementStat(WaysDaysAchievements.MINECRAFT_100);
@@ -119,14 +117,14 @@ public abstract class PlayerBaseMixin extends LivingEntity {
     }
 
     @Inject(method = "readNbt", at = @At("HEAD"))
-    private void betaTweaks_readCustomDataFromTag(NbtCompound tag, CallbackInfo info) {
+    private void whatAreYouScoring_readCustomDataFromTag(NbtCompound tag, CallbackInfo info) {
         if (Config.config.SPECIAL_DEATH_EFFECT_ON_SCORE) {
             ModHelper.ModHelperFields.CumulativeBasicScore = tag.getInt("SB");
             ModHelper.ModHelperFields.CumulativeDaysScore  = tag.getInt("SD");
             ModHelper.ModHelperFields.Cumulative404Score   = tag.getInt("SC");
             ModHelper.ModHelperFields.PrevCumulativeBasicScore = ModHelper.ModHelperFields.CumulativeBasicScore;
-            ModHelper.ModHelperFields.PrevCumulativeDaysScore = ModHelper.ModHelperFields.CumulativeDaysScore;
-            ModHelper.ModHelperFields.PrevCumulative404Score = ModHelper.ModHelperFields.Cumulative404Score;
+            ModHelper.ModHelperFields.PrevCumulativeDaysScore  = ModHelper.ModHelperFields.CumulativeDaysScore;
+            ModHelper.ModHelperFields.PrevCumulative404Score   = ModHelper.ModHelperFields.Cumulative404Score;
         }
 
         if (Config.config.BASIC_SCORE_CONFIG.BASIC_SCORING_ENABLED) {
@@ -166,5 +164,9 @@ public abstract class PlayerBaseMixin extends LivingEntity {
             ModHelper.ModHelperFields.EXPLOSION_STATUS_BITFIELD         = tag.getInt("CE" );
             ModHelper.ModHelperFields.OTHER_BITFIELD                    = tag.getInt("CO" );
         }
+
+        ModHelper.ModHelperFields.CurrentBasicScore = ModHelper.calculateBasicScore();
+        ModHelper.ModHelperFields.CurrentDaysScore = ModHelper.calculateDaysScore();
+        ModHelper.ModHelperFields.Current404Score = ModHelper.calculate404ChallengeScore(world);
     }
 }

@@ -8,6 +8,9 @@ public class Config {
     public static ConfigFields config = new ConfigFields();
 
     public static class ConfigFields {
+        @ConfigCategory(name = "Score Rendering Config")
+        public ScoreRenderingConfig SCORE_RENDERING_CONFIG = new ScoreRenderingConfig();
+
         @ConfigCategory(name = "Basic Score Config")
         public BasicScoreConfig BASIC_SCORE_CONFIG = new BasicScoreConfig();
 
@@ -22,6 +25,32 @@ public class Config {
                 description = "Hard=0, Normal=0.5, Easy=0.75, Peaceful=1"
         )
         public Boolean SPECIAL_DEATH_EFFECT_ON_SCORE = false;
+    }
+
+    public static class ScoreRenderingConfig {
+        @ConfigCategory(
+                name = "Custom Death Screen Score Display",
+                description = "Config only affects Custom display mode"
+        )
+        public CustomScoreDisplayConfig CUSTOM_DEATH_SCORE_DISPLAY = new CustomScoreDisplayConfig();
+
+        @ConfigCategory(
+                name = "Custom In Game HUD Score Display",
+                description = "Config only affects Custom display mode"
+        )
+        public CustomScoreDisplayConfig CUSTOM_IN_GAME_HUD_SCORE_DISPLAY = new CustomScoreDisplayConfig();
+
+        @ConfigEntry(
+                name = "Death Screen Score Display Mode",
+                description = "Select Vanilla to disable showing WAYS scores"
+        )
+        public ScoreDisplayEnum DEATH_SCORE_DISPLAY_MODE = ScoreDisplayEnum.LISTED;
+
+        @ConfigEntry(
+                name = "In Game HUD Score Display Mode",
+                description = "Select Vanilla to disable showing WAYS scores"
+        )
+        public ScoreDisplayEnum IN_GAME_SCORE_DISPLAY_MODE = ScoreDisplayEnum.COMBINED;
 
         @ConfigEntry(
                 name = "Show Score On Begin Scoring Achievement",
@@ -30,10 +59,18 @@ public class Config {
         public Boolean DISPLAY_SCORE_ON_BEGIN_ACHIEVEMENT = true;
     }
 
-    public static class BasicScoreConfig {
-        @ConfigEntry(name = "Display Basic Score On Death")
-        public Boolean DISPLAY_BASIC_SCORE_ON_DEATH = true;
+    public static class CustomScoreDisplayConfig {
+        @ConfigEntry(name = "Display Basic Score")
+        public Boolean DISPLAY_BASIC_SCORE = true;
 
+        @ConfigEntry(name = "Display Days Score")
+        public Boolean DISPLAY_DAYS_SCORE = false;
+
+        @ConfigEntry(name = "Display 404 Challenge Score")
+        public Boolean DISPLAY_404_CHALLENGE_SCORE = false;
+    }
+
+    public static class BasicScoreConfig {
         @ConfigEntry(
                 name = "Enable Basic Scoring",
                 description = "Reload world for changes to take effect"
@@ -54,9 +91,6 @@ public class Config {
     }
 
     public static class DaysConfig {
-        @ConfigEntry(name = "Display Days Score On Death")
-        public Boolean DISPLAY_DAYS_SCORE_ON_DEATH = false;
-
         @ConfigEntry(
                 name = "Enable Days Scoring",
                 description = "Reload world for changes to take effect"
@@ -74,9 +108,6 @@ public class Config {
     }
 
     public static class Challenge404Config {
-        @ConfigEntry(name = "Display 404 Challenge Score On Death")
-        public Boolean DISPLAY_404_CHALLENGE_SCORE_ON_DEATH = false;
-
         @ConfigEntry(
                 name = "Enable 404 Challenge Scoring",
                 description = "Reload world for changes to take effect"

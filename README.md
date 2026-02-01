@@ -11,6 +11,7 @@ You will need ModMenu and GlassConfigAPI if you want to tweak different parts of
 
 ## Some example configs
 * Add ability to retain score on death on certain difficulties
+* Change which scores display at the top of the in-game HUD
 * Change which scores display on death screen
 * (Basic Scoring) Enable/disable scoring sources
 * (Days Scoring) Ability to give bonus points for surviving past certain milestones

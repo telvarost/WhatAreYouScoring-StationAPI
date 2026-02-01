@@ -16,7 +16,7 @@ public class ItemUsedInCraftingListener {
      * @param event Item used in crafting event which fires whenever an item is consumed in crafting or an item is crafted
      */
     @EventListener
-    public void combineDurability(ItemUsedInCraftingEvent event) {
+    public void craftingAchievementsListener(ItemUsedInCraftingEvent event) {
         if (Config.config.CHALLENGE_404_CONFIG.CHALLENGE_404_SCORING_ENABLED) {
             if (  (0 == event.itemOrdinal)
                && (null != event.itemCrafted)

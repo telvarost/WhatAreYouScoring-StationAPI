@@ -3,7 +3,7 @@ package com.github.telvarost.whatareyouscoring.achievement;
 import com.github.telvarost.whatareyouscoring.Config;
 import com.github.telvarost.whatareyouscoring.ModHelper;
 import com.github.telvarost.whatareyouscoring.mixin.AchievementAccessor;
-import com.github.telvarost.whatareyouscoring.mixin.MinecraftAccessor;
+import com.github.telvarost.whatareyouscoring.mixin.client.MinecraftAccessor;
 import net.minecraft.achievement.Achievement;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
@@ -44,7 +44,7 @@ public class WaysDaysAchievements {
     }
 
     public static void updateAchievementCounts() {
-        if (Config.config.DISPLAY_SCORE_ON_BEGIN_ACHIEVEMENT) {
+        if (Config.config.SCORE_RENDERING_CONFIG.DISPLAY_SCORE_ON_BEGIN_ACHIEVEMENT) {
             /** - Get basic score */
             int currentScore = ModHelper.calculateDaysScore();
             if (Config.config.SPECIAL_DEATH_EFFECT_ON_SCORE) {

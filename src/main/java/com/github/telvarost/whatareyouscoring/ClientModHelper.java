@@ -1,7 +1,7 @@
 package com.github.telvarost.whatareyouscoring;
 
 import com.github.telvarost.whatareyouscoring.achievement.WaysDaysAchievements;
-import com.github.telvarost.whatareyouscoring.mixin.MinecraftAccessor;
+import com.github.telvarost.whatareyouscoring.mixin.client.MinecraftAccessor;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.stat.Stats;

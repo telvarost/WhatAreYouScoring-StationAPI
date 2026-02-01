@@ -25,7 +25,7 @@ public abstract class WorldMixin implements BlockView {
                     target = "Lnet/minecraft/world/World;spawnEntity(Lnet/minecraft/entity/Entity;)Z"
             )
     )
-    public void addPlayer(PlayerEntity player, CallbackInfo ci) {
+    public void whatAreYouScoring_addPlayer(PlayerEntity player, CallbackInfo ci) {
         if (Config.config.BASIC_SCORE_CONFIG.BASIC_SCORING_ENABLED) {
             player.incrementStat(WaysBasicAchievements.START_BASIC);
         }

@@ -12,9 +12,9 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(CreeperEntity.class)
-public class CreeperMixin extends MonsterEntity {
+public class CreeperEntityMixin extends MonsterEntity {
 
-    public CreeperMixin(World arg) {
+    public CreeperEntityMixin(World arg) {
         super(arg);
         this.texture = "/mob/creeper.png";
     }
@@ -26,9 +26,8 @@ public class CreeperMixin extends MonsterEntity {
                     target = "Lnet/minecraft/entity/mob/CreeperEntity;isCharged()Z"
             )
     )
-    public void miscTweaks_tryAttackBeforeCreateExplosion(Entity f, float par2, CallbackInfo ci) {
-        if (Config.config.CHALLENGE_404_CONFIG.CHALLENGE_404_SCORING_ENABLED)
-        {
+    public void whatAreYouScoring_tryAttackBeforeCreateExplosion(Entity f, float par2, CallbackInfo ci) {
+        if (Config.config.CHALLENGE_404_CONFIG.CHALLENGE_404_SCORING_ENABLED) {
             ModHelper.ModHelperFields.DETECT_CREEPER_EXPLOSION++;
         }
     }

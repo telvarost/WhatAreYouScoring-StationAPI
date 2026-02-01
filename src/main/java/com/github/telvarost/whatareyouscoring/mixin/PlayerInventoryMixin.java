@@ -26,12 +26,13 @@ public abstract class PlayerInventoryMixin implements Inventory, StationFlatteni
             method = "getTotalArmorDurability",
             at = @At("HEAD")
     )
-    public void miscTweaks_getArmourValue(CallbackInfoReturnable<Integer> cir) {
+    public void whatAreYouScoring_getArmorDurability(CallbackInfoReturnable<Integer> cir) {
         if (Config.config.CHALLENGE_404_CONFIG.CHALLENGE_404_SCORING_ENABLED) {
             if (ModHelper.ModHelperFields.HAS_PLAYER_WORN_ARMOR != (ModHelper.ModHelperFields.HAS_PLAYER_WORN_ARMOR & ModHelper.ModHelperFields.OTHER_BITFIELD)) {
                 for (int var4 = 0; var4 < this.armor.length; ++var4) {
                     if (this.armor[var4] != null && this.armor[var4].getItem() instanceof ArmorItem) {
                         ModHelper.ModHelperFields.OTHER_BITFIELD |= ModHelper.ModHelperFields.HAS_PLAYER_WORN_ARMOR;
+                        ModHelper.ModHelperFields.Current404Score = ModHelper.calculate404ChallengeScore(player.world);
                         this.player.incrementStat(Ways404Achievements.NEVER_WEAR_ARMOR);
                     }
                 }

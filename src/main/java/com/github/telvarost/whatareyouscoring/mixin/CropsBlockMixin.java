@@ -14,8 +14,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import java.util.Random;
 
 @Mixin(CropBlock.class)
-public class CropsMixin extends PlantBlock {
-    public CropsMixin(int i, int j) {
+public class CropsBlockMixin extends PlantBlock {
+    public CropsBlockMixin(int i, int j) {
         super(i, j);
     }
 
@@ -23,13 +23,14 @@ public class CropsMixin extends PlantBlock {
             method = "getDroppedItemId",
             at = @At("HEAD")
     )
-    public void getDropId(int i, Random random, CallbackInfoReturnable<Integer> cir) {
+    public void whatAreYouScoring_getDroppedItemId(int i, Random random, CallbackInfoReturnable<Integer> cir) {
         if (i == 7) {
             if (15 > ModHelper.ModHelperFields.WHEAT_BROKEN) {
                 ModHelper.ModHelperFields.WHEAT_BROKEN++;
                 if (15 == ModHelper.ModHelperFields.WHEAT_BROKEN) {
                     PlayerEntity player = PlayerHelper.getPlayerFromGame();
                     if (null != player) {
+                        ModHelper.ModHelperFields.Current404Score = ModHelper.calculate404ChallengeScore(player.world);
                         player.incrementStat(Ways404Achievements.BREAK_15_WHEAT);
                     }
                 }

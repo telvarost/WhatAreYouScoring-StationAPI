@@ -14,9 +14,9 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(BedBlock.class)
-public class BedMixin extends Block {
+public class BedBlockMixin extends Block {
 
-    public BedMixin(int i) {
+    public BedBlockMixin(int i) {
         super(i, 134, Material.WOOL);
     }
 
@@ -28,11 +28,12 @@ public class BedMixin extends Block {
                 ordinal = 1
         )
     )
-    public void canUse(World arg, int i, int j, int k, PlayerEntity arg2, CallbackInfoReturnable<Boolean> cir) {
+    public void whatAreYouScoring_onUse(World world, int x, int y, int z, PlayerEntity player, CallbackInfoReturnable<Boolean> cir) {
         if (Config.config.CHALLENGE_404_CONFIG.CHALLENGE_404_SCORING_ENABLED) {
-            if (null != arg2) {
+            if (null != player) {
                 ModHelper.ModHelperFields.OTHER_BITFIELD |= ModHelper.ModHelperFields.HAS_PLAYER_SLEPT;
-                arg2.incrementStat(Ways404Achievements.NEVER_SLEEP);
+                ModHelper.ModHelperFields.Current404Score = ModHelper.calculate404ChallengeScore(world);
+                player.incrementStat(Ways404Achievements.NEVER_SLEEP);
             }
         }
     }

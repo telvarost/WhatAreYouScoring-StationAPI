@@ -17,25 +17,29 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(Block.class)
-public class BlockBaseMixin {
+public class BlockMixin {
 
     @Shadow @Final public int id;
 
     @Inject(method = "afterBreak", at = @At("HEAD"), cancellable = true)
     public void whatAreYouScoring_afterBreakBlock(World world, PlayerEntity playerEntity, int x, int y, int z, int meta, CallbackInfo ci) {
         if (null != playerEntity) {
-            if (Config.config.BASIC_SCORE_CONFIG.ADD_SCORE_ON_BLOCK_REMOVED) {
+            if (  Config.config.BASIC_SCORE_CONFIG.BASIC_SCORING_ENABLED
+               && Config.config.BASIC_SCORE_CONFIG.ADD_SCORE_ON_BLOCK_REMOVED
+            ) {
                 if (0 == ModHelper.ModHelperFields.BLOCKS_REMOVED) {
                     playerEntity.incrementStat(WaysBasicAchievements.BLOCKS_REMOVED);
                 }
 
                 ModHelper.ModHelperFields.BLOCKS_REMOVED++;
+                ModHelper.ModHelperFields.CurrentBasicScore = ModHelper.calculateBasicScore();
             }
 
             if (Config.config.CHALLENGE_404_CONFIG.CHALLENGE_404_SCORING_ENABLED) {
                 if (3 > ModHelper.ModHelperFields.PUMPKINS_BROKEN) {
                     if (this.id == Block.PUMPKIN.id) {
                         ModHelper.ModHelperFields.PUMPKINS_BROKEN++;
+                        ModHelper.ModHelperFields.Current404Score = ModHelper.calculate404ChallengeScore(world);
 
                         if (3 == ModHelper.ModHelperFields.PUMPKINS_BROKEN) {
                             PlayerEntity player = PlayerHelper.getPlayerFromGame();
@@ -50,6 +54,7 @@ public class BlockBaseMixin {
                 if (20 > ModHelper.ModHelperFields.SUGAR_CANES_BROKEN) {
                     if (this.id == Block.SUGAR_CANE.id) {
                         ModHelper.ModHelperFields.SUGAR_CANES_BROKEN++;
+                        ModHelper.ModHelperFields.Current404Score = ModHelper.calculate404ChallengeScore(world);
 
                         if (20 == ModHelper.ModHelperFields.SUGAR_CANES_BROKEN) {
                             PlayerEntity player = PlayerHelper.getPlayerFromGame();
@@ -64,6 +69,7 @@ public class BlockBaseMixin {
                 if (32 > ModHelper.ModHelperFields.CACTI_BROKEN) {
                     if (this.id == Block.CACTUS.id) {
                         ModHelper.ModHelperFields.CACTI_BROKEN++;
+                        ModHelper.ModHelperFields.Current404Score = ModHelper.calculate404ChallengeScore(world);
 
                         if (32 == ModHelper.ModHelperFields.CACTI_BROKEN) {
                             PlayerEntity player = PlayerHelper.getPlayerFromGame();
@@ -78,6 +84,7 @@ public class BlockBaseMixin {
                 if (ModHelper.ModHelperFields.HAS_OBSIDIAN_BEEN_BROKEN != (ModHelper.ModHelperFields.HAS_OBSIDIAN_BEEN_BROKEN & ModHelper.ModHelperFields.OTHER_BITFIELD)) {
                     if (this.id == Block.OBSIDIAN.id) {
                         ModHelper.ModHelperFields.OTHER_BITFIELD |= ModHelper.ModHelperFields.HAS_OBSIDIAN_BEEN_BROKEN;
+                        ModHelper.ModHelperFields.Current404Score = ModHelper.calculate404ChallengeScore(world);
                         PlayerEntity player = PlayerHelper.getPlayerFromGame();
                         if (null != player) {
                             player.incrementStat(Ways404Achievements.BREAK_AN_OBSIDIAN_BLOCK);
@@ -93,18 +100,22 @@ public class BlockBaseMixin {
     public void whatAreYouScoring_afterPlaced(World world, int x, int y, int z, LivingEntity placer, CallbackInfo ci) {
         if (null != placer) {
             if (placer instanceof PlayerEntity) {
-                if (Config.config.BASIC_SCORE_CONFIG.ADD_SCORE_ON_BLOCK_PLACED) {
+                if (  Config.config.BASIC_SCORE_CONFIG.BASIC_SCORING_ENABLED
+                   && Config.config.BASIC_SCORE_CONFIG.ADD_SCORE_ON_BLOCK_PLACED
+                ) {
                     if (0 == ModHelper.ModHelperFields.BLOCKS_PLACED) {
                         ((PlayerEntity) placer).incrementStat(WaysBasicAchievements.BLOCKS_PLACED);
                     }
 
                     ModHelper.ModHelperFields.BLOCKS_PLACED++;
+                    ModHelper.ModHelperFields.CurrentBasicScore = ModHelper.calculateBasicScore();
                 }
 
                 if (Config.config.CHALLENGE_404_CONFIG.CHALLENGE_404_SCORING_ENABLED) {
                     if (32 > ModHelper.ModHelperFields.GLASS_PLACED) {
                         if (this.id == Block.GLASS.id) {
                             ModHelper.ModHelperFields.GLASS_PLACED++;
+                            ModHelper.ModHelperFields.Current404Score = ModHelper.calculate404ChallengeScore(world);
 
                             if (32 == ModHelper.ModHelperFields.GLASS_PLACED) {
                                 PlayerEntity player = PlayerHelper.getPlayerFromGame();
@@ -119,6 +130,7 @@ public class BlockBaseMixin {
                     if (20 > ModHelper.ModHelperFields.BRICKS_PLACED) {
                         if (this.id == Block.BRICKS.id) {
                             ModHelper.ModHelperFields.BRICKS_PLACED++;
+                            ModHelper.ModHelperFields.Current404Score = ModHelper.calculate404ChallengeScore(world);
 
                             if (20 == ModHelper.ModHelperFields.BRICKS_PLACED) {
                                 PlayerEntity player = PlayerHelper.getPlayerFromGame();
@@ -134,6 +146,7 @@ public class BlockBaseMixin {
                         if (world.getBlockId(x, y - 1, z) == Block.DOUBLE_SLAB.id) {
                             if (3 < world.getBlockMeta(x, y - 1, z)) {
                                 ModHelper.ModHelperFields.OTHER_BITFIELD |= ModHelper.ModHelperFields.HAS_CRASH_SLAB_BEEN_PLACED;
+                                ModHelper.ModHelperFields.Current404Score = ModHelper.calculate404ChallengeScore(world);
                                 PlayerEntity player = PlayerHelper.getPlayerFromGame();
                                 if (null != player) {
                                     player.incrementStat(Ways404Achievements.PLACE_A_CRASH_SLAB);
@@ -146,6 +159,7 @@ public class BlockBaseMixin {
                     if (ModHelper.ModHelperFields.HAS_OVERWORLD_GLOWSTONE_BEEN_PLACED != (ModHelper.ModHelperFields.HAS_OVERWORLD_GLOWSTONE_BEEN_PLACED & ModHelper.ModHelperFields.OTHER_BITFIELD)) {
                         if (this.id == Block.GLOWSTONE.id) {
                             ModHelper.ModHelperFields.OTHER_BITFIELD |= ModHelper.ModHelperFields.HAS_OVERWORLD_GLOWSTONE_BEEN_PLACED;
+                            ModHelper.ModHelperFields.Current404Score = ModHelper.calculate404ChallengeScore(world);
                             PlayerEntity player = PlayerHelper.getPlayerFromGame();
                             if (null != player) {
                                 if (0 == player.dimensionId) {

@@ -27,7 +27,7 @@ public class ExplosionMixin {
     public Set damagedBlocks;
 
     @Inject(method = "playExplosionSound", at = @At("HEAD"), cancellable = true)
-    public void miscTweaks_cancelAllExplosionTileDamage(boolean renderParticles, CallbackInfo ci) {
+    public void whatAreYouScoring_cancelAllExplosionTileDamage(boolean renderParticles, CallbackInfo ci) {
         if (Config.config.CHALLENGE_404_CONFIG.CHALLENGE_404_SCORING_ENABLED) {
             if (0xF != ModHelper.ModHelperFields.EXPLOSION_STATUS_BITFIELD) {
                 if (0 < ModHelper.ModHelperFields.DETECT_CREEPER_EXPLOSION) {
@@ -41,24 +41,28 @@ public class ExplosionMixin {
 
                         if (Block.IRON_BLOCK.id == blockId) {
                             ModHelper.ModHelperFields.EXPLOSION_STATUS_BITFIELD |= 0x1;
+                            ModHelper.ModHelperFields.Current404Score = ModHelper.calculate404ChallengeScore(world);
                             PlayerEntity player = PlayerHelper.getPlayerFromGame();
                             if (null != player) {
                                 player.incrementStat(Ways404Achievements.CREEPER_IRON_BLOCK);
                             }
                         } else if (Block.GOLD_BLOCK.id == blockId) {
                             ModHelper.ModHelperFields.EXPLOSION_STATUS_BITFIELD |= 0x2;
+                            ModHelper.ModHelperFields.Current404Score = ModHelper.calculate404ChallengeScore(world);
                             PlayerEntity player = PlayerHelper.getPlayerFromGame();
                             if (null != player) {
                                 player.incrementStat(Ways404Achievements.CREEPER_GOLD_BLOCK);
                             }
                         } else if (Block.LAPIS_BLOCK.id == blockId) {
                             ModHelper.ModHelperFields.EXPLOSION_STATUS_BITFIELD |= 0x4;
+                            ModHelper.ModHelperFields.Current404Score = ModHelper.calculate404ChallengeScore(world);
                             PlayerEntity player = PlayerHelper.getPlayerFromGame();
                             if (null != player) {
                                 player.incrementStat(Ways404Achievements.CREEPER_LAPIS_LAZULI_BLOCK);
                             }
                         } else if (Block.DIAMOND_BLOCK.id == blockId) {
                             ModHelper.ModHelperFields.EXPLOSION_STATUS_BITFIELD |= 0x8;
+                            ModHelper.ModHelperFields.Current404Score = ModHelper.calculate404ChallengeScore(world);
                             PlayerEntity player = PlayerHelper.getPlayerFromGame();
                             if (null != player) {
                                 player.incrementStat(Ways404Achievements.CREEPER_DIAMOND_BLOCK);

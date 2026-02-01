@@ -76,7 +76,7 @@ public class Ways404Achievements {
     }
 
     public static void updateAchievementCounts() {
-        if (Config.config.DISPLAY_SCORE_ON_BEGIN_ACHIEVEMENT) {
+        if (Config.config.SCORE_RENDERING_CONFIG.DISPLAY_SCORE_ON_BEGIN_ACHIEVEMENT) {
             PlayerEntity player = PlayerHelper.getPlayerFromGame();
             if ((null != player) && (null != player.world)) {
                 /** - Get 404 challenge score */

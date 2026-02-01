@@ -3,10 +3,9 @@ package com.github.telvarost.whatareyouscoring;
 public enum ScoreDisplayEnum {
 
     VANILLA("Vanilla"),
-    BASIC_SCORE("Basic"),
-    DAYS_SCORE("Days"),
-    CHALLENGE_404("404 Challenge"),
-    ALL_WAYS("Enabled WAYS");
+    COMBINED("Combined"),
+    LISTED("Listed"),
+    CUSTOM("Custom");
 
     final String stringValue;
 

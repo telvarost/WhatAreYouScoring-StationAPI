@@ -24,21 +24,20 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(LivingEntity.class)
-public abstract class LivingMixin extends Entity {
+public abstract class LivingEntityMixin extends Entity {
 
-    public LivingMixin(World arg) {
+    public LivingEntityMixin(World arg) {
         super(arg);
     }
 
-
     @Inject(method = "onKilledBy", at = @At("HEAD"), cancellable = true)
-    public void onKilledBy(Entity entity, CallbackInfo ci) {
+    public void whatAreYouScoring_onKilledBy(Entity entity, CallbackInfo ci) {
         if (Config.config.BASIC_SCORE_CONFIG.BASIC_SCORING_ENABLED) {
-            if (entity instanceof PlayerEntity)
-            {
+            if (entity instanceof PlayerEntity) {
                 LivingEntity instance = ((LivingEntity) (Object)this);
 
-                if (  (Config.config.BASIC_SCORE_CONFIG.ADD_SCORE_ON_MONSTER_KILLED)
+                if (  (Config.config.BASIC_SCORE_CONFIG.BASIC_SCORING_ENABLED)
+                   && (Config.config.BASIC_SCORE_CONFIG.ADD_SCORE_ON_MONSTER_KILLED)
                    && (  (instance instanceof MonsterEntity)
                       || (instance instanceof GhastEntity)
                       || (instance instanceof SlimeEntity)
@@ -49,9 +48,11 @@ public abstract class LivingMixin extends Entity {
                     }
 
                     ModHelper.ModHelperFields.MONSTER_MOBS_KILLED++;
+                    ModHelper.ModHelperFields.CurrentBasicScore = ModHelper.calculateBasicScore();
                 }
 
-                if (  (Config.config.BASIC_SCORE_CONFIG.ADD_SCORE_ON_PASSIVE_KILLED)
+                if (  (Config.config.BASIC_SCORE_CONFIG.BASIC_SCORING_ENABLED)
+                   && (Config.config.BASIC_SCORE_CONFIG.ADD_SCORE_ON_PASSIVE_KILLED)
                    && (  (instance instanceof AnimalEntity)
                       || (instance instanceof SquidEntity)
                       )
@@ -61,6 +62,7 @@ public abstract class LivingMixin extends Entity {
                     }
 
                     ModHelper.ModHelperFields.PASSIVE_MOBS_KILLED++;
+                    ModHelper.ModHelperFields.CurrentBasicScore = ModHelper.calculateBasicScore();
                 }
             }
         }
@@ -103,6 +105,8 @@ public abstract class LivingMixin extends Entity {
                         }
                         ModHelper.ModHelperFields.GHAST_KILLED++;
                     }
+
+                    ModHelper.ModHelperFields.Current404Score = ModHelper.calculate404ChallengeScore(world);
                 }
             }
         }

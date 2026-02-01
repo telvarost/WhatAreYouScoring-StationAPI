@@ -1,4 +1,4 @@
-package com.github.telvarost.whatareyouscoring.mixin;
+package com.github.telvarost.whatareyouscoring.mixin.client;
 
 import com.github.telvarost.whatareyouscoring.Config;
 import com.github.telvarost.whatareyouscoring.achievement.Ways404Achievements;
@@ -16,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Environment(EnvType.CLIENT)
 @Mixin(GameMenuScreen.class)
-public class PauseMixin extends Screen {
+public class GameMenuScreenMixin extends Screen {
 
     @Inject(
             method = "buttonClicked",
@@ -26,7 +26,7 @@ public class PauseMixin extends Screen {
                     ordinal = 3
             )
     )
-    protected void buttonClicked(ButtonWidget par1, CallbackInfo ci) {
+    protected void whatAreYouScoring_buttonClicked(ButtonWidget par1, CallbackInfo ci) {
         if (Config.config.BASIC_SCORE_CONFIG.BASIC_SCORING_ENABLED) {
             WaysBasicAchievements.updateAchievementCounts();
         }
