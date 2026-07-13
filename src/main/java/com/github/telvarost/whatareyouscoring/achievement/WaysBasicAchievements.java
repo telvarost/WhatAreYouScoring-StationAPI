@@ -6,9 +6,12 @@ import com.github.telvarost.whatareyouscoring.mixin.AchievementAccessor;
 import net.minecraft.achievement.Achievement;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+import net.modificationstation.stationapi.api.template.achievement.TemplateAchievement;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.github.telvarost.whatareyouscoring.ModHelper.NAMESPACE;
 
 public class WaysBasicAchievements {
 	public static final List<Achievement> ACHIEVEMENTS = new ArrayList<>();
@@ -20,7 +23,7 @@ public class WaysBasicAchievements {
 	public static final Achievement PASSIVE_MOBS_KILLED = make("passive_mob_killed", Item.LEATHER, -2, 0, START_BASIC, false);
 
 	private static Achievement make(String name, Block icon, int x, int y, Achievement parent, boolean isChallenge) {
-		Achievement achievement = new Achievement(ModHelper.ModHelperFields.ACHIEVEMENT_ID++, "whatareyouscoring." + name, x, y, icon, parent);
+		Achievement achievement = new TemplateAchievement(NAMESPACE.id(name), "whatareyouscoring." + name, x, y, icon, parent);
 		if (isChallenge) {
 			achievement.challenge();
 		}
@@ -29,7 +32,7 @@ public class WaysBasicAchievements {
 	}
 
 	private static Achievement make(String name, Item icon, int x, int y, Achievement parent, boolean isChallenge) {
-		Achievement achievement = new Achievement(ModHelper.ModHelperFields.ACHIEVEMENT_ID++, "whatareyouscoring." + name, x, y, icon, parent);
+		Achievement achievement = new TemplateAchievement(NAMESPACE.id(name), "whatareyouscoring." + name, x, y, icon, parent);
 		if (isChallenge) {
 			achievement.challenge();
 		}

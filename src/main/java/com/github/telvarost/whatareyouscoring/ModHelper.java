@@ -255,7 +255,6 @@ public class ModHelper {
     }
 
     public static class ModHelperFields {
-        public static int ACHIEVEMENT_ID = 11500;
         public static Integer DETECT_CREEPER_EXPLOSION = 0;
 
         /** - Basic helper fields */

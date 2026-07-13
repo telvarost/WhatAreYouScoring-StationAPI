@@ -8,9 +8,12 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.modificationstation.stationapi.api.entity.player.PlayerHelper;
+import net.modificationstation.stationapi.api.template.achievement.TemplateAchievement;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.github.telvarost.whatareyouscoring.ModHelper.NAMESPACE;
 
 public class Ways404Achievements {
     public static final List<Achievement> ACHIEVEMENTS = new ArrayList<>();
@@ -58,7 +61,7 @@ public class Ways404Achievements {
     public static final Achievement PLACE_GLOWSTONE_IN_THE_OVERWORLD = make("place_glowstone_in_the_overworld", Block.GLOWSTONE, -3, -3, EXIT_THE_NETHER, true);
 
     private static Achievement make(String name, Block icon, int x, int y, Achievement parent, boolean isChallenge) {
-        Achievement achievement = new Achievement(ModHelper.ModHelperFields.ACHIEVEMENT_ID++, "whatareyouscoring." + name, x, y, icon, parent);
+        Achievement achievement = new TemplateAchievement(NAMESPACE.id(name), "whatareyouscoring." + name, x, y, icon, parent);
         if (isChallenge) {
             achievement.challenge();
         }
@@ -67,7 +70,7 @@ public class Ways404Achievements {
     }
 
     private static Achievement make(String name, Item icon, int x, int y, Achievement parent, boolean isChallenge) {
-        Achievement achievement = new Achievement(ModHelper.ModHelperFields.ACHIEVEMENT_ID++, "whatareyouscoring." + name, x, y, icon, parent);
+        Achievement achievement = new TemplateAchievement(NAMESPACE.id(name), "whatareyouscoring." + name, x, y, icon, parent);
         if (isChallenge) {
             achievement.challenge();
         }

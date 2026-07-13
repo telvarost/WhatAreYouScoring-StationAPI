@@ -106,7 +106,6 @@ public class BlockMixin {
                     if (0 == ModHelper.ModHelperFields.BLOCKS_PLACED) {
                         ((PlayerEntity) placer).incrementStat(WaysBasicAchievements.BLOCKS_PLACED);
                     }
-
                     ModHelper.ModHelperFields.BLOCKS_PLACED++;
                     ModHelper.ModHelperFields.CurrentBasicScore = ModHelper.calculateBasicScore();
                 }
@@ -116,12 +115,8 @@ public class BlockMixin {
                         if (this.id == Block.GLASS.id) {
                             ModHelper.ModHelperFields.GLASS_PLACED++;
                             ModHelper.ModHelperFields.Current404Score = ModHelper.calculate404ChallengeScore(world);
-
                             if (32 == ModHelper.ModHelperFields.GLASS_PLACED) {
-                                PlayerEntity player = PlayerHelper.getPlayerFromGame();
-                                if (null != player) {
-                                    player.incrementStat(Ways404Achievements.PLACE_32_GLASS);
-                                }
+                                ((PlayerEntity) placer).incrementStat(Ways404Achievements.PLACE_32_GLASS);
                             }
                             return;
                         }
@@ -131,12 +126,8 @@ public class BlockMixin {
                         if (this.id == Block.BRICKS.id) {
                             ModHelper.ModHelperFields.BRICKS_PLACED++;
                             ModHelper.ModHelperFields.Current404Score = ModHelper.calculate404ChallengeScore(world);
-
                             if (20 == ModHelper.ModHelperFields.BRICKS_PLACED) {
-                                PlayerEntity player = PlayerHelper.getPlayerFromGame();
-                                if (null != player) {
-                                    player.incrementStat(Ways404Achievements.PLACE_20_BRICKS);
-                                }
+                                ((PlayerEntity) placer).incrementStat(Ways404Achievements.PLACE_20_BRICKS);
                             }
                             return;
                         }
@@ -147,10 +138,7 @@ public class BlockMixin {
                             if (3 < world.getBlockMeta(x, y - 1, z)) {
                                 ModHelper.ModHelperFields.OTHER_BITFIELD |= ModHelper.ModHelperFields.HAS_CRASH_SLAB_BEEN_PLACED;
                                 ModHelper.ModHelperFields.Current404Score = ModHelper.calculate404ChallengeScore(world);
-                                PlayerEntity player = PlayerHelper.getPlayerFromGame();
-                                if (null != player) {
-                                    player.incrementStat(Ways404Achievements.PLACE_A_CRASH_SLAB);
-                                }
+                                ((PlayerEntity) placer).incrementStat(Ways404Achievements.PLACE_A_CRASH_SLAB);
                             }
                             return;
                         }
@@ -160,11 +148,8 @@ public class BlockMixin {
                         if (this.id == Block.GLOWSTONE.id) {
                             ModHelper.ModHelperFields.OTHER_BITFIELD |= ModHelper.ModHelperFields.HAS_OVERWORLD_GLOWSTONE_BEEN_PLACED;
                             ModHelper.ModHelperFields.Current404Score = ModHelper.calculate404ChallengeScore(world);
-                            PlayerEntity player = PlayerHelper.getPlayerFromGame();
-                            if (null != player) {
-                                if (0 == player.dimensionId) {
-                                    player.incrementStat(Ways404Achievements.PLACE_GLOWSTONE_IN_THE_OVERWORLD);
-                                }
+                            if (0 == ((PlayerEntity) placer).dimensionId) {
+                                ((PlayerEntity) placer).incrementStat(Ways404Achievements.PLACE_GLOWSTONE_IN_THE_OVERWORLD);
                             }
                             return;
                         }

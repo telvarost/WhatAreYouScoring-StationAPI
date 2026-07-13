@@ -18,9 +18,7 @@ public class ItemUsedInCraftingListener {
     @EventListener
     public void craftingAchievementsListener(ItemUsedInCraftingEvent event) {
         if (Config.config.CHALLENGE_404_CONFIG.CHALLENGE_404_SCORING_ENABLED) {
-            if (  (0 == event.itemOrdinal)
-               && (null != event.itemCrafted)
-            ) {
+            if (null != event.itemCrafted) {
                 if (0x00C0 != ModHelper.ModHelperFields.BOW_AND_ARROW_CRAFTING_BITFIELD) {
                     if (event.itemCrafted.itemId == Item.ARROW.id) {
                         int arrowIncrement = 0x007F & ModHelper.ModHelperFields.BOW_AND_ARROW_CRAFTING_BITFIELD;

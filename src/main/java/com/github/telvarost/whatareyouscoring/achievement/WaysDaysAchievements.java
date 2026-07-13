@@ -9,10 +9,13 @@ import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.Item;
 import net.minecraft.stat.Stats;
+import net.modificationstation.stationapi.api.template.achievement.TemplateAchievement;
 
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.github.telvarost.whatareyouscoring.ModHelper.NAMESPACE;
 
 public class WaysDaysAchievements {
     public static final List<Achievement> ACHIEVEMENTS = new ArrayList<>();
@@ -26,7 +29,7 @@ public class WaysDaysAchievements {
     public static final Achievement REAL_100_DAYS = make("real_100_days", Block.DIAMOND_BLOCK, 2, 0, REAL_10_DAYS, true);
 
     private static Achievement make(String name, Block icon, int x, int y, Achievement parent, boolean isChallenge) {
-        Achievement achievement = new Achievement(ModHelper.ModHelperFields.ACHIEVEMENT_ID++, "whatareyouscoring." + name, x, y, icon, parent);
+        Achievement achievement = new TemplateAchievement(NAMESPACE.id(name), "whatareyouscoring." + name, x, y, icon, parent);
         if (isChallenge) {
             achievement.challenge();
         }
@@ -35,7 +38,7 @@ public class WaysDaysAchievements {
     }
 
     private static Achievement make(String name, Item icon, int x, int y, Achievement parent, boolean isChallenge) {
-        Achievement achievement = new Achievement(ModHelper.ModHelperFields.ACHIEVEMENT_ID++, "whatareyouscoring." + name, x, y, icon, parent);
+        Achievement achievement = new TemplateAchievement(NAMESPACE.id(name), "whatareyouscoring." + name, x, y, icon, parent);
         if (isChallenge) {
             achievement.challenge();
         }
